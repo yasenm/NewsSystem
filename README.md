@@ -1,0 +1,2 @@
+# NewsSystem
+Self preparation project
