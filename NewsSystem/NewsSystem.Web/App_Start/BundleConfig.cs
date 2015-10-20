@@ -21,9 +21,19 @@
                         "~/Scripts/modernizr-*"));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap-theme").Include(
+                        "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/client-side-css").IncludeDirectory(
+                        "~/Content/site", "*.css", true));
+
+            bundles.Add(new StyleBundle("~/Content/AdminPanel/admin-bootstrap-theme-css").Include(
+                        "~/Content/AdminPanel/bootstrap.min.css",
+                        "~/Content/AdminPanel/sb-admin.css",
+                        "~/Content/AdminPanel/plugins/morris.css"));
+
+            bundles.Add(new StyleBundle("~/Content/AdminPanel/admin-side-css").IncludeDirectory(
+                        "~/Content/AdminPanel/site", "*.css", true));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
