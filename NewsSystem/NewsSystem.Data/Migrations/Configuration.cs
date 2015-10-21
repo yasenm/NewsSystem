@@ -18,6 +18,40 @@ namespace NewsSystem.Data.Migrations
         protected override void Seed(NewsSystemDbContext context)
         {
             this.ArticlesSeed(context);
+            this.AlbumCategoriesSeed(context);
+        }
+
+        private void AlbumCategoriesSeed(NewsSystemDbContext context)
+        {
+            if (!context.AlbumCategories.Any())
+            {
+                // Add generated parent categories
+                for (int i = 0; i < 5; i++)
+                {
+                    var albumCategory = new AlbumCategory();
+                    albumCategory.Name = StringGenerator.RandomStringWithSpaces(5, 40);
+                    albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
+                    albumCategory.ParentId = null;
+
+                    context.AlbumCategories.AddOrUpdate(albumCategory);
+                }
+
+                context.SaveChanges();
+
+                var parents = context.AlbumCategories.ToList();
+                // Add generated child categories
+                for (int i = 0; i < 30; i++)
+                {
+                    var albumCategory = new AlbumCategory();
+                    albumCategory.Name = StringGenerator.RandomStringWithSpaces(5, 40);
+                    albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
+                    albumCategory.ParentId = parents[NumberGenerator.RandomNumber(0, parents.Count - 1)].Id;
+
+                    context.AlbumCategories.AddOrUpdate(albumCategory);
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private void ArticlesSeed(NewsSystemDbContext context)

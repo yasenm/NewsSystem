@@ -11,6 +11,12 @@
 
         IDbSet<Article> Articles { get; set; }
 
+        IDbSet<NSImage> NSImages { get; set; }
+
+        IDbSet<Album> Albums { get; set; }
+
+        IDbSet<AlbumCategory> AlbumCategories { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

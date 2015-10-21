@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201510191157188_Article_Entity_Added.Designer.cs">
       <DependentUpon>201510191157188_Article_Entity_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.cs" />
+    <Compile Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.Designer.cs">
+      <DependentUpon>201510211052538_Added_NSImages_Albums_AlbumCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs" />
+    <Compile Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.Designer.cs">
+      <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +94,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510191157188_Article_Entity_Added.resx">
       <DependentUpon>201510191157188_Article_Entity_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.resx">
+      <DependentUpon>201510211052538_Added_NSImages_Albums_AlbumCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.resx">
+      <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

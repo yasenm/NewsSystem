@@ -12,8 +12,12 @@ namespace NewsSystem.Web.App_Start
     using Ninject.Web.Common;
 
     using NewsSystem.Data;
-    using NewsSystem.Data.Services.Contracts;
+    using NewsSystem.Data.Services.Albums;
     using NewsSystem.Data.Services.Articles;
+    using NewsSystem.Data.Services.Contracts;
+    using NewsSystem.Data.Services.Contracts.Albums;
+    using NewsSystem.Data.Services.Contracts.NSImages;
+    using NewsSystem.Data.Services.Images;
     using NewsSystem.Data.UnitOfWork;
 
     public static class NinjectWebCommon 
@@ -70,6 +74,9 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<INewsSystemData>().To<NewsSystemData>();
 
             kernel.Bind<IArticleService>().To<ArticleService>();
+            kernel.Bind<IAlbumCategoryService>().To<AlbumCategoryService>();
+            kernel.Bind<IAlbumService>().To<AlbumService>();
+            kernel.Bind<INSImageService>().To<NSImageService>();
         }        
     }
 }

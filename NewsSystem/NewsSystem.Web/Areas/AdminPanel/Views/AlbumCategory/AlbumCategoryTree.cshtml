@@ -1,0 +1,32 @@
+﻿@using NewsSystem.Data.ViewModels.AlbumCategories
+
+@model IEnumerable<AlbumCategoryViewModel>
+
+<div class="panel panel-red">
+    <div class="panel-heading">
+        <h3 class="panel-title">Album Categories</h3>
+    </div>
+    @foreach (var category in Model)
+    {
+        <div class="list-group panel-body">
+            <a href="javascript:;" data-toggle="collapse" data-target="#@category.Name" class="" aria-expanded="false">
+                <i class="fa fa-fw fa-arrows-v">
+                </i>
+                @category.Name
+                <i class="fa fa-fw fa-caret-down">
+                </i>
+            </a>
+            @if (category.Children.Count > 0)
+            {
+                <ul id="@category.Name" class="collapse" aria-expanded="false">
+                    @foreach (var child in category.Children)
+                    {
+                        <li>
+                            <a href="#">@child.Name</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+</div>

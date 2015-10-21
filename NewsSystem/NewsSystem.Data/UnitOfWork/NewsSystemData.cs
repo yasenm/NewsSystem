@@ -36,6 +36,30 @@
             }
         }
 
+        public IRepository<Album> Albums
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<Album>();
+            }
+        }
+
+        public IRepository<AlbumCategory> AlbumCategories
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<AlbumCategory>();
+            }
+        }
+
+        public IRepository<NSImage> NSImages
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<NSImage>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.Context.SaveChanges();

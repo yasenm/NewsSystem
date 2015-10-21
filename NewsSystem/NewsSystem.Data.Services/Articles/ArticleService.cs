@@ -7,7 +7,7 @@
     using AutoMapper.QueryableExtensions;
 
     using NewsSystem.Data.Services.Contracts;
-    using NewsSystem.Data.ViewModels;
+    using NewsSystem.Data.ViewModels.Articles;
     using NewsSystem.Data.UnitOfWork;
 
     public class ArticleService : IArticleService, IDataService

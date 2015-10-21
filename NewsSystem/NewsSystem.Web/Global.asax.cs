@@ -9,7 +9,7 @@
     using NewsSystem.Data.Infrastructure.Mapping;
     using NewsSystem.Web.App_Start;
     using NewsSystem.Data.Services.Articles;
-    using NewsSystem.Data.ViewModels;
+    using NewsSystem.Data.ViewModels.Articles;
 
     public class MvcApplication : System.Web.HttpApplication
     {

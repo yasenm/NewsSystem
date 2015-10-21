@@ -11,6 +11,12 @@
 
         IRepository<Article> Articles { get; }
 
+        IRepository<Album> Albums { get; }
+
+        IRepository<AlbumCategory> AlbumCategories { get; }
+
+        IRepository<NSImage> NSImages { get; }
+
         int SaveChanges();
     }
 }

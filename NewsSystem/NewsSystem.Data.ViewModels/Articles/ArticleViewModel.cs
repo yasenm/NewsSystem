@@ -1,4 +1,4 @@
-﻿namespace NewsSystem.Data.ViewModels
+﻿namespace NewsSystem.Data.ViewModels.Articles
 {
     using NewsSystem.Data.Infrastructure.Mapping;
     using NewsSystem.Data.Models;

@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticleViewModel.cs" />
+    <Compile Include="AlbumCategories\AlbumCategoryViewModel.cs" />
+    <Compile Include="Articles\ArticleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,10 @@
       <Project>{2cd9fccc-12d1-4817-9577-29192e808ec7}</Project>
       <Name>NewsSystem.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Albums\" />
+    <Folder Include="NSImages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

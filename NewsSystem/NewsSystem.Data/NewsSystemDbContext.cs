@@ -22,6 +22,12 @@
 
         public IDbSet<Article> Articles { get; set; }
 
+        public IDbSet<Album> Albums { get; set; }
+
+        public IDbSet<AlbumCategory> AlbumCategories { get; set; }
+
+        public IDbSet<NSImage> NSImages { get; set; }
+
         public static NewsSystemDbContext Create()
         {
             return new NewsSystemDbContext();

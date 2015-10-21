@@ -196,6 +196,7 @@
     <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\AdminPanel\AdminPanelAreaRegistration.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\AlbumCategoryController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
@@ -228,6 +229,8 @@
     <Content Include="Areas\AdminPanel\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Home\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Home\Articles.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\AlbumCategory\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\AlbumCategory\AlbumCategoryTree.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
