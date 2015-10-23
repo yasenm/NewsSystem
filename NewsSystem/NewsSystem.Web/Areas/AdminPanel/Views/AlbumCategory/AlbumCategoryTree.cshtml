@@ -9,24 +9,36 @@
     @foreach (var category in Model)
     {
         <div class="list-group panel-body">
-            <a href="javascript:;" data-toggle="collapse" data-target="#@category.Name" class="" aria-expanded="false">
-                <i class="fa fa-fw fa-arrows-v">
-                </i>
-                @category.Name
-                <i class="fa fa-fw fa-caret-down">
-                </i>
-            </a>
-            @if (category.Children.Count > 0)
-            {
-                <ul id="@category.Name" class="collapse" aria-expanded="false">
-                    @foreach (var child in category.Children)
-                    {
-                        <li>
-                            <a href="#">@child.Name</a>
-                        </li>
-                    }
-                </ul>
-            }
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#album-category-@category.Id" class="" aria-expanded="false">
+                            <i class="fa fa-fw">
+                            </i>
+                            @category.Name
+                            <i class="fa fa-fw fa-arrow-circle-down">
+                            </i>
+                        </a>
+                    </h3>
+                </div>
+                @if (category.Children.Count > 0)
+                {
+                    <div class="list-group panel-body">
+                        <ul id="album-category-@category.Id" class="collapse" aria-expanded="false">
+                            @foreach (var child in category.Children)
+                            {
+                                <li>
+                                    <a href="#">@child.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
         </div>
     }
 </div>
+
+<script>
+
+</script>

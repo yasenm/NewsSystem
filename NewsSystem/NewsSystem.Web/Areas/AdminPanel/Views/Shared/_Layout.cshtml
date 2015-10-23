@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/AdminPanel/admin-bootstrap-theme-css")
     @Styles.Render("~/Content/AdminPanel/admin-side-css")
+    @Scripts.Render("~/bundles/common-scripts")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -180,7 +181,7 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/admin-panel-bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

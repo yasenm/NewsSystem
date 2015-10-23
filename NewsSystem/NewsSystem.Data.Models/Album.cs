@@ -23,6 +23,14 @@
         [StringLength(5000, MinimumLength = 4)]
         public string Text { get; set; }
 
+        public long? CoverImageId { get; set; }
+
+        public virtual NSImage CoverImage { get; set; }
+
+        public long AlbumCategoryId { get; set; }
+
+        public virtual AlbumCategory AlbumCategory { get; set; }
+
         public virtual ICollection<NSImage> NSImages
         {
             get { return this.nsImages; }

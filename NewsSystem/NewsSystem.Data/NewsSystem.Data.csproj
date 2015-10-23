@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.Designer.cs">
       <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs" />
+    <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.Designer.cs">
+      <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.resx">
       <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.resx">
+      <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,11 +1,12 @@
 namespace NewsSystem.Data.Migrations
 {
-    using NewsSystem.Common.RandomGenerators;
-    using NewsSystem.Data.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+
+    using NewsSystem.Common.RandomGenerators;
+    using NewsSystem.Data.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<NewsSystemDbContext>
     {
@@ -19,6 +20,7 @@ namespace NewsSystem.Data.Migrations
         {
             this.ArticlesSeed(context);
             this.AlbumCategoriesSeed(context);
+            this.AlbumsSeed(context);
         }
 
         private void AlbumCategoriesSeed(NewsSystemDbContext context)
@@ -48,6 +50,31 @@ namespace NewsSystem.Data.Migrations
                     albumCategory.ParentId = parents[NumberGenerator.RandomNumber(0, parents.Count - 1)].Id;
 
                     context.AlbumCategories.AddOrUpdate(albumCategory);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        private void AlbumsSeed(NewsSystemDbContext context)
+        {
+            if (!context.AlbumCategories.Any())
+            {
+                return;
+            }
+
+            if (!context.Albums.Any())
+            {
+                var albumCategories = context.AlbumCategories.Where(ac => ac.Parent != null).ToList();
+
+                for (int i = 0; i < 50; i++)
+                {
+                    var newAlbum = new Album();
+                    newAlbum.Name = StringGenerator.RandomStringWithoutSpaces(5, 40);
+                    newAlbum.Text = StringGenerator.RandomStringWithSpaces(400, 1500);
+                    newAlbum.AlbumCategoryId = albumCategories[NumberGenerator.RandomNumber(0, albumCategories.Count - 1)].Id;
+
+                    context.Albums.AddOrUpdate(newAlbum);
                 }
 
                 context.SaveChanges();
