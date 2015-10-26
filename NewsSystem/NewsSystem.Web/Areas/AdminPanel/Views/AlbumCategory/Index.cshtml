@@ -1,13 +1,13 @@
 ﻿<div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
         @Html.Action("AlbumCategoryTree", "AlbumCategory")
     </div>
-    <div class="col-md-6">
-        @*@Html.Action("AlbumsGrid", "Album")*@
+    <div class="col-md-8 albums-grid-container">
+        @Html.Action("AlbumsGrid", "Album", new { })
     </div>
-    <div class="col-md-3 text-center">
+    <div class="col-md-2 text-center">
         <div class="row">
-            <a href="#" class="btn btn-default form-control">Add album</a>
+            <a href="@Url.Action("Create", "Album", null)" class="btn btn-default btn-block">Add album</a>
         </div>
         <br />
         <div class="row">

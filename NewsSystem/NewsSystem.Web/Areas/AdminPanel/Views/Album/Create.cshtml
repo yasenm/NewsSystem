@@ -1,0 +1,31 @@
+﻿@using NewsSystem.Data.ViewModels.Albums
+
+@model AlbumCreateViewModel
+
+<div class="container">
+    @using (Html.BeginForm("Create", "Album", FormMethod.Post, new { @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Text, new { })
+            @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(m => m.AlbumCategoryId, new { @for = "category-input"})
+                @Html.DropDownListFor(m => m.AlbumCategoryId, (SelectList)ViewBag.Categories, new { id = "category-input", @class = "form-control" })
+            </div>
+        </div>
+        <div>
+            <button type="submit" value="Create" class="btn btn-default">Create</button>
+            <a href="@Url.Action("Index", "AlbumCategories")" class="btn btn-sm btn-danger">Cancel</a>
+        </div>
+    }
+</div>

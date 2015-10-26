@@ -1,51 +1,76 @@
 ﻿namespace NewsSystem.Web.Areas.AdminPanel.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
 
     using NewsSystem.Data.Services.Contracts.Albums;
+    using NewsSystem.Data.ViewModels.Albums;
 
     public class AlbumController : Controller
     {
         private IAlbumService AlbumService;
+        private IAlbumCategoryService AlbumCategoryService;
 
-        public AlbumController(IAlbumService albumService)
+        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService)
         {
             this.AlbumService = albumService;
+            this.AlbumCategoryService = acService;
         }
 
         [HttpGet]
         public ActionResult AlbumsGrid()
         {
-            var model = new object();
-            return this.View("AlbumsGrid", model);
+            var model = this.AlbumService.GetAlbums();
+            return this.PartialView(model);
         }
 
         [HttpGet]
-        public ActionResult AlbumsGrid(long albumId)
+        public ActionResult Create()
         {
-            var model = new object();
-            return this.View("AlbumsGrid", model);
+            var model = new AlbumCreateViewModel();
+            var categories = this.AlbumCategoryService.GetForDDLAll();
+            List<SelectListItem> ddl = new List<SelectListItem>();
+            ddl.AddRange(new SelectList(categories, "Id", "Name"));
+            this.ViewBag.Categories = new SelectList(ddl, "Value", "Text");
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(AlbumCreateViewModel createModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (this.AlbumService.Create(createModel))
+                {
+                    return this.RedirectToAction("Index", "AlbumCategory");
+                }
+            }
+
+            return this.View(createModel);
         }
 
         [HttpGet]
-        public ActionResult AlbumsGrid(long albumId, string searchText)
+        public ActionResult Edit(long albumId)
         {
-            var model = new object();
-            return this.View("AlbumsGrid", model);
+            var model = this.AlbumService.GetAlbumForEdit(albumId);
+            return this.View(model);
         }
 
-        [HttpGet]
-        public ActionResult AlbumsGrid(string searchText)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AlbumEditViewModel editModel)
         {
-            var model = new object();
-            return this.View("AlbumsGrid", model);
-        }
+            if (ModelState.IsValid)
+            {
+                if (this.AlbumService.EditAlbum(editModel))
+                {
+                    return this.RedirectToAction("Index", "AlbumCategory");
+                }
+            }
 
-        [HttpGet]
-        public ActionResult CreateAlbum(string searchText)
-        {
-            var model = new object();
-            return this.View("AlbumsGrid", model);
+            return this.View(editModel);
         }
-	}
+    }
 }

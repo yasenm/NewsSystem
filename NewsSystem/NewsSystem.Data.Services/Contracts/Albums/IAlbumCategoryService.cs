@@ -7,5 +7,7 @@
     public interface IAlbumCategoryService
     {
         IEnumerable<AlbumCategoryViewModel> GetAll();
+
+        IEnumerable<AlbumCategoryDDLViewModel> GetForDDLAll();
     }
 }

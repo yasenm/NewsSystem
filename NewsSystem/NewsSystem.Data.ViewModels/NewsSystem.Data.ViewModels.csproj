@@ -34,7 +34,9 @@
       <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,15 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumCategories\AlbumCategoryDDLViewModel.cs" />
     <Compile Include="AlbumCategories\AlbumCategoryViewModel.cs" />
     <Compile Include="Albums\AlbumCreateViewModel.cs" />
+    <Compile Include="Albums\AlbumEditViewModel.cs" />
+    <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="NSImages\NSImageGridViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NewsSystem.Common\NewsSystem.Common.csproj">
+      <Project>{00952c83-ea20-4217-b794-a60b7ba7cc19}</Project>
+      <Name>NewsSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NewsSystem.Data.Common\NewsSystem.Data.Common.csproj">
       <Project>{9abbd79a-adfc-4af8-a153-97edb74aa35c}</Project>
       <Name>NewsSystem.Data.Common</Name>
@@ -68,9 +78,7 @@
       <Name>NewsSystem.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NSImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

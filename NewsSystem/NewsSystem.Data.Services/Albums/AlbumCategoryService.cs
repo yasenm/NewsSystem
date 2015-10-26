@@ -22,16 +22,26 @@
 
         public IEnumerable<AlbumCategoryViewModel> GetAll()
         {
-            var collection = this.Data.AlbumCategories
-                .All().Where(ac => ac.ParentId == null).ToList();
-            var other = collection
+            var collection = this.Data.AlbumCategories.All()
+                .Where(ac => ac.ParentId == null)
+                .ToList()
                 .AsQueryable()
-                //.Where(ac => ac.ParentId == null)
                 .Project()
                 .To<AlbumCategoryViewModel>()
                 .ToList();
 
-            return other;
+            return collection;
+        }
+
+
+        public IEnumerable<AlbumCategoryDDLViewModel> GetForDDLAll()
+        {
+            var collection = this.Data.AlbumCategories.All()
+                .Project()
+                .To<AlbumCategoryDDLViewModel>()
+                .ToList();
+
+            return collection;
         }
     }
 }

@@ -239,6 +239,7 @@
     <Content Include="Content\AdminPanel\plugins\morris.css" />
     <Content Include="Content\AdminPanel\sb-admin-rtl.css" />
     <Content Include="Content\AdminPanel\sb-admin.css" />
+    <Content Include="Content\AdminPanel\site\site.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -278,6 +279,9 @@
     <Content Include="Scripts\gridmvc.lang.fr.js" />
     <Content Include="Scripts\gridmvc.min.js.map" />
     <Content Include="Grid.Mvc.Ajax.readme" />
+    <Content Include="Areas\AdminPanel\Views\Album\Create.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Album\AlbumsGrid.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Album\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common\app.js" />
     <Content Include="Scripts\common\http-requester.js" />
@@ -333,8 +337,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPanel\Models\" />
-    <Folder Include="Areas\AdminPanel\Views\Album\" />
-    <Folder Include="Content\AdminPanel\site\" />
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
