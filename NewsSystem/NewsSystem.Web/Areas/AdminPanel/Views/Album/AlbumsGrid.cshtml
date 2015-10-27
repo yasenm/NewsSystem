@@ -8,12 +8,24 @@
     </div>
     <div class="list-group panel-body">
         @foreach (var album in Model)
-        {
-            <div class="col-md-3 word-wraped">
-                <a href="@Url.Action("Edit", "Album", new { albumId = album.Id })">
-                    <p>@album.Name</p>
-                </a>
-            </div>
-        }
+{
+    <div class="col-md-2 word-wraped img-thumbnail albums-grid-container">
+        <p>@album.Name</p>
+        <img src="@Url.Action("NSImage", "NSImage", new { imageId = album.CoverImageId })" alt="No image found" class="img-responsive albums-grid-cover-img image-in-container" />
+        <a href="@Url.Action("Edit", "Album", new { albumId = album.Id})" class="btn btn-sm btn-default">Edit</a>
+        @Ajax.ActionLink("Delete", "Delete", "Album",
+                new
+                {
+                    albumId = album.Id,
+                },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "albums-grid",
+                },
+                new { @class = "btn btn-sm btn-danger" })
+    </div>
+}
     </div>
 </div>

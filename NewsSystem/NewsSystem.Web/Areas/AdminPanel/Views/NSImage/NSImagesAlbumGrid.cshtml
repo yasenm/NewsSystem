@@ -1,0 +1,31 @@
+﻿@using NewsSystem.Data.ViewModels.NSImages
+
+@model ICollection<NSImageOnlyIdViewModel>
+
+
+<div class="panel panel-red">
+    <div class="panel-heading">
+        <h3 class="panel-title">Images</h3>
+    </div>
+    <div class="list-group panel-body">
+        @foreach (var image in Model)
+        {
+            <div class="col-md-2 img-thumbnail">
+                <img src="@Url.Action("NSImage", new { imageId = image.Id })" alt="Image not found" class="img-responsive" />
+                @Ajax.ActionLink("MakeCover", "MakeAlbumCover", "NSImage",
+                new
+                {
+                    imageId = image.Id,
+                    albumId = image.AlbumId,
+                },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "album-edit-nsimages-grid",
+                },
+                new { @class = "btn btn-sm btn-default" })
+            </div>
+        }
+    </div>
+</div>

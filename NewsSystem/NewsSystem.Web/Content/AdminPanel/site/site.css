@@ -4,3 +4,14 @@
 .word-wraped {
     word-wrap: break-word;
 }
+
+.albums-grid-container {
+    height: 200px;
+    padding: 5px;
+    border: 10px solid transparent;
+}
+
+.image-in-container {
+    max-width: 100%;
+    max-height: 100%;
+}

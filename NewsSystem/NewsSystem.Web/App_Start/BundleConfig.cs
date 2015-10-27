@@ -60,10 +60,13 @@
         private static void RegisterCommonScripts(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-2.1.4.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-unobtrusive").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common-scripts").Include(
                         "~/Scripts/common/app.js",
@@ -77,10 +80,10 @@
         private static void RegisterAdminPanelScripts(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-bootstrap").Include(
-                      "~/Scripts/AdminPanel/plugins/bootstrap.min.js",
-                      "~/Scripts/AdminPanel/plugins/morris/raphael.min.js",
+                      "~/Scripts/AdminPanel/plugins/bootstrap.min.js"
+                      //"~/Scripts/AdminPanel/plugins/morris/raphael.min.js",
                       //"~/Scripts/AdminPanel/plugins/morris/morris.js",
-                      "~/Scripts/AdminPanel/plugins/morris/morris-data.js"
+                      //"~/Scripts/AdminPanel/plugins/morris/morris-data.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-albums").Include(

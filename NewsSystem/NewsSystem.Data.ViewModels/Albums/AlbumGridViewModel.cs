@@ -10,8 +10,9 @@
     {
         public long Id { get; set; }
 
-
         public string Name { get; set; }
+
+        public long? CoverImageId { get; set; }
 
         public NSImageGridViewModel NSImage { get; set; }
 

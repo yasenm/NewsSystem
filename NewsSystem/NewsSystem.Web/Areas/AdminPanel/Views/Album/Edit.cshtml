@@ -3,14 +3,15 @@
 @model AlbumEditViewModel
 
 <div class="container">
-
     <div class="panel-heading">
         <h3 class="panel-title">@Model.Name</h3>
     </div>
-    @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { }))
+
+    @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(m => m.Id, new { @Value = Model.Id })
         <div class="list-group panel-body">
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { })
@@ -22,6 +23,12 @@
                 @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
             </div>
+            <div class="form-group">
+                <div>
+                    <label for="AlbumPostedImages">Chose picture</label>
+                    <input type="file" name="AlbumPostedImages" id="AlbumPostedImages" multiple class="btn btn-default" />
+                </div>
+            </div>
 
             <div>
                 <button type="submit" value="Edit" class="btn btn-default">Edit</button>
@@ -29,4 +36,8 @@
             </div>
         </div>
     }
+
+    <div id="album-edit-nsimages-grid">
+        @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
+    </div>
 </div>

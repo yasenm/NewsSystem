@@ -11,6 +11,8 @@
 
         bool Create(AlbumCreateViewModel albumModel);
 
+        bool Delete(long albumId);
+
         IEnumerable<AlbumGridViewModel> GetAlbums();
 
         //IEnumerable<AlbumGridViewModel> Search();

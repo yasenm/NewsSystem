@@ -21,7 +21,7 @@
         public ActionResult AlbumsGrid()
         {
             var model = this.AlbumService.GetAlbums();
-            return this.PartialView(model);
+            return this.PartialView("AlbumsGrid", model);
         }
 
         [HttpGet]
@@ -71,6 +71,18 @@
             }
 
             return this.View(editModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(long albumId)
+        {
+            var deleted = this.AlbumService.Delete(albumId);
+            if (deleted)
+            {
+                return this.AlbumsGrid();
+            }
+
+            return this.Content("Unable to do action!");
         }
     }
 }
