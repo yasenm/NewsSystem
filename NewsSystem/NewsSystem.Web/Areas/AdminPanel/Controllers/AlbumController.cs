@@ -64,7 +64,8 @@
         {
             if (ModelState.IsValid)
             {
-                if (this.AlbumService.EditAlbum(editModel))
+                var updateSucceded = this.AlbumService.EditAlbum(editModel);
+                if (updateSucceded)
                 {
                     return this.RedirectToAction("Index", "AlbumCategory");
                 }
