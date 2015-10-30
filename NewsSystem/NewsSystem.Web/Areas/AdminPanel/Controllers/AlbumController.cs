@@ -85,5 +85,11 @@
 
             return this.Content("Unable to do action!");
         }
+
+        [HttpGet]
+        public ActionResult Search(string searchText)
+        {
+            return this.PartialView();
+        }
     }
 }
