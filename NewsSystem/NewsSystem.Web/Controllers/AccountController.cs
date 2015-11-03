@@ -45,9 +45,9 @@ namespace NewsSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
+                var user = await this.UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -55,12 +55,12 @@ namespace NewsSystem.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    this.ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         //
@@ -68,7 +68,7 @@ namespace NewsSystem.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return this.View();
         }
 
         //
@@ -78,7 +78,7 @@ namespace NewsSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var user = new User() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);

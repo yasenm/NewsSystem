@@ -89,7 +89,15 @@
         [HttpGet]
         public ActionResult Search(string searchText)
         {
-            return this.PartialView();
+            var model = this.AlbumService.GetAlbumsBySearchText(searchText);
+            return this.PartialView("AlbumsGrid", model);
+        }
+
+        [HttpGet]
+        public ActionResult SearchByAlbumCategory(long categoryId)
+        {
+            var model = this.AlbumService.GetAlbumsByCategoryId(categoryId);
+            return this.PartialView("AlbumsGrid", model);
         }
     }
 }

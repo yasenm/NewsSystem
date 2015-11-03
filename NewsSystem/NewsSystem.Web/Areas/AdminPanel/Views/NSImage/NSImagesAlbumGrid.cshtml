@@ -11,7 +11,7 @@
         @foreach (var image in Model)
         {
             <div class="col-md-2 img-thumbnail">
-                <img src="@Url.Action("NSImage", new { imageId = image.Id })" alt="Image not found" class="img-responsive" />
+                <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
                 @Ajax.ActionLink("MakeCover", "MakeAlbumCover", "NSImage",
                 new
                 {

@@ -11,7 +11,7 @@
         {
             <div class="col-md-2 word-wraped img-thumbnail albums-grid-container">
                 <p>@album.Name</p>
-                <img src="@Url.Action("NSImage", "NSImage", new { imageId = album.CoverImageId })" alt="No image found" class="img-responsive albums-grid-cover-img image-in-container" />
+                <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = album.CoverImageId })" alt="No image found" class="img-responsive albums-grid-cover-img image-in-container" />
                 <a href="@Url.Action("Edit", "Album", new { albumId = album.Id})" class="btn btn-sm btn-default">Edit</a>
                 @Ajax.ActionLink("Delete", "Delete", "Album",
                 new

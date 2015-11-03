@@ -14,6 +14,7 @@
             this.NSImageService = nsiService;
         }
 
+        [HttpGet]
         public ActionResult NSImage(long imageId)
         {
             var imageModel = this.NSImageService.GetImageById(imageId);

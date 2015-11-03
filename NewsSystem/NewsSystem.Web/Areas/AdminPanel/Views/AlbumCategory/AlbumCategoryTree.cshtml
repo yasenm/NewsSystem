@@ -8,10 +8,10 @@
     </div>
     @foreach (var category in Model)
     {
-        <div class="list-group panel-body">
+        <div class="list-group panel-body word-wraped">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">
+                    <h3 class="panel-title ">
                         <a href="javascript:;" data-toggle="collapse" data-target="#album-category-@category.Id" class="" aria-expanded="false">
                             <i class="fa fa-fw">
                             </i>
@@ -28,7 +28,7 @@
                             @foreach (var child in category.Children)
                             {
                                 <li>
-                                    <a href="#">@child.Name</a>
+                                    <a href="@Url.Action("SearchByAlbumCategory", "Album", new { categoryId = child.Id })" class="album-category-search-link">@child.Name</a>
                                 </li>
                             }
                         </ul>
@@ -38,7 +38,3 @@
         </div>
     }
 </div>
-
-<script>
-
-</script>

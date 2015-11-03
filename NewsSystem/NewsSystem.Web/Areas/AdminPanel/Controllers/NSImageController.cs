@@ -20,12 +20,12 @@
             return this.PartialView("NSImagesAlbumGrid", collection);
         }
 
-        [HttpGet]
-        public ActionResult NSImage(long imageId)
-        {
-            var imgModel = this.NSImageService.GetImageById(imageId);
-            return this.File(imgModel.ByteContent, "image/gif");
-        }
+        //[HttpGet]
+        //public ActionResult NSImage(long imageId)
+        //{
+        //    var imgModel = this.NSImageService.GetImageById(imageId);
+        //    return this.File(imgModel.ByteContent, "image/gif");
+        //}
 
 
         [HttpPost]

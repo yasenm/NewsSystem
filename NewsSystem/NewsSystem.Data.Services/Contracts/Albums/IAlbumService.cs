@@ -1,6 +1,6 @@
 ﻿namespace NewsSystem.Data.Services.Contracts.Albums
 {
-    using NewsSystem.Data.ViewModels.Albums;
+    using ViewModels.Albums;
     using System.Collections.Generic;
 
     public interface IAlbumService
@@ -14,6 +14,10 @@
         bool Delete(long albumId);
 
         IEnumerable<AlbumGridViewModel> GetAlbums();
+
+        IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText);
+
+        IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId); 
 
         //IEnumerable<AlbumGridViewModel> Search();
 

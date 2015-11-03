@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using NewsSystem.Data.ViewModels.Articles;
+    using ViewModels.Articles;
 
     public interface IArticleService
     {

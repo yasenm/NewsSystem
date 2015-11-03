@@ -90,5 +90,31 @@
             return collection;
         }
 
+        public IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText)
+        {
+            searchText = searchText.ToLower();
+            var result = this.Data.Albums.All()
+                .Where(a => a.Name.ToLower().Contains(searchText))
+                .ToList()
+                .AsQueryable()
+                .Project()
+                .To<AlbumGridViewModel>()
+                .ToList();
+
+            return result;
+        }
+
+        public IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId)
+        {
+            var result = this.Data.Albums.All()
+                .Where(a => a.AlbumCategoryId == categoryId)
+                .ToList()
+                .AsQueryable()
+                .Project()
+                .To<AlbumGridViewModel>()
+                .ToList();
+
+            return result;
+        }
     }
 }
