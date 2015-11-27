@@ -57,6 +57,7 @@
     <Compile Include="Article.cs" />
     <Compile Include="NSImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenNSImage.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

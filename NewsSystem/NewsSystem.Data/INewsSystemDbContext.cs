@@ -13,6 +13,8 @@
 
         IDbSet<NSImage> NSImages { get; set; }
 
+        IDbSet<TokenNSImage> TokensNSImages { get; set; }
+
         IDbSet<Album> Albums { get; set; }
 
         IDbSet<AlbumCategory> AlbumCategories { get; set; }

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -242,6 +243,8 @@
     <Content Include="Content\AdminPanel\sb-admin-rtl.css" />
     <Content Include="Content\AdminPanel\sb-admin.css" />
     <Content Include="Content\AdminPanel\site\site.css" />
+    <Content Include="Content\bootstrap-tokenfield\bootstrap-tokenfield.css" />
+    <Content Include="Content\bootstrap-tokenfield\tokenfield-typeahead.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -251,17 +254,52 @@
     <Content Include="Content\gridmvc.datepicker.min.css" />
     <Content Include="Content\ladda-bootstrap\ladda-themeless.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site\Site.css" />
     <Content Include="Scripts\AdminPanel\albums\albums.js" />
+    <Content Include="Scripts\AdminPanel\ns-images\ns-images.js" />
     <Content Include="Scripts\AdminPanel\plugins\bootstrap.js" />
     <Content Include="Scripts\AdminPanel\plugins\bootstrap.min.js" />
     <Content Include="Scripts\AdminPanel\plugins\morris\morris-data.js" />
     <Content Include="Scripts\AdminPanel\plugins\morris\morris.js" />
     <Content Include="Scripts\AdminPanel\plugins\morris\morris.min.js" />
     <Content Include="Scripts\AdminPanel\plugins\morris\raphael.min.js" />
+    <Content Include="Scripts\bootstrap-tokenfield.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\AdminPanel\Views\web.config" />
@@ -291,11 +329,18 @@
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
     <Content Include="Areas\AdminPanel\Views\NSImage\NSImagesAlbumGrid.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\NSImage\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\NSImage\NSImagesGrid.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\NSImage\Edit.cshtml" />
+    <Content Include="Content\bootstrap-tokenfield\tokenfield-typeahead.less" />
+    <Content Include="Content\bootstrap-tokenfield\bootstrap-tokenfield.less" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -354,6 +399,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NewsSystem.Common\NewsSystem.Common.csproj">
+      <Project>{00952c83-ea20-4217-b794-a60b7ba7cc19}</Project>
+      <Name>NewsSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NewsSystem.Data.Infrastructure\NewsSystem.Data.Infrastructure.csproj">
       <Project>{84375b65-92b4-4160-8670-36e63a34e747}</Project>
       <Name>NewsSystem.Data.Infrastructure</Name>

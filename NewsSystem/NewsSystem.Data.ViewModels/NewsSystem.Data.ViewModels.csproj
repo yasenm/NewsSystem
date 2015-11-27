@@ -50,6 +50,7 @@
     <Compile Include="Albums\AlbumEditViewModel.cs" />
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="NSImages\NSImageEditViewModel.cs" />
     <Compile Include="NSImages\NSImageGridViewModel.cs" />
     <Compile Include="NSImages\NSImageOnlyIdViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

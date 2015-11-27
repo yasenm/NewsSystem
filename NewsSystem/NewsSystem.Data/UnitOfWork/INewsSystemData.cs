@@ -17,6 +17,8 @@
 
         IRepository<NSImage> NSImages { get; }
 
+        IRepository<TokenNSImage> TokensNSImages { get; }
+
         int SaveChanges();
     }
 }

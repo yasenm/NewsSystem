@@ -140,5 +140,23 @@
                 return false;
             }
         }
+
+        public IQueryable<NSImageGridViewModel> GetImages()
+        {
+            var queryableImagesCollection = this.Data.NSImages.All()
+                .OrderByDescending(nsi => nsi.CreatedOn)
+                .Project()
+                .To<NSImageGridViewModel>();
+
+            return queryableImagesCollection;
+        }
+
+        public NSImageEditViewModel GetImageForEdit(long nsImageId)
+        {
+            var nsImage = this.Data.NSImages.GetById(nsImageId);
+            var imageForEditModel = Mapper.Map<NSImageEditViewModel>(nsImage);
+
+            return imageForEditModel;
+        }
     }
 }

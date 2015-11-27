@@ -1,11 +1,19 @@
 ﻿namespace NewsSystem.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using NewsSystem.Data.Common.Models;
 
     public class NSImage : DeletableEntity
     {
+        private ICollection<TokenNSImage> tokens;
+
+        public NSImage()
+        {
+            this.Tokens = new HashSet<TokenNSImage>();
+        }
+
         [Key]
         public long Id { get; set; }
 
@@ -20,5 +28,11 @@
         public long AlbumId { get; set; }
 
         public Album Album { get; set; }
+
+        public ICollection<TokenNSImage> Tokens
+        {
+            get { return this.tokens; }
+            set { this.tokens = value; }
+        }
     }
 }

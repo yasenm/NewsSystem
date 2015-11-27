@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.Designer.cs">
       <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs" />
+    <Compile Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.Designer.cs">
+      <DependentUpon>201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.resx">
       <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.resx">
+      <DependentUpon>201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

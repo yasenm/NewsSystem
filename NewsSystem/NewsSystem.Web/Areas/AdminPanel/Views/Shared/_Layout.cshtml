@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/AdminPanel/admin-bootstrap-theme-css")
     @Styles.Render("~/Content/AdminPanel/admin-side-css")
+    @Styles.Render("~/Content/bootstrap-tokenfield")
+    @Styles.Render("~/Content/full-jquery-ui")
     @Scripts.Render("~/bundles/common-scripts")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -136,10 +138,10 @@
                     <li>
                         <a href="@Url.Action("Index", "AlbumCategory")"><i class="fa fa-fw fa-bar-chart-o"></i> Albums</a>
                     </li>
+                    <li>
+                        <a href="@Url.Action("Index", "NSImage")"><i class="fa fa-fw fa-table"></i> Images</a>
+                    </li>
                     @*<li>
-                            <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                        </li>
-                        <li>
                             <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
                         </li>
                         <li>
@@ -181,8 +183,9 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/admin-panel-bootstrap")
+    @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jquery-unobtrusive")
+    @Scripts.Render("~/bundles/admin-panel-bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

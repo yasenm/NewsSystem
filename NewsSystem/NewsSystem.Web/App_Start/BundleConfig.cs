@@ -48,6 +48,12 @@
 
             bundles.Add(new StyleBundle("~/Content/AdminPanel/admin-side-css").IncludeDirectory(
                         "~/Content/AdminPanel/site", "*.css", true));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-tokenfield").IncludeDirectory(
+                        "~/Content/bootstrap-tokenfield", "*.css", true));
+
+            bundles.Add(new StyleBundle("~/Content/full-jquery-ui").IncludeDirectory(
+                        "~/Content/themes/base", "*.css", true));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
@@ -61,6 +67,9 @@
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.4.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                        "~/Scripts/jquery-ui-1.11.4.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -80,7 +89,8 @@
         private static void RegisterAdminPanelScripts(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-bootstrap").Include(
-                      "~/Scripts/AdminPanel/plugins/bootstrap.min.js"
+                      "~/Scripts/AdminPanel/plugins/bootstrap.min.js",
+                      "~/Scripts/bootstrap-tokenfield.js"
                       //"~/Scripts/AdminPanel/plugins/morris/raphael.min.js",
                       //"~/Scripts/AdminPanel/plugins/morris/morris.js",
                       //"~/Scripts/AdminPanel/plugins/morris/morris-data.js"
@@ -88,6 +98,9 @@
 
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-albums").Include(
                       "~/Scripts/AdminPanel/albums/albums.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin-panel-ns-images").Include(
+                      "~/Scripts/AdminPanel/ns-images/ns-images.js"));
         }
 
         private static void RegisterClientSideScripts(BundleCollection bundles)

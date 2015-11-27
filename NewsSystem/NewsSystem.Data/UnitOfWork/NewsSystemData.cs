@@ -60,6 +60,14 @@
             }
         }
 
+        public IRepository<TokenNSImage> TokensNSImages
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<TokenNSImage>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.Context.SaveChanges();

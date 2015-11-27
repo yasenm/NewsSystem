@@ -5,6 +5,7 @@
 
     using NewsSystem.Data.Models;
     using NewsSystem.Data.ViewModels.NSImages;
+    using System.Linq;
 
     public interface INSImageService
     {
@@ -23,5 +24,9 @@
         NSImageGridViewModel GetImageById(long albumId);
 
         bool ChangeAlbumCoverByImageId(long imageId, long albumId);
+
+        IQueryable<NSImageGridViewModel> GetImages();
+
+        NSImageEditViewModel GetImageForEdit(long nsImageId);
     }
 }

@@ -21,6 +21,25 @@ namespace NewsSystem.Data.Migrations
             this.ArticlesSeed(context);
             this.AlbumCategoriesSeed(context);
             this.AlbumsSeed(context);
+            this.TokenNSImagesSeed(context);
+        }
+
+        private void TokenNSImagesSeed(NewsSystemDbContext context)
+        {
+            if (!context.TokensNSImages.Any())
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    var newNSImageToken = new TokenNSImage
+                    {
+                        Name = StringGenerator.RandomStringWithSpaces(5, 30),
+                    };
+
+                    context.TokensNSImages.AddOrUpdate(newNSImageToken);
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private void AlbumCategoriesSeed(NewsSystemDbContext context)
