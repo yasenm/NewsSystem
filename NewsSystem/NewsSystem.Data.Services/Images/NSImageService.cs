@@ -158,5 +158,39 @@
 
             return imageForEditModel;
         }
+
+        public bool EditImage(NSImageEditViewModel model)
+        {
+            var image = this.Data.NSImages.GetById(model.Id);
+
+            if (model.Tokens.Count > 0)
+            {
+                var tokens = model.Tokens.ToList()[0].Split(new string[]{ "," }, StringSplitOptions.RemoveEmptyEntries);
+                image.TokensNSImages.Clear();
+                this.Data.SaveChanges();
+                foreach (var token in tokens)
+                {
+                    var dbToken = this.Data.TokensNSImages.All().FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+                    if (dbToken == null)
+                    {
+                        dbToken = new TokenNSImage
+                        {
+                            Name = token,
+                        };
+
+                        this.Data.TokensNSImages.Add(dbToken);
+                        this.Data.SaveChanges();
+                    }
+
+                    dbToken.NSImages.Add(image);
+                    image.TokensNSImages.Add(dbToken);
+                    this.Data.TokensNSImages.Update(dbToken);
+                    this.Data.NSImages.Update(image);
+                    this.Data.SaveChanges();
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -60,6 +60,8 @@
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
 
+            modelBuilder.Entity<NSImage>().HasKey(nsi => nsi.Id).HasMany(nsi => nsi.TokensNSImages).WithMany(nsTokens => nsTokens.NSImages);
+
             base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
         }
 

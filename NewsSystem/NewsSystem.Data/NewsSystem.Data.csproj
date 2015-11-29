@@ -69,9 +69,13 @@
     <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.Designer.cs">
       <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs" />
-    <Compile Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.Designer.cs">
-      <DependentUpon>201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs</DependentUpon>
+    <Compile Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs" />
+    <Compile Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.Designer.cs">
+      <DependentUpon>201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.cs" />
+    <Compile Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.Designer.cs">
+      <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
@@ -112,8 +116,11 @@
     <EmbeddedResource Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.resx">
       <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.resx">
-      <DependentUpon>201511112111141_Added_TokensForImages_ForFastSearchAndIndexing.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.resx">
+      <DependentUpon>201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.resx">
+      <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

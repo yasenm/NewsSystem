@@ -28,5 +28,7 @@
         IQueryable<NSImageGridViewModel> GetImages();
 
         NSImageEditViewModel GetImageForEdit(long nsImageId);
+
+        bool EditImage(NSImageEditViewModel model);
     }
 }

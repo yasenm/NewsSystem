@@ -7,13 +7,13 @@ namespace NewsSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Added_TokensForImages_ForFastSearchAndIndexing : IMigrationMetadata
+    public sealed partial class FluentAPI_MtoMSetForImages : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_TokensForImages_ForFastSearchAndIndexing));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FluentAPI_MtoMSetForImages));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511112111141_Added_TokensForImages_ForFastSearchAndIndexing"; }
+            get { return "201511290614479_FluentAPI_MtoMSetForImages"; }
         }
         
         string IMigrationMetadata.Source

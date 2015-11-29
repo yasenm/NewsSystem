@@ -4,14 +4,17 @@ APP.NSImages = (function () {
 
 
     return {
-        init: function (tokens) {
-            $('#tokenfield').tokenfield({
-                autocomplete: {
-                    source: ['red', 'blue', 'green', 'yellow', 'violet', 'brown', 'purple', 'black', 'white'],
-                    delay: 100
-                },
-                showAutocompleteOnFocus: true
-            })
+        init: function (tokensUrl) {
+            APP.HttpRequester.getData(tokensUrl)
+                .success(function (data) {
+                    $('#tokenfield').tokenfield({
+                        autocomplete: {
+                            source: data,
+                            delay: 100
+                        },
+                        showAutocompleteOnFocus: true
+                    })
+                })
         }
     }
 }());
