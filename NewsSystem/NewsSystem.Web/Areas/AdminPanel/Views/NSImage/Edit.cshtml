@@ -1,50 +1,52 @@
 ﻿@using NewsSystem.Data.ViewModels.NSImages
+@using NewsSystem.Web.Helpers
 
 @model NSImageEditViewModel
 
+@Styles.Render("~/Content/bootstrap-tokenfield")
+
 <div class="container-fluid">
-    <div class="panel-heading">
-        <h3 class="panel-title">Image - @Model.Id</h3>
-    </div>
+    <div class="row">
+        @using (Html.BeginForm("Edit", "NSImage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm("Edit", "NSImage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
-    {
-        @Html.AntiForgeryToken()
+            <div class="col-md-6">
+                @Html.HiddenFor(m => m.Id, new { @Value = Model.Id })
+                <div class="list-group panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Text, new { })
+                        @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
+                        <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="PostedContent">Chose picture</label>
+                            <input type="file" name="PostedContent" id="PostedContent" class="btn btn-default" />
+                        </div>
+                    </div>
 
-        @Html.HiddenFor(m => m.Id, new { @Value = Model.Id })
-        <div class="list-group panel-body">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Text, new { })
-                @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Extension, new { })
-                @Html.TextAreaFor(m => m.Extension, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Extension, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                <div>
-                    <label for="PostedContent">Chose picture</label>
-                    <input type="file" name="PostedContent" id="PostedContent" class="btn btn-default" />
+                    <div>
+                        <button type="submit" value="Edit" class="btn btn-default">Edit</button>
+                        <a href="@Url.Action("Index", "NSImage")" class="btn btn-sm btn-danger">Cancel</a>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                <button type="submit" value="Edit" class="btn btn-default">Edit</button>
-                <a href="@Url.Action("Index", "NSImage")" class="btn btn-sm btn-danger">Cancel</a>
+            <div class="col-md-6">
+                <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.Id })" alt="Alternate Text" class="img-responsive img-rounded" />
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 @section scripts{
     @Scripts.Render("~/bundles/admin-panel-ns-images")
 
     <script>
-        APP.NSImages.init('@Url.Action("GetImageTokens", "NSImage", null, Request.Url.Scheme)');
+        APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")');
     </script>
 }

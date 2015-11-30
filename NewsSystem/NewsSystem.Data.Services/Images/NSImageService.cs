@@ -170,7 +170,10 @@
                 this.Data.SaveChanges();
                 foreach (var token in tokens)
                 {
-                    var dbToken = this.Data.TokensNSImages.All().FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+                    var dbToken = this.Data.TokensNSImages
+                        .All()
+                        .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+
                     if (dbToken == null)
                     {
                         dbToken = new TokenNSImage
@@ -188,9 +191,11 @@
                     this.Data.NSImages.Update(image);
                     this.Data.SaveChanges();
                 }
+
+                return true;
             }
 
-            return true;
+            return false;
         }
     }
 }

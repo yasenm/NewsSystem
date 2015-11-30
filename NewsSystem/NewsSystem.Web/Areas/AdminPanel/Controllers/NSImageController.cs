@@ -70,7 +70,7 @@
             {
                 this.NSImageService.EditImage(model);
 
-                return this.Index();
+                return this.Edit(model.Id); // this.RedirectToAction("Index"); // this.Index();
             }
 
             return this.View(model);

@@ -12,7 +12,7 @@ APP.NSImages = (function () {
                             source: data,
                             delay: 100
                         },
-                        showAutocompleteOnFocus: true
+                        showAutocompleteOnFocus: false
                     })
                 })
         }
