@@ -1,10 +1,12 @@
-﻿@using NewsSystem.Data.ViewModels.NSImages
-@using PagedList
+﻿@using PagedList
 @using PagedList.Mvc
+
+@using NewsSystem.Data.ViewModels.NSImages
+@using NewsSystem.Web.Common.Constants
 
 @model PagedList<NSImageGridViewModel>
 
-<div class="panel panel-red">
+<div class="panel @CommonStyles.PanelStyle">
     <div class="panel-heading">
         <h3 class="panel-title">Images Grid</h3>
     </div>

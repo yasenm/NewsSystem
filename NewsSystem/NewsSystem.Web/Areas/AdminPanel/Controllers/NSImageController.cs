@@ -8,8 +8,9 @@
     using NewsSystem.Data.Services.Contracts.NSImages;
     using NewsSystem.Data.ViewModels.NSImages;
     using NewsSystem.Common.Constants;
+    using Base;
 
-    public class NSImageController : Controller
+    public class NSImageController : AdminBaseController
     {
         private INSImageService NSImageService;
         private ITokenNSImageService TokenNSImageService;
@@ -24,8 +25,7 @@
         {
             return this.View();
         }
-
-        [HttpGet]
+        
         public ActionResult NSImagesAlbumGrid(long albumId)
         {
             var collection = this.NSImageService.GetAlbumImagesIds(albumId);

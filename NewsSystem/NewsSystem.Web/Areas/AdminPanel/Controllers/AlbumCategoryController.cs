@@ -3,8 +3,9 @@
     using System.Web.Mvc;
 
     using NewsSystem.Data.Services.Contracts.Albums;
+    using Base;
 
-    public class AlbumCategoryController : Controller
+    public class AlbumCategoryController : AdminBaseController
     {
         private IAlbumCategoryService AlbumCategoryService { get; set; }
 

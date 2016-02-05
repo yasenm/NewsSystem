@@ -7,9 +7,15 @@ namespace NewsSystem.Data.Migrations
 
     using NewsSystem.Common.RandomGenerators;
     using NewsSystem.Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using NewsSystem.Common.Constants;
 
     internal sealed class Configuration : DbMigrationsConfiguration<NewsSystemDbContext>
     {
+        private UserManager<User> userManager;
+        private UserStore<User> userStore;
+
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = false;
@@ -18,10 +24,75 @@ namespace NewsSystem.Data.Migrations
 
         protected override void Seed(NewsSystemDbContext context)
         {
+            this.userStore = new UserStore<User>(context);
+            this.userManager = new UserManager<User>(this.userStore);
+
+            this.SeedUserRoles(context);
+            this.SeedStartUsers(context);
             this.ArticlesSeed(context);
             this.AlbumCategoriesSeed(context);
             this.AlbumsSeed(context);
             this.TokenNSImagesSeed(context);
+        }
+
+        private void SeedUserRoles(NewsSystemDbContext context)
+        {
+            if (!context.Roles.Any())
+            {
+                foreach (var role in UsersConstants.UsersRoles)
+                {
+                    context.Roles.AddOrUpdate(new IdentityRole(role));
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private void SeedStartUsers(NewsSystemDbContext context)
+        {
+            if (!context.Users.Any())
+            {
+                this.SeedMasterAdmin(context);
+                this.SeedAuthors(context);
+                this.SeedBasicUsers(context);
+            }
+        }
+
+        private void SeedMasterAdmin(NewsSystemDbContext context)
+        {
+            User admin = new User
+            {
+                UserName = UsersConstants.MasterAdminName,
+                Email = UsersConstants.MasterAdminName + "@newssystem.com",
+            };
+
+            this.userManager.Create(admin, UsersConstants.MasterAdminPassword);
+            this.userManager.AddToRole(admin.Id, UsersConstants.AdminRole);
+            context.SaveChanges();
+        }
+
+        private void SeedAuthors(NewsSystemDbContext context)
+        {
+            this.SeedUsers(context, 10, UsersConstants.AuthorRole);
+        }
+
+        private void SeedBasicUsers(NewsSystemDbContext context)
+        {
+            this.SeedUsers(context, 40, UsersConstants.BasicUserRole);
+        }
+
+        private void SeedUsers(NewsSystemDbContext context, int usersCount, string role)
+        {
+            for (int i = 0; i < usersCount; i++)
+            {
+                User newUser = new User {
+                    UserName = StringGenerator.RandomStringWithoutSpaces(6, 20),
+                    Email = StringGenerator.RandomStringWithoutSpaces(6, 20) + "@newssystem.com",
+                };
+
+                this.userManager.Create(newUser, StringGenerator.RandomStringWithoutSpaces(6, 20));
+                this.userManager.AddToRole(newUser.Id, role);
+                context.SaveChanges();
+            }
         }
 
         private void TokenNSImagesSeed(NewsSystemDbContext context)

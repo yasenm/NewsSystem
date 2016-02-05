@@ -5,8 +5,9 @@
 
     using NewsSystem.Data.Services.Contracts.Albums;
     using NewsSystem.Data.ViewModels.Albums;
+    using Base;
 
-    public class AlbumController : Controller
+    public class AlbumController : AdminBaseController
     {
         private IAlbumService AlbumService;
         private IAlbumCategoryService AlbumCategoryService;

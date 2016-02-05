@@ -1,3 +1,6 @@
-﻿<div class="container" id="images-grid-wrapper">
-    @Html.Action("NSImagesGrid", "NSImage", new { })
+﻿<div class="row">
+    @Html.Partial("SearchNSImages")
+    <div id="images-grid-wrapper">
+        @Html.Action("NSImagesGrid", "NSImage", new { })
+    </div>
 </div>

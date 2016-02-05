@@ -3,8 +3,9 @@
     using System.Web.Mvc;
 
     using NewsSystem.Data.Services.Contracts;
+    using Base;
 
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
         private IArticleService ArticleService;
 

@@ -131,7 +131,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="@Url.Action("Articles", "Home")"><i class="fa fa-fw fa-dashboard"></i> Articles</a>
                     </li>
                     <li>
@@ -186,5 +186,11 @@
     @Scripts.Render("~/bundles/jquery-unobtrusive")
     @Scripts.Render("~/bundles/admin-panel-bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $('.side-nav li a').click(function () {
+            $('.side-nav li').removeClass('active');
+            $(this).parent().addClass('active');
+        })
+    </script>
 </body>
 </html>
