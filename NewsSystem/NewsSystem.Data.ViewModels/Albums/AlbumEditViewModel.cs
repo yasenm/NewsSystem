@@ -1,5 +1,6 @@
 ﻿namespace NewsSystem.Data.ViewModels.Albums
 {
+    using System.Linq;
     using System.Web;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -23,13 +24,16 @@
 
         public long AlbumCategoryId { get; set; }
 
+        public ICollection<string> Tokens { get; set; }
+
         public ICollection<HttpPostedFileBase> AlbumPostedImages { get; set; }
         
         public ICollection<NSImageGridViewModel> AlbumImages { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
-            //throw new System.NotImplementedException();
+            configuration.CreateMap<Album, AlbumEditViewModel>()
+                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.AlbumTokens.Select(t => t.Name)));
         }
     }
 }

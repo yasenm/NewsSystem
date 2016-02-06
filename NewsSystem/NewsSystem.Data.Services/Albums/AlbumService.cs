@@ -29,6 +29,7 @@
         {
             var album = this.Data.Albums.GetById(albumId);
             var model = Mapper.Map<AlbumEditViewModel>(album);
+
             return model;
         }
 
@@ -38,9 +39,40 @@
             {
                 var editAlbum = Mapper.Map<Album>(editModel);
                 this.NSImageService.SaveImagesToAlbum(editModel.AlbumPostedImages, editAlbum.Id);
+
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();
 
+                if (editModel.Tokens.Count > 0)
+                {
+                    var tokens = editModel.Tokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    editAlbum.AlbumTokens.Clear();
+                    this.Data.SaveChanges();
+
+                    foreach (var token in tokens)
+                    {
+                        var dbToken = this.Data.AlbumTokens
+                            .All()
+                            .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+
+                        if (dbToken == null)
+                        {
+                            dbToken = new AlbumToken
+                            {
+                                Name = token,
+                            };
+
+                            this.Data.AlbumTokens.Add(dbToken);
+                            this.Data.SaveChanges();
+                        }
+
+                        dbToken.Albums.Add(editAlbum);
+                        editAlbum.AlbumTokens.Add(dbToken);
+                        this.Data.AlbumTokens.Update(dbToken);
+                        this.Data.Albums.Update(editAlbum);
+                        this.Data.SaveChanges();
+                    }
+                }
                 return true;
             }
             catch (Exception e)

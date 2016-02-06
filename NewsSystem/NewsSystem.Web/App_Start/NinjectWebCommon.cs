@@ -74,8 +74,9 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<INewsSystemData>().To<NewsSystemData>();
 
             kernel.Bind<IArticleService>().To<ArticleService>();
-            kernel.Bind<IAlbumCategoryService>().To<AlbumCategoryService>();
             kernel.Bind<IAlbumService>().To<AlbumService>();
+            kernel.Bind<IAlbumCategoryService>().To<AlbumCategoryService>();
+            kernel.Bind<IAlbumTokenService>().To<AlbumTokenService>();
             kernel.Bind<INSImageService>().To<NSImageService>();
             kernel.Bind<ITokenNSImageService>().To<TokenNSImageService>();
         }        

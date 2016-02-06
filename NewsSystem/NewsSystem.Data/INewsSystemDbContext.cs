@@ -19,6 +19,8 @@
 
         IDbSet<AlbumCategory> AlbumCategories { get; set; }
 
+        IDbSet<AlbumToken> AlbumTokens { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

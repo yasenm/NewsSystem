@@ -25,6 +25,19 @@ APP.Albums = (function () {
                 var searchUrl = $(this).data("search-url");
                 albumsGridUpdate(searchUrl, searchTextObj);
             });
+        },
+
+        initEditTokens: function (tokensUrl) {
+            APP.HttpRequester.getData(tokensUrl)
+                .success(function (data) {
+                    $('#tokenfield').tokenfield({
+                        autocomplete: {
+                            source: data,
+                            delay: 100
+                        },
+                        showAutocompleteOnFocus: false
+                    })
+                })
         }
     }
 }());

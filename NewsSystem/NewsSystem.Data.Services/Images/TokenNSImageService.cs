@@ -22,12 +22,10 @@
 
         public ICollection<TokenNSImageDDLViewModel> GetFullListOfTokens()
         {
-            var tokensFullList = this.Data.TokensNSImages.All()
+            return this.Data.TokensNSImages.All()
                                         .Project()
                                         .To<TokenNSImageDDLViewModel>()
                                         .ToList();
-
-            return tokensFullList;
         }
     }
 }

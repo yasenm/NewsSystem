@@ -1,6 +1,7 @@
 ﻿namespace NewsSystem.Web.Areas.AdminPanel.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
 
     using NewsSystem.Data.Services.Contracts.Albums;
@@ -11,11 +12,13 @@
     {
         private IAlbumService AlbumService;
         private IAlbumCategoryService AlbumCategoryService;
+        private IAlbumTokenService AlbumTokenService;
 
-        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService)
+        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService, IAlbumTokenService atService)
         {
             this.AlbumService = albumService;
             this.AlbumCategoryService = acService;
+            this.AlbumTokenService = atService;
         }
 
         [HttpGet]
@@ -99,6 +102,13 @@
         {
             var model = this.AlbumService.GetAlbumsByCategoryId(categoryId);
             return this.PartialView("AlbumsGrid", model);
+        }
+
+        [HttpGet]
+        public ActionResult GetAlbumTokens()
+        {
+            var stringTokens = this.AlbumTokenService.GetFullListOfTokens().Select(m => m.Name);
+            return Json(stringTokens, JsonRequestBehavior.AllowGet);
         }
     }
 }

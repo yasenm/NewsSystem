@@ -1,10 +1,10 @@
-﻿namespace NewsSystem.Data.ViewModels.TokeNSImages
+﻿namespace NewsSystem.Data.ViewModels.AlbumTokens
 {
     using NewsSystem.Data.Infrastructure.Mapping;
     using NewsSystem.Data.Models;
     using NewsSystem.Data.ViewModels.Tokens;
 
-    public class TokenNSImageDDLViewModel : TokenViewAbstractModel, IMapFrom<TokenNSImage>
+    public class AlbumTokenDDLViewModel : TokenViewAbstractModel, IMapFrom<AlbumToken>
     {
     }
 }

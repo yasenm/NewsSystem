@@ -1,4 +1,5 @@
 ﻿@using NewsSystem.Data.ViewModels.Albums
+@using NewsSystem.Web.Helpers
 
 @model AlbumEditViewModel
 
@@ -24,6 +25,10 @@
                 @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
+                @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
+                <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
+            </div>
+            <div class="form-group">
                 <div>
                     <label for="AlbumPostedImages">Chose picture</label>
                     <input type="file" name="AlbumPostedImages" id="AlbumPostedImages" multiple class="btn btn-default" />
@@ -41,3 +46,11 @@
         @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
     </div>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/admin-panel-albums")
+
+    <script>
+        APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
+    </script>
+}

@@ -7,10 +7,12 @@
 
     public class Album : DeletableEntity
     {
+        private ICollection<AlbumToken> aTokens;
         private ICollection<NSImage> nsImages;
 
         public Album()
         {
+            this.AlbumTokens = new HashSet<AlbumToken>();
             this.NSImages = new HashSet<NSImage>();
         }
 
@@ -35,6 +37,12 @@
         {
             get { return this.nsImages; }
             set { this.nsImages = value; }
+        }
+
+        public virtual ICollection<AlbumToken> AlbumTokens
+        {
+            get { return this.aTokens; }
+            set { this.aTokens = value; }
         }
     }
 }

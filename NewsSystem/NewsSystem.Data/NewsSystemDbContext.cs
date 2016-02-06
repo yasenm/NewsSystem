@@ -26,6 +26,8 @@
 
         public IDbSet<AlbumCategory> AlbumCategories { get; set; }
 
+        public IDbSet<AlbumToken> AlbumTokens { get; set; }
+
         public IDbSet<NSImage> NSImages { get; set; }
 
         public IDbSet<TokenNSImage> TokensNSImages { get; set; }

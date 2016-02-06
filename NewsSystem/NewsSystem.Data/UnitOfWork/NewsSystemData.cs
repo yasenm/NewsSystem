@@ -52,6 +52,14 @@
             }
         }
 
+        public IRepository<AlbumToken> AlbumTokens
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<AlbumToken>();
+            }
+        }
+
         public IRepository<NSImage> NSImages
         {
             get

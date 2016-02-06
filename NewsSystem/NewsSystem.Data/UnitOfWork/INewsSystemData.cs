@@ -15,6 +15,8 @@
 
         IRepository<AlbumCategory> AlbumCategories { get; }
 
+        IRepository<AlbumToken> AlbumTokens { get; }
+
         IRepository<NSImage> NSImages { get; }
 
         IRepository<TokenNSImage> TokensNSImages { get; }

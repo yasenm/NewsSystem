@@ -218,6 +218,7 @@
     <Compile Include="Areas\AdminPanel\AdminPanelAreaRegistration.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\AlbumCategoryController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\AlbumController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\ArticleController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\Base\AdminBaseController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\NSImageController.cs" />
@@ -393,6 +394,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPanel\Models\" />
     <Folder Include="Areas\AdminPanel\Views\AdminBase\" />
+    <Folder Include="Areas\AdminPanel\Views\Article\" />
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\NSImage\" />

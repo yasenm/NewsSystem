@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.Designer.cs">
       <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602060647463_Added_AlbumTokensAndRelationsForTokens.cs" />
+    <Compile Include="Migrations\201602060647463_Added_AlbumTokensAndRelationsForTokens.Designer.cs">
+      <DependentUpon>201602060647463_Added_AlbumTokensAndRelationsForTokens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602060719592_Added_AlbumTokensFieldInAlbumMOdel.cs" />
+    <Compile Include="Migrations\201602060719592_Added_AlbumTokensFieldInAlbumMOdel.Designer.cs">
+      <DependentUpon>201602060719592_Added_AlbumTokensFieldInAlbumMOdel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.resx">
       <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602060647463_Added_AlbumTokensAndRelationsForTokens.resx">
+      <DependentUpon>201602060647463_Added_AlbumTokensAndRelationsForTokens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602060719592_Added_AlbumTokensFieldInAlbumMOdel.resx">
+      <DependentUpon>201602060719592_Added_AlbumTokensFieldInAlbumMOdel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

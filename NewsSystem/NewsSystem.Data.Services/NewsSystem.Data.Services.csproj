@@ -58,8 +58,10 @@
   <ItemGroup>
     <Compile Include="Albums\AlbumCategoryService.cs" />
     <Compile Include="Albums\AlbumService.cs" />
+    <Compile Include="Albums\AlbumTokenService.cs" />
     <Compile Include="Articles\ArticleService.cs" />
     <Compile Include="Contracts\Albums\IAlbumService.cs" />
+    <Compile Include="Contracts\Albums\IAlbumTokenService.cs" />
     <Compile Include="Contracts\NSImages\INSImageService.cs" />
     <Compile Include="Contracts\NSImages\ITokenNSImageService.cs" />
     <Compile Include="Contracts\Users\IAccountService.cs" />
