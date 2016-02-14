@@ -161,11 +161,11 @@
 
         public bool EditImage(NSImageEditViewModel model)
         {
-            var image = this.Data.NSImages.GetById(model.Id);
+            NSImage image = this.Data.NSImages.GetById(model.Id);
 
             if (model.Tokens.Count > 0)
             {
-                var tokens = model.Tokens.ToList()[0].Split(new string[]{ "," }, StringSplitOptions.RemoveEmptyEntries);
+                var tokens = model.Tokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 image.TokensNSImages.Clear();
                 this.Data.SaveChanges();
                 foreach (var token in tokens)
@@ -196,6 +196,24 @@
             }
 
             return false;
+        }
+
+        public bool RemoveFromAlbum(long imgId, long albumId)
+        {
+            try
+            {
+                var image = this.Data.NSImages.GetById(imgId);
+                var album = this.Data.Albums.GetById(albumId);
+
+                album.NSImages.Remove(image);
+                this.Data.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
     }
 }

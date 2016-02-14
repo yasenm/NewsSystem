@@ -30,5 +30,7 @@
         NSImageEditViewModel GetImageForEdit(long nsImageId);
 
         bool EditImage(NSImageEditViewModel model);
+
+        bool RemoveFromAlbum(long imgId, long albumId);
     }
 }

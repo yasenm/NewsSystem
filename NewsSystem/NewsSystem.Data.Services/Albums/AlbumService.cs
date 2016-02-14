@@ -37,8 +37,11 @@
         {
             try
             {
-                var editAlbum = Mapper.Map<Album>(editModel);
+                //Album editAlbum = Mapper.Map<Album>(editModel);
+                Album editAlbum = this.Data.Albums.GetById(editModel.Id);
                 this.NSImageService.SaveImagesToAlbum(editModel.AlbumPostedImages, editAlbum.Id);
+                editAlbum.Text = editModel.Text;
+                editAlbum.Name = editModel.Name;
 
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();
@@ -77,6 +80,8 @@
             }
             catch (Exception e)
             {
+                var message = e.Message;
+                var erMsg = message;
                 return false;
             }
         }

@@ -5,16 +5,19 @@ namespace NewsSystem.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    using NewsSystem.Common.RandomGenerators;
-    using NewsSystem.Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+
     using NewsSystem.Common.Constants;
+    using NewsSystem.Common.RandomGenerators;
+    using NewsSystem.Data.Models;
+    using NewsSystem.Data.UnitOfWork;
 
     internal sealed class Configuration : DbMigrationsConfiguration<NewsSystemDbContext>
     {
         private UserManager<User> userManager;
         private UserStore<User> userStore;
+        private INewsSystemData Data;
 
         public Configuration()
         {
@@ -26,13 +29,14 @@ namespace NewsSystem.Data.Migrations
         {
             this.userStore = new UserStore<User>(context);
             this.userManager = new UserManager<User>(this.userStore);
+            this.Data = new NewsSystemData(context);
 
             this.SeedUserRoles(context);
             this.SeedStartUsers(context);
-            this.ArticlesSeed(context);
-            this.AlbumCategoriesSeed(context);
-            this.AlbumsSeed(context);
-            this.TokenNSImagesSeed(context);
+            this.ArticlesSeed();
+            this.AlbumCategoriesSeed();
+            this.AlbumsSeed();
+            this.TokenNSImagesSeed();
         }
 
         private void SeedUserRoles(NewsSystemDbContext context)
@@ -95,9 +99,9 @@ namespace NewsSystem.Data.Migrations
             }
         }
 
-        private void TokenNSImagesSeed(NewsSystemDbContext context)
+        private void TokenNSImagesSeed()
         {
-            if (!context.TokensNSImages.Any())
+            if (!this.Data.Context.TokensNSImages.Any())
             {
                 for (int i = 0; i < 15; i++)
                 {
@@ -106,16 +110,18 @@ namespace NewsSystem.Data.Migrations
                         Name = StringGenerator.RandomStringWithSpaces(5, 30),
                     };
 
-                    context.TokensNSImages.AddOrUpdate(newNSImageToken);
+                    this.Data.TokensNSImages.Add(newNSImageToken);
+                    //context.TokensNSImages.AddOrUpdate(newNSImageToken);
                 }
 
-                context.SaveChanges();
+                this.Data.SaveChanges();
+                //context.SaveChanges();
             }
         }
 
-        private void AlbumCategoriesSeed(NewsSystemDbContext context)
+        private void AlbumCategoriesSeed()
         {
-            if (!context.AlbumCategories.Any())
+            if (!this.Data.Context.AlbumCategories.Any())
             {
                 // Add generated parent categories
                 for (int i = 0; i < 5; i++)
@@ -125,12 +131,14 @@ namespace NewsSystem.Data.Migrations
                     albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
                     albumCategory.ParentId = null;
 
-                    context.AlbumCategories.AddOrUpdate(albumCategory);
+                    this.Data.AlbumCategories.Add(albumCategory);
+                    //context.AlbumCategories.AddOrUpdate(albumCategory);
                 }
 
-                context.SaveChanges();
+                this.Data.SaveChanges();
+                //context.SaveChanges();
 
-                var parents = context.AlbumCategories.ToList();
+                var parents = this.Data.AlbumCategories.All().ToList();
                 // Add generated child categories
                 for (int i = 0; i < 30; i++)
                 {
@@ -139,23 +147,25 @@ namespace NewsSystem.Data.Migrations
                     albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
                     albumCategory.ParentId = parents[NumberGenerator.RandomNumber(0, parents.Count - 1)].Id;
 
-                    context.AlbumCategories.AddOrUpdate(albumCategory);
+                    this.Data.AlbumCategories.Add(albumCategory);
+                    //context.AlbumCategories.AddOrUpdate(albumCategory);
                 }
 
-                context.SaveChanges();
+                this.Data.SaveChanges();
+                //context.SaveChanges();
             }
         }
 
-        private void AlbumsSeed(NewsSystemDbContext context)
+        private void AlbumsSeed()
         {
-            if (!context.AlbumCategories.Any())
+            if (!this.Data.Context.AlbumCategories.Any())
             {
                 return;
             }
 
-            if (!context.Albums.Any())
+            if (!this.Data.Context.Albums.Any())
             {
-                var albumCategories = context.AlbumCategories.Where(ac => ac.Parent != null).ToList();
+                var albumCategories = this.Data.AlbumCategories.All().Where(ac => ac.Parent != null).ToList();
 
                 for (int i = 0; i < 50; i++)
                 {
@@ -164,16 +174,18 @@ namespace NewsSystem.Data.Migrations
                     newAlbum.Text = StringGenerator.RandomStringWithSpaces(400, 1500);
                     newAlbum.AlbumCategoryId = albumCategories[NumberGenerator.RandomNumber(0, albumCategories.Count - 1)].Id;
 
-                    context.Albums.AddOrUpdate(newAlbum);
+                    this.Data.Albums.Add(newAlbum);
+                    //context.Albums.AddOrUpdate(newAlbum);
                 }
 
-                context.SaveChanges();
+                this.Data.SaveChanges();
+                //context.SaveChanges();
             }
         }
 
-        private void ArticlesSeed(NewsSystemDbContext context)
+        private void ArticlesSeed()
         {
-            if (!context.Articles.Any())
+            if (!this.Data.Context.Articles.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -181,9 +193,12 @@ namespace NewsSystem.Data.Migrations
                     article.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
                     article.Content = StringGenerator.RandomStringWithSpaces(400, 1500);
 
-                    context.Articles.AddOrUpdate(article);
+                    this.Data.Articles.Add(article);
+                    //context.Articles.AddOrUpdate(article);
                 }
-                context.SaveChanges();
+
+                this.Data.SaveChanges();
+                //context.SaveChanges();
             }
         }
     }

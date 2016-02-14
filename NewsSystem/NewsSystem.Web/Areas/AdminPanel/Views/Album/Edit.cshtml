@@ -3,9 +3,13 @@
 
 @model AlbumEditViewModel
 
-<div class="container">
+@Styles.Render("~/Content/bootstrap-tokenfield")
+
+<div class="row padding-form">
     <div class="panel-heading">
-        <h3 class="panel-title">@Model.Name</h3>
+        <h3 class="panel-title">
+            <strong>@Model.Name</strong>
+        </h3>
     </div>
 
     @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))

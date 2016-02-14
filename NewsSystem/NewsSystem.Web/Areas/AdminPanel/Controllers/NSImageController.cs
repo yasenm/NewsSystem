@@ -82,5 +82,12 @@
             var stringTokens = this.TokenNSImageService.GetFullListOfTokens().Select(m => m.Name);
             return Json(stringTokens, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult RemoveFromAlbum(long imgId, long albumId)
+        {
+            this.NSImageService.RemoveFromAlbum(imgId, albumId);
+            return null;
+        }
     }
 }

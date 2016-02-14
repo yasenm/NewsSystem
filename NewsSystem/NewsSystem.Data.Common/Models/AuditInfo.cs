@@ -1,6 +1,5 @@
 ﻿namespace NewsSystem.Data.Common.Models
 {
-
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 

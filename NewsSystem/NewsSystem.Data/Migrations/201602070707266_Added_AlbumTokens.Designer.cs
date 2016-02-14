@@ -7,13 +7,13 @@ namespace NewsSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Added_AlbumTokensAndRelationsForTokens : IMigrationMetadata
+    public sealed partial class Added_AlbumTokens : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_AlbumTokensAndRelationsForTokens));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_AlbumTokens));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602060647463_Added_AlbumTokensAndRelationsForTokens"; }
+            get { return "201602070707266_Added_AlbumTokens"; }
         }
         
         string IMigrationMetadata.Source
