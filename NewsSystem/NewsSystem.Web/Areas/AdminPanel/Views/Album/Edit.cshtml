@@ -38,6 +38,9 @@
                     <input type="file" name="AlbumPostedImages" id="AlbumPostedImages" multiple class="btn btn-default" />
                 </div>
             </div>
+            <div class="form-group">
+                <input type="button" name="ChoseFromGallery" id="ChooseImg" class="btn btn-default" value="Gallery" />
+            </div>
 
             <div>
                 <button type="submit" value="Edit" class="btn btn-default">Edit</button>
@@ -49,6 +52,26 @@
     <div id="album-edit-nsimages-grid">
         @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
     </div>
+
+    <div class="modal fade" id="choose-img-modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <input type="text" name="NSImageText" value=" " placeholder="By text..." />
+                    <input type="text" name="NSImageTags" value=" " placeholder="By tags..." />
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    @Html.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id })
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <a href="#" class="btn btn-success">Aprove</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section scripts{
@@ -56,5 +79,11 @@
 
     <script>
         APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
+
+        $(document).ready(function () {
+            $("#ChooseImg").click(function () {
+                $("#choose-img-modal").modal();
+            });
+        });
     </script>
 }

@@ -1,6 +1,13 @@
 ﻿<div class="row">
-    @Html.Partial("SearchNSImages")
-    <div id="images-grid-wrapper">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="@Url.Action("Create", "NSImage", new { })" class="btn btn-default">Add image</a>
+        </div>
+        <div class="col-md-10">
+            @Html.Partial("SearchNSImages")
+        </div>
+    </div>
+    <div class="row" id="images-grid-wrapper">
         @Html.Action("NSImagesGrid", "NSImage", new { })
     </div>
 </div>

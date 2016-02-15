@@ -15,32 +15,32 @@
                 <div class="col-md-2 img-thumbnail">
                     <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
                     @Ajax.ActionLink("MakeCover", "MakeAlbumCover", "NSImage",
-                new
-                {
-                    imageId = image.Id,
-                    albumId = image.AlbumId,
-                },
-                new AjaxOptions
-                {
-                    HttpMethod = "POST",
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "album-edit-nsimages-grid",
-                },
-                new { @class = "btn btn-sm btn-default" })
-
+                    new
+                    {
+                        imageId = image.Id,
+                        albumId = this.ViewBag.AlbumId,
+                    },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "album-edit-nsimages-grid",
+                    },
+                    new { @class = "btn btn-sm btn-default" })
+                    <br />
                     @Ajax.ActionLink("Remove", "RemoveFromAlbum", "NSImage",
-               new
-               {
-                   imgId = image.Id,
-                   albumId = image.AlbumId
-               },
-               new AjaxOptions
-               {
-                   HttpMethod = "POST",
-                   InsertionMode = InsertionMode.Replace,
-                   UpdateTargetId = "album-edit-nsimages-grid",
-               },
-                new { @class = "btn btn-sm btn-default" })
+                    new
+                    {
+                        imgId = image.Id,
+                        albumId = this.ViewBag.AlbumId,
+                    },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "album-edit-nsimages-grid",
+                    },
+                    new { @class = "btn btn-sm btn-default" })
                 </div>
             }
         </div>

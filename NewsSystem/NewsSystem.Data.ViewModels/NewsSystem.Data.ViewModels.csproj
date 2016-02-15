@@ -51,6 +51,7 @@
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="AlbumTokens\AlbumTokenDDLViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="NSImages\NSImageCreateViewModel.cs" />
     <Compile Include="NSImages\NSImageEditViewModel.cs" />
     <Compile Include="NSImages\NSImageGridViewModel.cs" />
     <Compile Include="NSImages\NSImageOnlyIdViewModel.cs" />

@@ -29,7 +29,17 @@
         public ActionResult NSImagesAlbumGrid(long albumId)
         {
             var collection = this.NSImageService.GetAlbumImagesIds(albumId);
+
+            this.ViewBag.AlbumId = albumId;
             return this.PartialView("NSImagesAlbumGrid", collection);
+        }
+
+        public ActionResult NSImagesAlbumChooseGrid(long albumId)
+        {
+            var collection = this.NSImageService.GetImages();
+
+            this.ViewBag.AlbumId = albumId;
+            return this.PartialView("NSImagesAlbumChooseGrid", collection);
         }
 
         [HttpGet]
@@ -87,6 +97,23 @@
         public ActionResult RemoveFromAlbum(long imgId, long albumId)
         {
             this.NSImageService.RemoveFromAlbum(imgId, albumId);
+            return null;
+        }
+
+        public ActionResult Create()
+        {
+            var model = new NSImageCreateViewModel();
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(NSImageCreateViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.NSImageService.SaveImageToDB(model);
+            }
+
             return null;
         }
     }

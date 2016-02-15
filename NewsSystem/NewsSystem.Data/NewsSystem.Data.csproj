@@ -81,6 +81,14 @@
     <Compile Include="Migrations\201602070707266_Added_AlbumTokens.Designer.cs">
       <DependentUpon>201602070707266_Added_AlbumTokens.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602141933572_Added_TitleFieldToNSImages.cs" />
+    <Compile Include="Migrations\201602141933572_Added_TitleFieldToNSImages.Designer.cs">
+      <DependentUpon>201602141933572_Added_TitleFieldToNSImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs" />
+    <Compile Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.Designer.cs">
+      <DependentUpon>201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602070707266_Added_AlbumTokens.resx">
       <DependentUpon>201602070707266_Added_AlbumTokens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602141933572_Added_TitleFieldToNSImages.resx">
+      <DependentUpon>201602141933572_Added_TitleFieldToNSImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.resx">
+      <DependentUpon>201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,13 @@
+﻿@using NewsSystem.Data.ViewModels.NSImages;
+
+@model NSImageCreateViewModel
+
+@using (Html.BeginForm("Create", "NSImage", FormMethod.Post, new { @class = "row" }))
+{
+    @Html.AntiForgeryToken();
+
+    <h1>Add image</h1>
+}
+<div class="row">
+
+</div>

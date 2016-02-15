@@ -63,6 +63,21 @@
             }
         }
 
+        public bool SaveImageToDB(NSImageCreateViewModel model)
+        {
+            try
+            {
+                NSImage nsImage = this.ConvertPostedFileToNSImage(model.ImageBase);
+                this.Data.NSImages.Add(nsImage);
+                this.Data.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public bool SaveImageToDB(HttpPostedFileBase imageFile)
         {
             try
@@ -83,7 +98,8 @@
             try
             {
                 NSImage nsImage = this.ConvertPostedFileToNSImage(imageFile);
-                nsImage.AlbumId = albumId;
+                Album album = this.Data.Albums.GetById(albumId);
+                nsImage.Albums.Add(album);
                 this.Data.NSImages.Add(nsImage);
                 this.Data.SaveChanges();
                 return true;
@@ -96,8 +112,7 @@
 
         public ICollection<NSImageGridViewModel> GetAlbumImages(long albumId)
         {
-            var albumImages = this.Data.NSImages.All()
-                .Where(nsi => nsi.AlbumId == albumId)
+            var albumImages = this.GetAlbumImagesQueryable(albumId)
                 .Project()
                 .To<NSImageGridViewModel>()
                 .ToList();
@@ -107,13 +122,17 @@
 
         public ICollection<NSImageOnlyIdViewModel> GetAlbumImagesIds(long albumId)
         {
-            var albumImages = this.Data.NSImages.All()
-                .Where(nsi => nsi.AlbumId == albumId)
+            var albumImages = this.GetAlbumImagesQueryable(albumId)
                 .Project()
                 .To<NSImageOnlyIdViewModel>()
                 .ToList();
 
             return albumImages;
+        }
+
+        private IQueryable<NSImage> GetAlbumImagesQueryable(long albumId)
+        {
+            return this.Data.NSImages.All().Where(nsi => nsi.Albums.Where(a => a.Id == albumId).FirstOrDefault() != null);
         }
 
         public NSImageGridViewModel GetImageById(long albumId)
@@ -129,9 +148,11 @@
             try
             {
                 var album = this.Data.Albums.GetById(albumId);
-                album.CoverImageId = imageId;
+                var coverImage = this.Data.NSImages.GetById(imageId);
+                album.CoverImageId = coverImage.Id;
+                album.CoverImage = coverImage;
 
-                this.Data.Albums.Update(album);
+                //this.Data.Albums.Update(album);
                 this.Data.SaveChanges();
                 return true;
             }

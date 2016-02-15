@@ -339,6 +339,8 @@
     <Content Include="Content\bootstrap-tokenfield\tokenfield-typeahead.less" />
     <Content Include="Content\bootstrap-tokenfield\bootstrap-tokenfield.less" />
     <Content Include="Areas\AdminPanel\Views\Shared\SearchNSImages.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\NSImage\Create.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\NSImage\NSImagesAlbumChooseGrid.cshtml" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

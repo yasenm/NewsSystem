@@ -11,7 +11,9 @@
     {
         bool SaveImagesToAlbum(ICollection<HttpPostedFileBase> images, long albumId);
 
-        bool SaveImageToDB(HttpPostedFileBase imageFile);
+        bool SaveImageToDB(NSImageCreateViewModel model);
+
+        bool SaveImageToDB(HttpPostedFileBase imageFile); 
 
         bool SaveImageToDB(HttpPostedFileBase imageFile, long albumId);
 

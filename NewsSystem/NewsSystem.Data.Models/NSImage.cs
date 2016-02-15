@@ -7,15 +7,19 @@
 
     public class NSImage : DeletableEntity
     {
+        private ICollection<Album> albums;
         private ICollection<TokenNSImage> tokenNSImages;
         
         public NSImage()
         {
+            this.Albums = new HashSet<Album>();
             this.TokensNSImages = new HashSet<TokenNSImage>();
         }
 
         [Key]
         public long Id { get; set; }
+
+        public string Title { get; set; }
 
         public string ImageTags { get; set; }
 
@@ -25,9 +29,11 @@
 
         public string Extension { get; set; }
 
-        public long AlbumId { get; set; }
-
-        public Album Album { get; set; }
+        public virtual ICollection<Album> Albums
+        {
+            get { return this.albums; }
+            set { this.albums = value; }
+        }
 
         public virtual ICollection<TokenNSImage> TokensNSImages
         {
