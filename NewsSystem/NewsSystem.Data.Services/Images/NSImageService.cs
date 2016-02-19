@@ -172,6 +172,36 @@
             return queryableImagesCollection;
         }
 
+        public IQueryable<NSImageGridViewModel> GetImages(string text, string tags)
+        {
+            var queryableImagesCollection = this.Data.NSImages.All();
+
+            if (text != string.Empty && text != null)
+            {
+                queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Title.Contains(text) || nsi.Text.Contains(text));
+            }
+
+            var result = queryableImagesCollection.OrderByDescending(nsi => nsi.CreatedOn).Project().To<NSImageGridViewModel>();
+
+            return result;
+        }
+
+        public IQueryable<NSImageGridViewModel> GetImagesToChoose(string text, string tags, long albumId)
+        {
+            var album = this.Data.Albums.GetById(albumId);
+            var queryableImagesCollection = this.Data.NSImages.All()
+                .Where(nsi => nsi.Albums.Where(a => a.Id == albumId).FirstOrDefault() == null);
+
+            if (text != string.Empty && text != null)
+            {
+                queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Title.Contains(text) || nsi.Text.Contains(text));
+            }
+
+            var result = queryableImagesCollection.OrderByDescending(nsi => nsi.CreatedOn).Project().To<NSImageGridViewModel>();
+
+            return result;
+        }
+
         public NSImageEditViewModel GetImageForEdit(long nsImageId)
         {
             var nsImage = this.Data.NSImages.GetById(nsImageId);
@@ -227,6 +257,7 @@
                 var album = this.Data.Albums.GetById(albumId);
 
                 album.NSImages.Remove(image);
+                image.Albums.Remove(album);
                 this.Data.SaveChanges();
                 return true;
             }
@@ -235,6 +266,28 @@
                 return false;
             }
 
+        }
+
+        public bool PushImagesToAlbum(long albumId, long[] imagesIds)
+        {
+            try
+            {
+                Album album = this.Data.Albums.GetById(albumId);
+                foreach (var imageId in imagesIds)
+                {
+                    NSImage nsImage = this.Data.NSImages.GetById(imageId);
+                    album.NSImages.Add(nsImage);
+                    nsImage.Albums.Add(album);
+                    this.Data.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }

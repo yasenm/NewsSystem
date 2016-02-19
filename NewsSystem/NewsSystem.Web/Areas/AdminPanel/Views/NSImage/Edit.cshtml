@@ -47,6 +47,6 @@
     @Scripts.Render("~/bundles/admin-panel-ns-images")
 
     <script>
-        APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")');
+        APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#tokenfield');
     </script>
 }

@@ -29,10 +29,16 @@
 
         IQueryable<NSImageGridViewModel> GetImages();
 
+        IQueryable<NSImageGridViewModel> GetImages(string text, string tags);
+
+        IQueryable<NSImageGridViewModel> GetImagesToChoose(string text, string tags, long albumId);
+
         NSImageEditViewModel GetImageForEdit(long nsImageId);
 
         bool EditImage(NSImageEditViewModel model);
 
         bool RemoveFromAlbum(long imgId, long albumId);
+
+        bool PushImagesToAlbum(long albumId, long[] imagesIds);
     }
 }

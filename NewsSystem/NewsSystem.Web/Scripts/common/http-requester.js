@@ -7,8 +7,9 @@ APP.HttpRequester = (function () {
         return $.ajax({
             url: url,
             type: type || 'GET',
+            dataType: "json",
             data: (type === 'POST') ? JSON.stringify(data) : undefined,
-            contentType: JSONContentType,
+            contentType: 'application/json',
         })
     }
 

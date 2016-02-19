@@ -16,7 +16,7 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(m => m.Id, new { @Value = Model.Id })
+        @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
         <div class="list-group panel-body">
             <div class="form-group">
                 @Html.LabelFor(m => m.Name, new { })
@@ -53,22 +53,26 @@
         @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
     </div>
 
-    <div class="modal fade" id="choose-img-modal" role="dialog">
+    <div class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <input type="text" name="NSImageText" value=" " placeholder="By text..." />
-                    <input type="text" name="NSImageTags" value=" " placeholder="By tags..." />
+                    <input type="text" id="nsimagesSearchTextfield" name="NSImageText" value="@(this.ViewBag.LastText != null ? this.ViewBag.LastText : string.Empty)" class="form-control" placeholder="By text..." />
+                    <br />
+                    <input type="text" id="nsimagesSearchTokenfield" name="NSImageTags" value=" " class="form-control" placeholder="By tags..." />
+                    <br />
+                    <a href="@Url.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id })" class="btn btn-primary" data-album="@this.ViewBag.AlbumId" id="search-album-choose-images-grid">Search</a>
                 </div>
-                <div class="modal-body" style="padding:40px 50px;">
-                    @Html.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id })
+                <div  id="choose-img-modal-container">
+                    @Html.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id, text = string.Empty })
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                    <a href="#" class="btn btn-success">Aprove</a>
-                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                <a href="@Url.AbsoluteAction("PushImagesToAlbum", "NSImage", new { })" id="pushImagesToAlbum" class="btn btn-success">Select</a>
             </div>
         </div>
     </div>
@@ -76,13 +80,16 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/admin-panel-albums")
+    @Scripts.Render("~/bundles/admin-panel-ns-images")
 
     <script>
         APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
+        APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#nsimagesSearchTokenfield');
+        APP.NSImages.searchImagesForAlbumInit();
 
         $(document).ready(function () {
             $("#ChooseImg").click(function () {
-                $("#choose-img-modal").modal();
+                $(".modal").modal();
             });
         });
     </script>

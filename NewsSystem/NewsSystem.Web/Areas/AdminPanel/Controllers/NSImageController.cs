@@ -25,7 +25,7 @@
         {
             return this.View();
         }
-        
+
         public ActionResult NSImagesAlbumGrid(long albumId)
         {
             var collection = this.NSImageService.GetAlbumImagesIds(albumId);
@@ -34,11 +34,13 @@
             return this.PartialView("NSImagesAlbumGrid", collection);
         }
 
-        public ActionResult NSImagesAlbumChooseGrid(long albumId)
+        public ActionResult NSImagesAlbumChooseGrid(long albumId, string text, string tags)
         {
-            var collection = this.NSImageService.GetImages();
+            var collection = this.NSImageService.GetImagesToChoose(text.Trim().ToLower(), tags, albumId);
 
             this.ViewBag.AlbumId = albumId;
+            this.ViewBag.LastText = text;
+            this.ViewBag.LastTags = tags;
             return this.PartialView("NSImagesAlbumChooseGrid", collection);
         }
 
@@ -115,6 +117,13 @@
             }
 
             return null;
+        }
+
+        [HttpPost]
+        public ActionResult PushImagesToAlbum(long albumId, long[] imagesIds)
+        {
+            var result = this.NSImageService.PushImagesToAlbum(albumId, imagesIds);
+            return this.NSImagesAlbumGrid(albumId);
         }
     }
 }
