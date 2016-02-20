@@ -27,8 +27,6 @@
 
         public long? CoverImageId { get; set; }
 
-        public virtual NSImage CoverImage { get; set; }
-
         public long AlbumCategoryId { get; set; }
 
         public virtual AlbumCategory AlbumCategory { get; set; }

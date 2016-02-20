@@ -7,13 +7,13 @@ namespace NewsSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FluentAPI_MtoMSetForImages : IMigrationMetadata
+    public sealed partial class First_MigrationShouldResetAllRealtionships : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FluentAPI_MtoMSetForImages));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(First_MigrationShouldResetAllRealtionships));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511290614479_FluentAPI_MtoMSetForImages"; }
+            get { return "201602200641337_First_MigrationShouldResetAllRealtionships"; }
         }
         
         string IMigrationMetadata.Source

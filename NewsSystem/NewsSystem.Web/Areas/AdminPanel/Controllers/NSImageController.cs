@@ -99,7 +99,7 @@
         public ActionResult RemoveFromAlbum(long imgId, long albumId)
         {
             this.NSImageService.RemoveFromAlbum(imgId, albumId);
-            return null;
+            return this.NSImagesAlbumGrid(albumId);
         }
 
         public ActionResult Create()

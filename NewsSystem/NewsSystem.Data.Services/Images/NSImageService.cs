@@ -132,7 +132,10 @@
 
         private IQueryable<NSImage> GetAlbumImagesQueryable(long albumId)
         {
-            return this.Data.NSImages.All().Where(nsi => nsi.Albums.Where(a => a.Id == albumId).FirstOrDefault() != null);
+            var album = this.Data.Albums.GetById(albumId);
+            var images = this.Data.NSImages.All()
+                .Where(nsi => nsi.Albums.FirstOrDefault(a => a.Id == albumId) != null); //.Where(a => a.Id == albumId).FirstOrDefault() != null);
+            return images;
         }
 
         public NSImageGridViewModel GetImageById(long albumId)
@@ -150,7 +153,6 @@
                 var album = this.Data.Albums.GetById(albumId);
                 var coverImage = this.Data.NSImages.GetById(imageId);
                 album.CoverImageId = coverImage.Id;
-                album.CoverImage = coverImage;
 
                 //this.Data.Albums.Update(album);
                 this.Data.SaveChanges();
@@ -258,6 +260,7 @@
 
                 album.NSImages.Remove(image);
                 image.Albums.Remove(album);
+                
                 this.Data.SaveChanges();
                 return true;
             }

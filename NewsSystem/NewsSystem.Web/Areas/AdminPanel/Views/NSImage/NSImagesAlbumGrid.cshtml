@@ -14,6 +14,10 @@
             {
                 <div class="col-md-2 img-thumbnail">
                     <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
+                    @if (true)
+                    {
+
+                    }
                     @Ajax.ActionLink("MakeCover", "MakeAlbumCover", "NSImage",
                     new
                     {
@@ -40,7 +44,7 @@
                         InsertionMode = InsertionMode.Replace,
                         UpdateTargetId = "album-edit-nsimages-grid",
                     },
-                    new { @class = "btn btn-sm btn-default" })
+                    new { @class = "btn btn-sm btn-danger" })
                 </div>
             }
         </div>

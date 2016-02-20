@@ -53,41 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="INewsSystemDbContext.cs" />
-    <Compile Include="Migrations\201510191157188_Article_Entity_Added.cs" />
-    <Compile Include="Migrations\201510191157188_Article_Entity_Added.Designer.cs">
-      <DependentUpon>201510191157188_Article_Entity_Added.cs</DependentUpon>
+    <Compile Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.cs" />
+    <Compile Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.Designer.cs">
+      <DependentUpon>201602200641337_First_MigrationShouldResetAllRealtionships.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.cs" />
-    <Compile Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.Designer.cs">
-      <DependentUpon>201510211052538_Added_NSImages_Albums_AlbumCategories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs" />
-    <Compile Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.Designer.cs">
-      <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs" />
-    <Compile Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.Designer.cs">
-      <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs" />
-    <Compile Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.Designer.cs">
-      <DependentUpon>201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.cs" />
-    <Compile Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.Designer.cs">
-      <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070707266_Added_AlbumTokens.cs" />
-    <Compile Include="Migrations\201602070707266_Added_AlbumTokens.Designer.cs">
-      <DependentUpon>201602070707266_Added_AlbumTokens.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602141933572_Added_TitleFieldToNSImages.cs" />
-    <Compile Include="Migrations\201602141933572_Added_TitleFieldToNSImages.Designer.cs">
-      <DependentUpon>201602141933572_Added_TitleFieldToNSImages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs" />
-    <Compile Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.Designer.cs">
-      <DependentUpon>201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs</DependentUpon>
+    <Compile Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.cs" />
+    <Compile Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.Designer.cs">
+      <DependentUpon>201602200647036_Delete_AlbumToNSImagesBugRelation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
@@ -116,32 +88,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510191157188_Article_Entity_Added.resx">
-      <DependentUpon>201510191157188_Article_Entity_Added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.resx">
+      <DependentUpon>201602200641337_First_MigrationShouldResetAllRealtionships.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510211052538_Added_NSImages_Albums_AlbumCategories.resx">
-      <DependentUpon>201510211052538_Added_NSImages_Albums_AlbumCategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.resx">
-      <DependentUpon>201510211057087_Added_Albums_Collection_Property_To_AlbumCategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.resx">
-      <DependentUpon>201510231445143_Added_Connection_For_Album_To_AlbumCategory_And_CoverImage_Property.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.resx">
-      <DependentUpon>201511280650200_Added_Many_toMany_NSImage_to_TokenNSImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511290614479_FluentAPI_MtoMSetForImages.resx">
-      <DependentUpon>201511290614479_FluentAPI_MtoMSetForImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070707266_Added_AlbumTokens.resx">
-      <DependentUpon>201602070707266_Added_AlbumTokens.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602141933572_Added_TitleFieldToNSImages.resx">
-      <DependentUpon>201602141933572_Added_TitleFieldToNSImages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.resx">
-      <DependentUpon>201602141945452_Changed_NSImageToAlbumToManyToMany_Relationship.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.resx">
+      <DependentUpon>201602200647036_Delete_AlbumToNSImagesBugRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
