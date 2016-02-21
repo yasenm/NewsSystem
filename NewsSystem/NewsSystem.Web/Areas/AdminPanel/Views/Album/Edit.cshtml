@@ -1,6 +1,8 @@
 ﻿@using NewsSystem.Data.ViewModels.Albums
 @using NewsSystem.Web.Helpers
 
+@using NewsSystem.Web.Common.Constants
+
 @model AlbumEditViewModel
 
 @Styles.Render("~/Content/bootstrap-tokenfield")
@@ -12,68 +14,98 @@
         </h3>
     </div>
 
-    @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
-    {
-        @Html.AntiForgeryToken()
+    <div class="row">
+        @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
-        <div class="list-group panel-body">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name, new { })
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Text, new { })
-                @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
-                <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
-            </div>
-            <div class="form-group">
-                <div>
-                    <label for="AlbumPostedImages">Chose picture</label>
-                    <input type="file" name="AlbumPostedImages" id="AlbumPostedImages" multiple class="btn btn-default" />
+            <div class="col-md-8">
+                @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
+                <div class="list-group panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, new { })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Text, new { })
+                        @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
+                        <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="AlbumPostedImages">Chose picture</label>
+                            <input type="file" name="AlbumPostedImages" id="AlbumPostedImages" multiple class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" name="ChoseFromGallery" id="ChooseImg" class="btn btn-default" value="Gallery" />
+                    </div>
+
+                    <div>
+                        @*@Ajax.ActionLink("Edit", "Edit", "Album",
+                        new
+                        {
+                            editModel = Model
+                        },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            OnComplete = CommonToastrSettings.CompleteAction,
+                            OnFailure = CommonToastrSettings.FailedAction,
+                            OnBegin = CommonToastrSettings.BeginAction,
+                        },
+                        new { @class = "btn btn-success" })*@
+                        <button type="submit" value="Edit" class="btn btn-default">Edit</button>
+                        <a href="@Url.Action("Index", "AlbumCategory")" c class="btn btn-sm btn-danger">Cancel</a>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="button" name="ChoseFromGallery" id="ChooseImg" class="btn btn-default" value="Gallery" />
+            <div class="col-md-4" id="album-cover-holder">
+                <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.CoverImageId })" alt="No cover photo for album found..." class="img-responsive img-rounded" />
             </div>
+        }
+    </div>
+</div>
 
-            <div>
-                <button type="submit" value="Edit" class="btn btn-default">Edit</button>
-                <a href="@Url.Action("Index", "AlbumCategories")" class="btn btn-sm btn-danger">Cancel</a>
+<div class="container-fluid" id="album-edit-nsimages-grid">
+    @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
+</div>
+
+<div class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="form-group input-group">
+                    <input type="text" id="nsimagesSearchTextfield" name="NSImageText" value="@(this.ViewBag.LastText != null ? this.ViewBag.LastText : string.Empty)" class="form-control" placeholder="By text..." />
+                    <span class="input-group-btn">
+                        <a href="@Url.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id })"
+                           class="btn btn-primary"
+                           data-album="@this.ViewBag.AlbumId"
+                           id="search-album-choose-images-grid">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </span>
+                </div>
+                <input type="text" id="nsimagesSearchTokenfield" name="NSImageTags" value=" " class="form-control" placeholder="By tags..." />
+                <br />
+            </div>
+            <div id="choose-img-modal-container">
+                @Html.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id, text = string.Empty })
             </div>
         </div>
-    }
 
-    <div id="album-edit-nsimages-grid">
-        @Html.Action("NSImagesAlbumGrid", "NSImage", new { albumId = Model.Id })
-    </div>
-
-    <div class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="padding:35px 50px;">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <input type="text" id="nsimagesSearchTextfield" name="NSImageText" value="@(this.ViewBag.LastText != null ? this.ViewBag.LastText : string.Empty)" class="form-control" placeholder="By text..." />
-                    <br />
-                    <input type="text" id="nsimagesSearchTokenfield" name="NSImageTags" value=" " class="form-control" placeholder="By tags..." />
-                    <br />
-                    <a href="@Url.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id })" class="btn btn-primary" data-album="@this.ViewBag.AlbumId" id="search-album-choose-images-grid">Search</a>
-                </div>
-                <div  id="choose-img-modal-container">
-                    @Html.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = Model.Id, text = string.Empty })
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                <a href="@Url.AbsoluteAction("PushImagesToAlbum", "NSImage", new { })" id="pushImagesToAlbum" class="btn btn-success">Select</a>
-            </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+            <a href="@Url.AbsoluteAction("PushImagesToAlbum", "NSImage", new { })" id="pushImagesToAlbum" class="btn btn-success">Select</a>
         </div>
     </div>
 </div>
@@ -83,14 +115,11 @@
     @Scripts.Render("~/bundles/admin-panel-ns-images")
 
     <script>
-        APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
-        APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#nsimagesSearchTokenfield');
-        APP.NSImages.searchImagesForAlbumInit();
-
         $(document).ready(function () {
-            $("#ChooseImg").click(function () {
-                $(".modal").modal();
-            });
-        });
+            APP.Albums.initEdit();
+            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
+            APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#nsimagesSearchTokenfield');
+            APP.NSImages.searchImagesForAlbumInit();
+        })
     </script>
 }

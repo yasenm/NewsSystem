@@ -15,6 +15,12 @@
         private INSImageService NSImageService;
         private ITokenNSImageService TokenNSImageService;
 
+        [HttpGet]
+        public ActionResult NSImage(long imageId)
+        {
+            return this.PartialView("Image", imageId);
+        }
+
         public NSImageController(INSImageService nsiService, ITokenNSImageService tokenService)
         {
             this.NSImageService = nsiService;
@@ -63,7 +69,13 @@
         public ActionResult MakeAlbumCover(long imageId, long albumId)
         {
             var changed = this.NSImageService.ChangeAlbumCoverByImageId(imageId, albumId);
-            return this.NSImagesAlbumGrid(albumId);
+            if (changed)
+            {
+                this.ViewBag.AltText = "No cover photo for album found...";
+                return this.NSImage(imageId);
+            }
+
+            return new HttpStatusCodeResult(404);
         }
 
         [HttpGet]
@@ -98,8 +110,13 @@
         [HttpPost]
         public ActionResult RemoveFromAlbum(long imgId, long albumId)
         {
-            this.NSImageService.RemoveFromAlbum(imgId, albumId);
-            return this.NSImagesAlbumGrid(albumId);
+            var removed = this.NSImageService.RemoveFromAlbum(imgId, albumId);
+            if (removed)
+            {
+                return this.NSImagesAlbumGrid(albumId);
+            }
+
+            return new HttpStatusCodeResult(404);
         }
 
         public ActionResult Create()

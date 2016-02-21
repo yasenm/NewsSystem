@@ -1,9 +1,5 @@
 ﻿namespace NewsSystem.Data.ViewModels.NSImages
 {
-    using System;
-
-    using AutoMapper;
-
     using NewsSystem.Data.Infrastructure.Mapping;
     using NewsSystem.Data.Models;
 

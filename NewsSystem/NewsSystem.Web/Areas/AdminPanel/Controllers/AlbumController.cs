@@ -71,7 +71,7 @@
                 var updateSucceded = this.AlbumService.EditAlbum(editModel);
                 if (updateSucceded)
                 {
-                    return this.RedirectToAction("Index", "AlbumCategory");
+                    return this.View(editModel);
                 }
             }
 

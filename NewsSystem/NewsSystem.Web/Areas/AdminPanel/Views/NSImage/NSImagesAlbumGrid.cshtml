@@ -14,10 +14,6 @@
             {
                 <div class="col-md-2 img-thumbnail">
                     <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
-                    @if (true)
-                    {
-
-                    }
                     @Ajax.ActionLink("MakeCover", "MakeAlbumCover", "NSImage",
                     new
                     {
@@ -28,7 +24,10 @@
                     {
                         HttpMethod = "POST",
                         InsertionMode = InsertionMode.Replace,
-                        UpdateTargetId = "album-edit-nsimages-grid",
+                        UpdateTargetId = "album-cover-holder",
+                        OnComplete = CommonToastrSettings.CompleteAction,
+                        OnFailure = CommonToastrSettings.FailedAction,
+                        OnBegin = CommonToastrSettings.BeginAction,
                     },
                     new { @class = "btn btn-sm btn-default" })
                     <br />
@@ -43,6 +42,9 @@
                         HttpMethod = "POST",
                         InsertionMode = InsertionMode.Replace,
                         UpdateTargetId = "album-edit-nsimages-grid",
+                        OnComplete = CommonToastrSettings.CompleteAction,
+                        OnFailure = CommonToastrSettings.FailedAction,
+                        OnBegin = CommonToastrSettings.BeginAction,
                     },
                     new { @class = "btn btn-sm btn-danger" })
                 </div>

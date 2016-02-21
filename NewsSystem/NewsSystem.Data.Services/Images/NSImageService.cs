@@ -292,5 +292,16 @@
                 throw;
             }
         }
+
+        public bool IsImageCoverForAlbum(long imageId, long albumId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIsImageAlbumCover(long imageId, long albumId)
+        {
+            var album = this.Data.Albums.GetById(albumId);
+            return album.CoverImageId == imageId;
+        }
     }
 }

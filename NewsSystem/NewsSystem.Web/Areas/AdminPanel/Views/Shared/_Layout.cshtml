@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/AdminPanel/admin-bootstrap-theme-css")
     @Styles.Render("~/Content/AdminPanel/admin-side-css")
     @Styles.Render("~/Content/full-jquery-ui")
+    @Styles.Render("~/Content/toastr")
     @Scripts.Render("~/bundles/common-scripts")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -185,6 +186,7 @@
     @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jquery-unobtrusive")
     @Scripts.Render("~/bundles/admin-panel-bootstrap")
+    @Scripts.Render("~/bundles/toastr")
     @RenderSection("scripts", required: false)
     <script>
         $('.side-nav li a').click(function () {

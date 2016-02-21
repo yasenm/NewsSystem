@@ -40,5 +40,9 @@
         bool RemoveFromAlbum(long imgId, long albumId);
 
         bool PushImagesToAlbum(long albumId, long[] imagesIds);
+
+        bool IsImageCoverForAlbum(long imageId, long albumId);
+
+        bool CheckIsImageAlbumCover(long imageId, long albumId);
     }
 }

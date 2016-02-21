@@ -24,6 +24,8 @@
 
         public long AlbumCategoryId { get; set; }
 
+        public long? CoverImageId { get; set; }
+
         public ICollection<string> Tokens { get; set; }
 
         public ICollection<HttpPostedFileBase> AlbumPostedImages { get; set; }

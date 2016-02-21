@@ -30,6 +30,9 @@
 
             bundles.Add(new StyleBundle("~/Content/bootstrap-theme").Include(
                         "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/toastr").Include(
+                        "~/Content/toastr.css"));
         }
 
         private static void RegisterClientSideStyles(BundleCollection bundles)
@@ -76,6 +79,9 @@
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-unobtrusive").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                        "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common-scripts").Include(
                         "~/Scripts/common/app.js",

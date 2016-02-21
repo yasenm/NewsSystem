@@ -27,6 +27,12 @@ APP.Albums = (function () {
             });
         },
 
+        initEdit: function () {
+            $("#ChooseImg").click(function () {
+                $(".modal").modal();
+            });
+        },
+
         initEditTokens: function (tokensUrl) {
             APP.HttpRequester.getData(tokensUrl)
                 .success(function (data) {
