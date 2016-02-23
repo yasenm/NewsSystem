@@ -11,3 +11,17 @@
         @Html.Action("NSImagesGrid", "NSImage", new { })
     </div>
 </div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.show-url-btn').click(function (e) {
+                e.preventDefault();
+                var link = $(this).attr('href');
+                $('#image-link-holder').text(link);
+                $('.modal').modal();
+            })
+        })
+    </script>
+}

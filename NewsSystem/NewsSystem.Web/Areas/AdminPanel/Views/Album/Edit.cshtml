@@ -111,6 +111,7 @@
 </div>
 
 @section scripts{
+    @Scripts.Render("~/bundles/tinymce")
     @Scripts.Render("~/bundles/admin-panel-albums")
     @Scripts.Render("~/bundles/admin-panel-ns-images")
 
@@ -120,6 +121,7 @@
             APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
             APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#nsimagesSearchTokenfield');
             APP.NSImages.searchImagesForAlbumInit();
+            APP.TinymceInitializer.basicInit();
         })
     </script>
 }

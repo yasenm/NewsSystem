@@ -119,6 +119,7 @@
             return new HttpStatusCodeResult(404);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             var model = new NSImageCreateViewModel();

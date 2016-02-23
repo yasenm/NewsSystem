@@ -67,9 +67,13 @@
         {
             try
             {
-                NSImage nsImage = this.ConvertPostedFileToNSImage(model.ImageBase);
-                this.Data.NSImages.Add(nsImage);
+                NSImage image = this.ConvertPostedFileToNSImage(model.ImageBase);
+                image.Title = model.Title;
+                image.Text = model.Text;
+                this.Data.NSImages.Add(image);
                 this.Data.SaveChanges();
+                
+                this.SaveTokensToImage(model.Tokens, image);
                 return true;
             }
             catch (Exception e)
@@ -215,35 +219,12 @@
         public bool EditImage(NSImageEditViewModel model)
         {
             NSImage image = this.Data.NSImages.GetById(model.Id);
+            image.Title = model.Title;
+            image.Text = model.Text;
 
             if (model.Tokens.Count > 0)
             {
-                var tokens = model.Tokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                image.TokensNSImages.Clear();
-                this.Data.SaveChanges();
-                foreach (var token in tokens)
-                {
-                    var dbToken = this.Data.TokensNSImages
-                        .All()
-                        .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
-
-                    if (dbToken == null)
-                    {
-                        dbToken = new TokenNSImage
-                        {
-                            Name = token,
-                        };
-
-                        this.Data.TokensNSImages.Add(dbToken);
-                        this.Data.SaveChanges();
-                    }
-
-                    dbToken.NSImages.Add(image);
-                    image.TokensNSImages.Add(dbToken);
-                    this.Data.TokensNSImages.Update(dbToken);
-                    this.Data.NSImages.Update(image);
-                    this.Data.SaveChanges();
-                }
+                this.SaveTokensToImage(model.Tokens, image);
 
                 return true;
             }
@@ -302,6 +283,36 @@
         {
             var album = this.Data.Albums.GetById(albumId);
             return album.CoverImageId == imageId;
+        }
+
+        private void SaveTokensToImage(ICollection<string> newTokens, NSImage image)
+        {
+            var tokens = newTokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            image.TokensNSImages.Clear();
+            this.Data.SaveChanges();
+            foreach (var token in tokens)
+            {
+                var dbToken = this.Data.TokensNSImages
+                    .All()
+                    .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+
+                if (dbToken == null)
+                {
+                    dbToken = new TokenNSImage
+                    {
+                        Name = token,
+                    };
+
+                    this.Data.TokensNSImages.Add(dbToken);
+                    this.Data.SaveChanges();
+                }
+
+                dbToken.NSImages.Add(image);
+                image.TokensNSImages.Add(dbToken);
+                this.Data.TokensNSImages.Update(dbToken);
+                this.Data.NSImages.Update(image);
+                this.Data.SaveChanges();
+            }
         }
     }
 }

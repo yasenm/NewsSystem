@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using System.Web.Mvc;
 
     using AutoMapper;
 
@@ -13,10 +14,13 @@
     {
         public long Id { get; set; }
 
+        public string Title { get; set; }
+
         public string ImageTags { get; set; }
 
         public ICollection<string> Tokens { get; set; }
 
+        [AllowHtml]
         public string Text { get; set; }
 
         public byte[] ByteContent { get; set; }

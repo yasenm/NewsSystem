@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Web;
+    using System.Web.Mvc;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,6 @@
     using NewsSystem.Data.Infrastructure.Mapping;
     using NewsSystem.Data.Models;
     using NewsSystem.Data.ViewModels.NSImages;
-    using System;
 
     public class AlbumEditViewModel : IMapFrom<Album>, IHaveCustomMappings
     {
@@ -19,6 +19,7 @@
         [StringLength(200, MinimumLength = 4, ErrorMessage = "You must use more than 4 and less than 200 characters")]
         public string Name { get; set; }
         
+        [AllowHtml]
         [StringLength(5000, MinimumLength = 4, ErrorMessage = "You must use more than 4 and less than 5000 characters")]
         public string Text { get; set; }
 

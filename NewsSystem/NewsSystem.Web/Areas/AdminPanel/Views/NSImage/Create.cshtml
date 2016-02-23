@@ -1,13 +1,62 @@
 ﻿@using NewsSystem.Data.ViewModels.NSImages;
+@using NewsSystem.Web.Helpers
 
 @model NSImageCreateViewModel
 
-@using (Html.BeginForm("Create", "NSImage", FormMethod.Post, new { @class = "row" }))
-{
-    @Html.AntiForgeryToken();
+@Styles.Render("~/Content/bootstrap-tokenfield")
 
-    <h1>Add image</h1>
-}
 <div class="row">
+    @using (Html.BeginForm("Create", "NSImage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken();
 
+        <h1>Add image</h1>
+
+        <div class="col-md-8">
+            <div class="list-group panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title, new { })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Text, new { })
+                    @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
+                    <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label for="ImageBase">Chose picture</label>
+                        <input type="file" name="ImageBase" id="ImageBase" class="btn btn-default" />
+                        @Html.ValidationMessageFor(m => m.ImageBase, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="submit" value="Edit" class="btn btn-default">Add Image</button>
+                <a href="@Url.Action("Index", "NSImage")" class="btn btn-sm btn-danger">Cancel</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="jumbotron">
+                Image should be here when added for review!
+            </div>
+        </div>
+    }
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/tinymce")
+    @Scripts.Render("~/bundles/admin-panel-ns-images")
+
+    <script>
+        $(document).ready(function () {
+            APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#tokenfield');
+            APP.TinymceInitializer.basicInit();
+        })
+    </script>
+}

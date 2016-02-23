@@ -3,6 +3,7 @@
 
 @using NewsSystem.Data.ViewModels.NSImages
 @using NewsSystem.Web.Common.Constants
+@using NewsSystem.Web.Helpers
 
 @model PagedList<NSImageGridViewModel>
 
@@ -15,6 +16,7 @@
         <div class="col-md-2 img-thumbnail">
             <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" alt="Image not found" class="img-responsive" />
             <a href="@Url.Action("Edit", "NSImage", new { nsImageId = nsImage.Id })" class="btn btn-sm btn-success">Edit</a>
+            <a href="@Url.AbsoluteAction("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" class="show-url-btn btn btn-default">Show URL</a>
         </div>
     }
     <div>
@@ -27,5 +29,30 @@
             UpdateTargetId = "images-grid-wrapper"
         }
         ))
+    </div>
+</div>
+
+<div class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div>
+                    <h2><strong>Image URL link</strong></h2>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <div>
+                    <h3 id="image-link-holder"></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </div>
     </div>
 </div>

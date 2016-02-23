@@ -86,6 +86,7 @@
             bundles.Add(new ScriptBundle("~/bundles/common-scripts").Include(
                         "~/Scripts/common/app.js",
                         "~/Scripts/common/http-requester.js",
+                        "~/Scripts/common/tinymce-initializer.js",
                         "~/Scripts/common/url-builder.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/common-scripts").IncludeDirectory(
@@ -101,6 +102,9 @@
                       //"~/Scripts/AdminPanel/plugins/morris/morris.js",
                       //"~/Scripts/AdminPanel/plugins/morris/morris-data.js"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
+                      "~/Scripts/tinymce/tinymce.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-albums").Include(
                       "~/Scripts/AdminPanel/albums/albums.js"));
