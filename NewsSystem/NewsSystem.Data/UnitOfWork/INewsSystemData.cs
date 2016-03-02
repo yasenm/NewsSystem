@@ -15,11 +15,9 @@
 
         IRepository<AlbumCategory> AlbumCategories { get; }
 
-        IRepository<AlbumToken> AlbumTokens { get; }
+        IRepository<Tag> Tags { get; }
 
         IRepository<NSImage> NSImages { get; }
-
-        IRepository<TokenNSImage> TokensNSImages { get; }
 
         int SaveChanges();
     }

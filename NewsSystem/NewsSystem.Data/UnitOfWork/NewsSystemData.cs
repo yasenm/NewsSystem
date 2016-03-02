@@ -52,11 +52,11 @@
             }
         }
 
-        public IRepository<AlbumToken> AlbumTokens
+        public IRepository<Tag> Tags
         {
             get
             {
-                return this.GetDeletableEntityRepository<AlbumToken>();
+                return this.GetDeletableEntityRepository<Tag>();
             }
         }
 
@@ -65,14 +65,6 @@
             get
             {
                 return this.GetDeletableEntityRepository<NSImage>();
-            }
-        }
-
-        public IRepository<TokenNSImage> TokensNSImages
-        {
-            get
-            {
-                return this.GetDeletableEntityRepository<TokenNSImage>();
             }
         }
 

@@ -222,6 +222,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\Base\AdminBaseController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\NSImageController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\TagController.cs" />
     <Compile Include="Constants\Common\CommonStyles.cs" />
     <Compile Include="Constants\Common\CommonToastrSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -348,6 +349,7 @@
     <Content Include="Areas\AdminPanel\Views\NSImage\Image.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Areas\AdminPanel\Views\Shared\SearchAlbums.cshtml" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -574,6 +576,7 @@
     <Folder Include="Areas\AdminPanel\Models\" />
     <Folder Include="Areas\AdminPanel\Views\AdminBase\" />
     <Folder Include="Areas\AdminPanel\Views\Article\" />
+    <Folder Include="Areas\AdminPanel\Views\Tag\" />
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\NSImage\" />

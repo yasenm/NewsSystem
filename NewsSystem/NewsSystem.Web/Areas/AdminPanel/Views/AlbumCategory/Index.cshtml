@@ -8,14 +8,12 @@
         @Html.Action("AlbumsGrid", "Album", new { })
     </div>
     <div class="col-md-2 text-center">
-        <div class="row">
+        <div>
             <a href="@Url.Action("Create", "Album", null)" class="btn btn-default btn-block">Add album</a>
         </div>
         <br />
-        <div class="row">
-            <input type="text" data-search-url="@Url.Action("Search", "Album", new { })" name="SearchAlbum" id="search-album-field" placeholder="Search by text..." class="form-control" />
-            <br />
-            @*<a href="#" class="btn btn-default btn-block">Search</a>*@
+        <div>
+            @Html.Partial("SearchAlbums")
         </div>
     </div>
 </div>

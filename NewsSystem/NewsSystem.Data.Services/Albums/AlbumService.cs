@@ -49,29 +49,29 @@
                 if (editModel.Tokens.Count > 0)
                 {
                     var tokens = editModel.Tokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    editAlbum.AlbumTokens.Clear();
+                    editAlbum.Tags.Clear();
                     this.Data.SaveChanges();
 
                     foreach (var token in tokens)
                     {
-                        var dbToken = this.Data.AlbumTokens
+                        var dbTag = this.Data.Tags
                             .All()
                             .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
 
-                        if (dbToken == null)
+                        if (dbTag == null)
                         {
-                            dbToken = new AlbumToken
+                            dbTag = new Tag
                             {
                                 Name = token,
                             };
 
-                            this.Data.AlbumTokens.Add(dbToken);
+                            this.Data.Tags.Add(dbTag);
                             this.Data.SaveChanges();
                         }
 
-                        dbToken.Albums.Add(editAlbum);
-                        editAlbum.AlbumTokens.Add(dbToken);
-                        this.Data.AlbumTokens.Update(dbToken);
+                        dbTag.Albums.Add(editAlbum);
+                        editAlbum.Tags.Add(dbTag);
+                        this.Data.Tags.Update(dbTag);
                         this.Data.Albums.Update(editAlbum);
                         this.Data.SaveChanges();
                     }
@@ -127,14 +127,23 @@
             return collection;
         }
 
-        public IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText)
+        public IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText, string tags)
         {
-            searchText = searchText.ToLower();
-            var result = this.Data.Albums.All()
-                .Where(a => a.Name.ToLower().Contains(searchText))
-                .ToList()
-                .AsQueryable()
-                .Project()
+            var queryableAlbums = this.Data.Albums.All();
+            if (searchText != null && searchText != string.Empty)
+            {
+                queryableAlbums = queryableAlbums.Where(a => a.Name.ToLower().Contains(searchText));
+            }
+            if (tags != null && tags != string.Empty)
+            {
+                string[] sTags = tags.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var tagName in sTags)
+                {
+                    queryableAlbums = queryableAlbums.Where(a => a.Tags.FirstOrDefault(at => at.Name.Contains(tagName)) != null);
+                }
+            }
+
+            var result = queryableAlbums.Project()
                 .To<AlbumGridViewModel>()
                 .ToList();
 

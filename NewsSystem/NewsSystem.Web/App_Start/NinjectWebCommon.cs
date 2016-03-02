@@ -19,6 +19,7 @@ namespace NewsSystem.Web.App_Start
     using NewsSystem.Data.Services.Contracts.NSImages;
     using NewsSystem.Data.Services.Images;
     using NewsSystem.Data.UnitOfWork;
+    using Data.Services.Tags;
 
     public static class NinjectWebCommon 
     {
@@ -76,9 +77,8 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<IAlbumService>().To<AlbumService>();
             kernel.Bind<IAlbumCategoryService>().To<AlbumCategoryService>();
-            kernel.Bind<IAlbumTokenService>().To<AlbumTokenService>();
+            kernel.Bind<ITagsService>().To<TagsService>();
             kernel.Bind<INSImageService>().To<NSImageService>();
-            kernel.Bind<ITokenNSImageService>().To<TokenNSImageService>();
         }        
     }
 }

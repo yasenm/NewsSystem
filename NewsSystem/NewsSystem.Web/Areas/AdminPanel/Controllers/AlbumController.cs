@@ -12,13 +12,11 @@
     {
         private IAlbumService AlbumService;
         private IAlbumCategoryService AlbumCategoryService;
-        private IAlbumTokenService AlbumTokenService;
 
-        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService, IAlbumTokenService atService)
+        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService)
         {
             this.AlbumService = albumService;
             this.AlbumCategoryService = acService;
-            this.AlbumTokenService = atService;
         }
 
         [HttpGet]
@@ -91,9 +89,9 @@
         }
 
         [HttpGet]
-        public ActionResult Search(string searchText)
+        public ActionResult Search(string searchText, string tags)
         {
-            var model = this.AlbumService.GetAlbumsBySearchText(searchText);
+            var model = this.AlbumService.GetAlbumsBySearchText(searchText, tags);
             return this.PartialView("AlbumsGrid", model);
         }
 
@@ -107,8 +105,8 @@
         [HttpGet]
         public ActionResult GetAlbumTokens()
         {
-            var stringTokens = this.AlbumTokenService.GetFullListOfTokens().Select(m => m.Name);
-            return Json(stringTokens, JsonRequestBehavior.AllowGet);
+            //var stringTokens = this.AlbumTokenService.GetFullListOfTokens().Select(m => m.Name);
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
     }
 }

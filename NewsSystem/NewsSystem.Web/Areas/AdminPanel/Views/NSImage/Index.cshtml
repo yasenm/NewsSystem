@@ -1,27 +1,31 @@
-﻿<div class="row">
-    <div class="row">
-        <div class="col-md-2">
-            <a href="@Url.Action("Create", "NSImage", new { })" class="btn btn-default">Add image</a>
+﻿@using NewsSystem.Web.Helpers
+
+@Styles.Render("~/Content/bootstrap-tokenfield")
+
+
+<div class="row">
+    <div class="col-md-9" id="images-grid-wrapper">
+        @Html.Action("NSImagesGrid", "NSImage", new { })
+    </div>
+
+    <div class="col-md-3 text-center">
+        <div >
+            <a href="@Url.Action("Create", "NSImage", new { })" class="btn btn-default btn-block">Add image</a>
         </div>
-        <div class="col-md-10">
+        <br /> 
+        <div >
             @Html.Partial("SearchNSImages")
         </div>
     </div>
-    <div class="row" id="images-grid-wrapper">
-        @Html.Action("NSImagesGrid", "NSImage", new { })
-    </div>
 </div>
 
-
 @section scripts{
+    @Scripts.Render("~/bundles/admin-panel-ns-images")
+
     <script>
         $(document).ready(function () {
-            $('.show-url-btn').click(function (e) {
-                e.preventDefault();
-                var link = $(this).attr('href');
-                $('#image-link-holder').text(link);
-                $('.modal').modal();
-            })
+            APP.NSImages.indexInit();
+            APP.NSImages.init('@Url.AbsoluteAction("GetTokens", "Tag")', '#search-images-by-tags-sfield');
         })
     </script>
 }

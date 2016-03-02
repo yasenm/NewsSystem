@@ -36,7 +36,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Album, AlbumEditViewModel>()
-                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.AlbumTokens.Select(t => t.Name)));
+                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿namespace NewsSystem.Web.Areas.AdminPanel.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
+    using Base;
 
-    using PagedList;
+    using NewsSystem.Common.Constants;
 
     using NewsSystem.Data.Services.Contracts.NSImages;
     using NewsSystem.Data.ViewModels.NSImages;
-    using NewsSystem.Common.Constants;
-    using Base;
+
+    using PagedList;
+
+    using System.Web.Mvc;
 
     public class NSImageController : AdminBaseController
     {
         private INSImageService NSImageService;
-        private ITokenNSImageService TokenNSImageService;
 
         [HttpGet]
         public ActionResult NSImage(long imageId)
@@ -21,10 +21,9 @@
             return this.PartialView("Image", imageId);
         }
 
-        public NSImageController(INSImageService nsiService, ITokenNSImageService tokenService)
+        public NSImageController(INSImageService nsiService)
         {
             this.NSImageService = nsiService;
-            this.TokenNSImageService = tokenService;
         }
 
         public ActionResult Index(int page = 1)
@@ -51,11 +50,11 @@
         }
 
         [HttpGet]
-        public ActionResult NSImagesGrid(int page = 1)
+        public ActionResult NSImagesGrid(string tags, string searchText, int page = 1)
         {
             if (page > 0)
             {
-                var nsPicturesCollection = this.NSImageService.GetImages();
+                var nsPicturesCollection = this.NSImageService.GetImages(searchText, tags);
 
                 var model = new PagedList<NSImageGridViewModel>(nsPicturesCollection, page, NSImagesConstants.PageSize);
 
@@ -103,8 +102,8 @@
         [HttpGet]
         public ActionResult GetImageTokens()
         {
-            var stringTokens = this.TokenNSImageService.GetFullListOfTokens().Select(m => m.Name);
-            return Json(stringTokens, JsonRequestBehavior.AllowGet);
+            //var stringTokens = this.TokenNSImageService.GetFullListOfTokens().Select(m => m.Name);
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

@@ -20,11 +20,28 @@ APP.Albums = (function () {
                 albumsGridUpdate(searchUrl);
             });
 
-            $("#search-album-field").keyup(function () {
-                var searchTextObj = { searchText: $(this).val() };
-                var searchUrl = $(this).data("search-url");
-                albumsGridUpdate(searchUrl, searchTextObj);
-            });
+            $('#search-albums-btn').click(function () {
+                var searchText = $('#search-albums-by-text-sfield').val();
+                var tags = $('#search-albums-by-tags-sfield').val();
+                var data = {
+                    searchText: searchText,
+                    tags: tags,
+                };
+
+                var searchUrl = $(this).data('urllink');
+                albumsGridUpdate(searchUrl, data);
+            })
+
+            APP.HttpRequester.getData($('#search-albums-by-tags-sfield').data('tokensurl'))
+            .success(function (data) {
+                $('#search-albums-by-tags-sfield').tokenfield({
+                    autocomplete: {
+                        source: data,
+                        delay: 100
+                    },
+                    showAutocompleteOnFocus: false
+                })
+            })
         },
 
         initEdit: function () {

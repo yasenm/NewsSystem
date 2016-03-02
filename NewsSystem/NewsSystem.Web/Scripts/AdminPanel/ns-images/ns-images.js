@@ -79,9 +79,39 @@ APP.NSImages = (function () {
                     })
                 })
         },
+
         searchImagesForAlbumInit: function () {
             registerEventsForImagesToChooseGrid();
             clickForSelectedImages();
+        },
+
+        indexInit: function () {
+            $('.show-url-btn').click(function (e) {
+                e.preventDefault();
+                var link = $(this).attr('href');
+                $('#image-link-holder').text(link);
+                $('.modal').modal();
+            });
+
+            $('#search-images-by-tags-btn').click(function () {
+                var tags = $('#search-images-by-tags-sfield').val(),
+                    sText = $('#search-images-by-text-sfield').val();
+
+                var data = {
+                    tags: tags,
+                    searchText: sText,
+                };
+
+                var url = $(this).data('urllink');
+                APP.HttpRequester.getHTML(url, data)
+                    .success(function (success) {
+                        $("#images-grid-wrapper").html(success);
+                        registerEventsForImagesToChooseGrid();
+                    })
+                    .error(function (error) {
+                        $("#images-grid-wrapper").html(error);
+                    });
+            })
         }
     }
 }());

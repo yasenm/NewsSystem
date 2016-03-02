@@ -1,0 +1,16 @@
+﻿@using NewsSystem.Web.Common.Constants
+@using NewsSystem.Web.Helpers
+
+<div class="form-group">
+    <input type="text" class="form-control" id="search-albums-by-text-sfield" placeholder="Search by text...">
+</div>
+<div class="form-group">
+    <input type="text" class="form-control" data-tokensurl="@Url.AbsoluteAction("GetAlbumTokens", "Album")" id="search-albums-by-tags-sfield" placeholder="Search by tags...">
+</div>
+<div class="form-group">
+    <span class="input-group-btn">
+        <button class="btn btn-default btn-block" type="button" data-urllink="@Url.Action("Search", "Album", new { })" id="search-albums-btn">
+            <i class="fa fa-search"></i> Search
+        </button>
+    </span>
+</div>

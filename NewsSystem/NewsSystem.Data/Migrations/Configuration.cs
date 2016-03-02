@@ -101,16 +101,16 @@ namespace NewsSystem.Data.Migrations
 
         private void TokenNSImagesSeed()
         {
-            if (!this.Data.Context.TokensNSImages.Any())
+            if (!this.Data.Context.Tags.Any())
             {
                 for (int i = 0; i < 15; i++)
                 {
-                    var newNSImageToken = new TokenNSImage
+                    var tag = new Tag
                     {
-                        Name = StringGenerator.RandomStringWithSpaces(5, 30),
+                        Name = StringGenerator.RandomStringWithoutSpaces(5, 30),
                     };
 
-                    this.Data.TokensNSImages.Add(newNSImageToken);
+                    this.Data.Tags.Add(tag);
                     //context.TokensNSImages.AddOrUpdate(newNSImageToken);
                 }
 

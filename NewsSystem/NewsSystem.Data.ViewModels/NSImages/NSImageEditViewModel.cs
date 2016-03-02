@@ -32,7 +32,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<NSImage, NSImageEditViewModel>()
-                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.TokensNSImages.Select(t => t.Name)));
+                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
         }
     }
 }

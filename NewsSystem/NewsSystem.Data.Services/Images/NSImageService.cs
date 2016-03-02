@@ -72,8 +72,8 @@
                 image.Text = model.Text;
                 this.Data.NSImages.Add(image);
                 this.Data.SaveChanges();
-                
-                this.SaveTokensToImage(model.Tokens, image);
+
+                //this.SaveTokensToImage(model.Tokens, image);
                 return true;
             }
             catch (Exception e)
@@ -186,7 +186,14 @@
             {
                 queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Title.Contains(text) || nsi.Text.Contains(text));
             }
-
+            if (tags != string.Empty && tags != null)
+            {
+                string[] sTags = tags.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var tag in sTags)
+                {
+                    queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Tags.FirstOrDefault(t => t.Name.Contains(tag)) != null);
+                }
+            }
             var result = queryableImagesCollection.OrderByDescending(nsi => nsi.CreatedOn).Project().To<NSImageGridViewModel>();
 
             return result;
@@ -241,7 +248,7 @@
 
                 album.NSImages.Remove(image);
                 image.Albums.Remove(album);
-                
+
                 this.Data.SaveChanges();
                 return true;
             }
@@ -287,32 +294,36 @@
 
         private void SaveTokensToImage(ICollection<string> newTokens, NSImage image)
         {
-            var tokens = newTokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            image.TokensNSImages.Clear();
+            var tokens = this.GetTokenArray(newTokens);
+            image.Tags.Clear();
             this.Data.SaveChanges();
             foreach (var token in tokens)
             {
-                var dbToken = this.Data.TokensNSImages
+                var dbToken = this.Data.Tags
                     .All()
                     .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
 
                 if (dbToken == null)
                 {
-                    dbToken = new TokenNSImage
+                    dbToken = new Tag
                     {
                         Name = token,
                     };
 
-                    this.Data.TokensNSImages.Add(dbToken);
+                    this.Data.Tags.Add(dbToken);
                     this.Data.SaveChanges();
                 }
 
                 dbToken.NSImages.Add(image);
-                image.TokensNSImages.Add(dbToken);
-                this.Data.TokensNSImages.Update(dbToken);
+                image.Tags.Add(dbToken);
+                this.Data.Tags.Update(dbToken);
                 this.Data.NSImages.Update(image);
                 this.Data.SaveChanges();
             }
+        }
+        private string[] GetTokenArray(ICollection<string> rawTokens)
+        {
+            return rawTokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

@@ -15,7 +15,7 @@
 
         IEnumerable<AlbumGridViewModel> GetAlbums();
 
-        IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText);
+        IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText, string tags);
 
         IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId); 
 

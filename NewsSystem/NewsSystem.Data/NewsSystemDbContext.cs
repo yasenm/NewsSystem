@@ -26,11 +26,9 @@
 
         public IDbSet<AlbumCategory> AlbumCategories { get; set; }
 
-        public IDbSet<AlbumToken> AlbumTokens { get; set; }
+        public IDbSet<Tag> Tags { get; set; }
 
         public IDbSet<NSImage> NSImages { get; set; }
-
-        public IDbSet<TokenNSImage> TokensNSImages { get; set; }
 
         public static NewsSystemDbContext Create()
         {
@@ -61,8 +59,6 @@
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
-
-            modelBuilder.Entity<NSImage>().HasKey(nsi => nsi.Id).HasMany(nsi => nsi.TokensNSImages).WithMany(nsTokens => nsTokens.NSImages);
 
             base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
         }

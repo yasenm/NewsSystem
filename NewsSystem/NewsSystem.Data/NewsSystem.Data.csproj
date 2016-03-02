@@ -53,13 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="INewsSystemDbContext.cs" />
-    <Compile Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.cs" />
-    <Compile Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.Designer.cs">
-      <DependentUpon>201602200641337_First_MigrationShouldResetAllRealtionships.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.cs" />
-    <Compile Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.Designer.cs">
-      <DependentUpon>201602200647036_Delete_AlbumToNSImagesBugRelation.cs</DependentUpon>
+    <Compile Include="Migrations\201603020504341_StartConfiguration.cs" />
+    <Compile Include="Migrations\201603020504341_StartConfiguration.Designer.cs">
+      <DependentUpon>201603020504341_StartConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
@@ -88,11 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602200641337_First_MigrationShouldResetAllRealtionships.resx">
-      <DependentUpon>201602200641337_First_MigrationShouldResetAllRealtionships.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602200647036_Delete_AlbumToNSImagesBugRelation.resx">
-      <DependentUpon>201602200647036_Delete_AlbumToNSImagesBugRelation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603020504341_StartConfiguration.resx">
+      <DependentUpon>201603020504341_StartConfiguration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

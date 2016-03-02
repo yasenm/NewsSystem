@@ -118,8 +118,8 @@
     <script>
         $(document).ready(function () {
             APP.Albums.initEdit();
-            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetAlbumTokens", "Album")');
-            APP.NSImages.init('@Url.AbsoluteAction("GetImageTokens", "NSImage")', '#nsimagesSearchTokenfield');
+            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTokens", "Tag")');
+            APP.NSImages.init('@Url.AbsoluteAction("GetTokens", "Tag")', '#nsimagesSearchTokenfield');
             APP.NSImages.searchImagesForAlbumInit();
             APP.TinymceInitializer.basicInit();
         })

@@ -3,7 +3,7 @@ namespace NewsSystem.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class First_MigrationShouldResetAllRealtionships : DbMigration
+    public partial class StartConfiguration : DbMigration
     {
         public override void Up()
         {
@@ -37,28 +37,10 @@ namespace NewsSystem.Data.Migrations
                         DeletedOn = c.DateTime(),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
-                        NSImage_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AlbumCategories", t => t.AlbumCategoryId)
-                .ForeignKey("dbo.NSImages", t => t.NSImage_Id)
-                .ForeignKey("dbo.NSImages", t => t.CoverImageId)
-                .Index(t => t.CoverImageId)
-                .Index(t => t.AlbumCategoryId)
-                .Index(t => t.NSImage_Id);
-            
-            CreateTable(
-                "dbo.AlbumTokens",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(),
-                        IsDeleted = c.Boolean(nullable: false),
-                        DeletedOn = c.DateTime(),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id);
+                .Index(t => t.AlbumCategoryId);
             
             CreateTable(
                 "dbo.NSImages",
@@ -74,17 +56,14 @@ namespace NewsSystem.Data.Migrations
                         DeletedOn = c.DateTime(),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
-                        Album_Id = c.Long(),
                         Article_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Albums", t => t.Album_Id)
                 .ForeignKey("dbo.Articles", t => t.Article_Id)
-                .Index(t => t.Album_Id)
                 .Index(t => t.Article_Id);
             
             CreateTable(
-                "dbo.TokenNSImages",
+                "dbo.Tags",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
@@ -179,30 +158,56 @@ namespace NewsSystem.Data.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.AlbumTokenAlbums",
-                c => new
-                    {
-                        AlbumToken_Id = c.Long(nullable: false),
-                        Album_Id = c.Long(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.AlbumToken_Id, t.Album_Id })
-                .ForeignKey("dbo.AlbumTokens", t => t.AlbumToken_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Albums", t => t.Album_Id, cascadeDelete: true)
-                .Index(t => t.AlbumToken_Id)
-                .Index(t => t.Album_Id);
-            
-            CreateTable(
-                "dbo.NSImageTokenNSImages",
+                "dbo.NSImageAlbums",
                 c => new
                     {
                         NSImage_Id = c.Long(nullable: false),
-                        TokenNSImage_Id = c.Long(nullable: false),
+                        Album_Id = c.Long(nullable: false),
                     })
-                .PrimaryKey(t => new { t.NSImage_Id, t.TokenNSImage_Id })
+                .PrimaryKey(t => new { t.NSImage_Id, t.Album_Id })
                 .ForeignKey("dbo.NSImages", t => t.NSImage_Id, cascadeDelete: true)
-                .ForeignKey("dbo.TokenNSImages", t => t.TokenNSImage_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Albums", t => t.Album_Id, cascadeDelete: true)
                 .Index(t => t.NSImage_Id)
-                .Index(t => t.TokenNSImage_Id);
+                .Index(t => t.Album_Id);
+            
+            CreateTable(
+                "dbo.TagAlbums",
+                c => new
+                    {
+                        Tag_Id = c.Long(nullable: false),
+                        Album_Id = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Tag_Id, t.Album_Id })
+                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Albums", t => t.Album_Id, cascadeDelete: true)
+                .Index(t => t.Tag_Id)
+                .Index(t => t.Album_Id);
+            
+            CreateTable(
+                "dbo.ArticleTags",
+                c => new
+                    {
+                        Article_Id = c.Long(nullable: false),
+                        Tag_Id = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Article_Id, t.Tag_Id })
+                .ForeignKey("dbo.Articles", t => t.Article_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .Index(t => t.Article_Id)
+                .Index(t => t.Tag_Id);
+            
+            CreateTable(
+                "dbo.TagNSImages",
+                c => new
+                    {
+                        Tag_Id = c.Long(nullable: false),
+                        NSImage_Id = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Tag_Id, t.NSImage_Id })
+                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .ForeignKey("dbo.NSImages", t => t.NSImage_Id, cascadeDelete: true)
+                .Index(t => t.Tag_Id)
+                .Index(t => t.NSImage_Id);
             
         }
         
@@ -212,20 +217,25 @@ namespace NewsSystem.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.NSImages", "Article_Id", "dbo.Articles");
             DropForeignKey("dbo.AlbumCategories", "ParentId", "dbo.AlbumCategories");
-            DropForeignKey("dbo.NSImages", "Album_Id", "dbo.Albums");
-            DropForeignKey("dbo.Albums", "CoverImageId", "dbo.NSImages");
-            DropForeignKey("dbo.NSImageTokenNSImages", "TokenNSImage_Id", "dbo.TokenNSImages");
-            DropForeignKey("dbo.NSImageTokenNSImages", "NSImage_Id", "dbo.NSImages");
-            DropForeignKey("dbo.Albums", "NSImage_Id", "dbo.NSImages");
-            DropForeignKey("dbo.AlbumTokenAlbums", "Album_Id", "dbo.Albums");
-            DropForeignKey("dbo.AlbumTokenAlbums", "AlbumToken_Id", "dbo.AlbumTokens");
+            DropForeignKey("dbo.TagNSImages", "NSImage_Id", "dbo.NSImages");
+            DropForeignKey("dbo.TagNSImages", "Tag_Id", "dbo.Tags");
+            DropForeignKey("dbo.ArticleTags", "Tag_Id", "dbo.Tags");
+            DropForeignKey("dbo.ArticleTags", "Article_Id", "dbo.Articles");
+            DropForeignKey("dbo.NSImages", "Article_Id", "dbo.Articles");
+            DropForeignKey("dbo.TagAlbums", "Album_Id", "dbo.Albums");
+            DropForeignKey("dbo.TagAlbums", "Tag_Id", "dbo.Tags");
+            DropForeignKey("dbo.NSImageAlbums", "Album_Id", "dbo.Albums");
+            DropForeignKey("dbo.NSImageAlbums", "NSImage_Id", "dbo.NSImages");
             DropForeignKey("dbo.Albums", "AlbumCategoryId", "dbo.AlbumCategories");
-            DropIndex("dbo.NSImageTokenNSImages", new[] { "TokenNSImage_Id" });
-            DropIndex("dbo.NSImageTokenNSImages", new[] { "NSImage_Id" });
-            DropIndex("dbo.AlbumTokenAlbums", new[] { "Album_Id" });
-            DropIndex("dbo.AlbumTokenAlbums", new[] { "AlbumToken_Id" });
+            DropIndex("dbo.TagNSImages", new[] { "NSImage_Id" });
+            DropIndex("dbo.TagNSImages", new[] { "Tag_Id" });
+            DropIndex("dbo.ArticleTags", new[] { "Tag_Id" });
+            DropIndex("dbo.ArticleTags", new[] { "Article_Id" });
+            DropIndex("dbo.TagAlbums", new[] { "Album_Id" });
+            DropIndex("dbo.TagAlbums", new[] { "Tag_Id" });
+            DropIndex("dbo.NSImageAlbums", new[] { "Album_Id" });
+            DropIndex("dbo.NSImageAlbums", new[] { "NSImage_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -233,22 +243,20 @@ namespace NewsSystem.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.NSImages", new[] { "Article_Id" });
-            DropIndex("dbo.NSImages", new[] { "Album_Id" });
-            DropIndex("dbo.Albums", new[] { "NSImage_Id" });
             DropIndex("dbo.Albums", new[] { "AlbumCategoryId" });
-            DropIndex("dbo.Albums", new[] { "CoverImageId" });
             DropIndex("dbo.AlbumCategories", new[] { "ParentId" });
-            DropTable("dbo.NSImageTokenNSImages");
-            DropTable("dbo.AlbumTokenAlbums");
+            DropTable("dbo.TagNSImages");
+            DropTable("dbo.ArticleTags");
+            DropTable("dbo.TagAlbums");
+            DropTable("dbo.NSImageAlbums");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Articles");
-            DropTable("dbo.TokenNSImages");
+            DropTable("dbo.Tags");
             DropTable("dbo.NSImages");
-            DropTable("dbo.AlbumTokens");
             DropTable("dbo.Albums");
             DropTable("dbo.AlbumCategories");
         }

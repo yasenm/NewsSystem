@@ -7,13 +7,13 @@ namespace NewsSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Delete_AlbumToNSImagesBugRelation : IMigrationMetadata
+    public sealed partial class StartConfiguration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Delete_AlbumToNSImagesBugRelation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(StartConfiguration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602200647036_Delete_AlbumToNSImagesBugRelation"; }
+            get { return "201603020504341_StartConfiguration"; }
         }
         
         string IMigrationMetadata.Source

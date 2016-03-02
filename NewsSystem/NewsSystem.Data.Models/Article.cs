@@ -7,10 +7,12 @@
 
     public class Article : DeletableEntity
     {
+        private ICollection<Tag> tags;
         private ICollection<NSImage> headImages;
 
         public Article()
         {
+            this.Tags = new HashSet<Tag>();
             this.HeadImages = new HashSet<NSImage>();
         }
 
@@ -20,6 +22,12 @@
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public virtual ICollection<Tag> Tags
+        {
+            get { return this.tags; }
+            set { this.tags = value; }
+        }
 
         public virtual ICollection<NSImage> HeadImages
         {

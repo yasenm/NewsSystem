@@ -13,13 +13,11 @@
 
         IDbSet<NSImage> NSImages { get; set; }
 
-        IDbSet<TokenNSImage> TokensNSImages { get; set; }
+        IDbSet<Tag> Tags { get; set; }
 
         IDbSet<Album> Albums { get; set; }
 
         IDbSet<AlbumCategory> AlbumCategories { get; set; }
-
-        IDbSet<AlbumToken> AlbumTokens { get; set; }
 
         DbContext DbContext { get; }
 

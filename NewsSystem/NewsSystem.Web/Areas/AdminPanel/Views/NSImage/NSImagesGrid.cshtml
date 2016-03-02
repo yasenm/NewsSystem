@@ -11,24 +11,30 @@
     <div class="panel-heading">
         <h3 class="panel-title">Images Grid</h3>
     </div>
-    @foreach (var nsImage in Model)
-    {
-        <div class="col-md-2 img-thumbnail">
-            <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" alt="Image not found" class="img-responsive" />
-            <a href="@Url.Action("Edit", "NSImage", new { nsImageId = nsImage.Id })" class="btn btn-sm btn-success">Edit</a>
-            <a href="@Url.AbsoluteAction("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" class="show-url-btn btn btn-default">Show URL</a>
+    <div class="row panel-body">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (var nsImage in Model)
+                {
+                    <div class="col-md-2">
+                        <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" alt="Image not found" class="img-responsive" />
+                        <a href="@Url.Action("Edit", "NSImage", new { nsImageId = nsImage.Id })" class="btn btn-sm btn-success">Edit</a>
+                        <a href="@Url.AbsoluteAction("NSImage", "NSImage", new { Area = string.Empty, imageId = nsImage.Id })" class="show-url-btn btn btn-default">Show URL</a>
+                    </div>
+                }
+            </div>
         </div>
-    }
-    <div>
+        <div class="col-md-12">
         @Html.PagedListPager(Model,
-        page => Url.Action("NSImagesGrid", "NSImage", new { page }),
-        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
-        new AjaxOptions()
-        {
-            HttpMethod = "GET",
-            UpdateTargetId = "images-grid-wrapper"
-        }
+            page => Url.Action("NSImagesGrid", "NSImage", new { page }),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "images-grid-wrapper"
+            }
         ))
+        </div>
     </div>
 </div>
 
