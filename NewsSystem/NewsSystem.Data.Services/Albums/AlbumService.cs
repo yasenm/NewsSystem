@@ -46,36 +46,7 @@
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();
 
-                if (editModel.Tokens.Count > 0)
-                {
-                    var tokens = editModel.Tokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    editAlbum.Tags.Clear();
-                    this.Data.SaveChanges();
-
-                    foreach (var token in tokens)
-                    {
-                        var dbTag = this.Data.Tags
-                            .All()
-                            .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
-
-                        if (dbTag == null)
-                        {
-                            dbTag = new Tag
-                            {
-                                Name = token,
-                            };
-
-                            this.Data.Tags.Add(dbTag);
-                            this.Data.SaveChanges();
-                        }
-
-                        dbTag.Albums.Add(editAlbum);
-                        editAlbum.Tags.Add(dbTag);
-                        this.Data.Tags.Update(dbTag);
-                        this.Data.Albums.Update(editAlbum);
-                        this.Data.SaveChanges();
-                    }
-                }
+                this.SaveTokensToAlbum(editAlbum, editModel.Tokens);
                 return true;
             }
             catch (Exception e)
@@ -93,6 +64,8 @@
                 var album = Mapper.Map<Album>(albumModel);
                 this.Data.Albums.Add(album);
                 this.Data.SaveChanges();
+
+                this.SaveTokensToAlbum(album, albumModel.Tokens);
                 return true;
             }
             catch (Exception e)
@@ -161,6 +134,40 @@
                 .ToList();
 
             return result;
+        }
+
+        private void SaveTokensToAlbum(Album album, ICollection<string> chosenTokens)
+        {
+            if (chosenTokens.Count > 0)
+            {
+                var tokens = chosenTokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                album.Tags.Clear();
+                this.Data.SaveChanges();
+
+                foreach (var token in tokens)
+                {
+                    var dbTag = this.Data.Tags
+                        .All()
+                        .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
+
+                    if (dbTag == null)
+                    {
+                        dbTag = new Tag
+                        {
+                            Name = token,
+                        };
+
+                        this.Data.Tags.Add(dbTag);
+                        this.Data.SaveChanges();
+                    }
+
+                    dbTag.Albums.Add(album);
+                    album.Tags.Add(dbTag);
+                    this.Data.Tags.Update(dbTag);
+                    this.Data.Albums.Update(album);
+                    this.Data.SaveChanges();
+                }
+            }
         }
     }
 }

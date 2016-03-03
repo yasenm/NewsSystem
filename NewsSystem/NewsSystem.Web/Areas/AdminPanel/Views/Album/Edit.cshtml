@@ -47,19 +47,6 @@
                     </div>
 
                     <div>
-                        @*@Ajax.ActionLink("Edit", "Edit", "Album",
-                        new
-                        {
-                            editModel = Model
-                        },
-                        new AjaxOptions
-                        {
-                            HttpMethod = "POST",
-                            OnComplete = CommonToastrSettings.CompleteAction,
-                            OnFailure = CommonToastrSettings.FailedAction,
-                            OnBegin = CommonToastrSettings.BeginAction,
-                        },
-                        new { @class = "btn btn-success" })*@
                         <button type="submit" value="Edit" class="btn btn-default">Edit</button>
                         <a href="@Url.Action("Index", "AlbumCategory")" c class="btn btn-sm btn-danger">Cancel</a>
                     </div>
