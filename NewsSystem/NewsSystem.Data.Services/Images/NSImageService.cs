@@ -73,7 +73,7 @@
                 this.Data.NSImages.Add(image);
                 this.Data.SaveChanges();
 
-                //this.SaveTokensToImage(model.Tokens, image);
+                this.SaveTokensToImage(model.Tags, image);
                 return true;
             }
             catch (Exception e)
@@ -228,10 +228,13 @@
             NSImage image = this.Data.NSImages.GetById(model.Id);
             image.Title = model.Title;
             image.Text = model.Text;
+            image.ByteContent = this.ConvertPostedFileToNSImage(model.PostedContent).ByteContent;
 
-            if (model.Tokens.Count > 0)
+            this.Data.SaveChanges();
+
+            if (model.Tags.Count > 0)
             {
-                this.SaveTokensToImage(model.Tokens, image);
+                this.SaveTokensToImage(model.Tags, image);
 
                 return true;
             }

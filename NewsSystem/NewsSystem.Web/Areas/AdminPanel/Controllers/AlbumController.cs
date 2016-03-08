@@ -19,6 +19,11 @@
             this.AlbumCategoryService = acService;
         }
 
+        public ActionResult Index()
+        {
+            return this.View();
+        }
+
         [HttpGet]
         public ActionResult AlbumsGrid()
         {

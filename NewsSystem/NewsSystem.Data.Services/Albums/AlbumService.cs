@@ -46,7 +46,7 @@
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();
 
-                this.SaveTokensToAlbum(editAlbum, editModel.Tokens);
+                this.SaveTokensToAlbum(editAlbum, editModel.Tags);
                 return true;
             }
             catch (Exception e)
@@ -65,7 +65,7 @@
                 this.Data.Albums.Add(album);
                 this.Data.SaveChanges();
 
-                this.SaveTokensToAlbum(album, albumModel.Tokens);
+                this.SaveTokensToAlbum(album, albumModel.Tags);
                 return true;
             }
             catch (Exception e)

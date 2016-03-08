@@ -99,13 +99,6 @@
             return this.View(model);
         }
 
-        [HttpGet]
-        public ActionResult GetImageTokens()
-        {
-            //var stringTokens = this.TokenNSImageService.GetFullListOfTokens().Select(m => m.Name);
-            return Json(null, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         public ActionResult RemoveFromAlbum(long imgId, long albumId)
         {
@@ -130,10 +123,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                this.NSImageService.SaveImageToDB(model);
+                if (this.NSImageService.SaveImageToDB(model))
+                {
+                    return this.RedirectToAction("Index");
+                }
             }
 
-            return null;
+            return this.View(model);
         }
 
         [HttpPost]

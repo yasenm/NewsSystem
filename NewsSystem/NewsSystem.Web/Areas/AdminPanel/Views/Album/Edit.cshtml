@@ -33,8 +33,8 @@
                         @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Tokens, new { @for = "tokenfield" })
-                        <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tokens.ToArray())" />
+                        @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
+                        <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tags.ToArray())" />
                     </div>
                     <div class="form-group">
                         <div>
@@ -48,7 +48,7 @@
 
                     <div>
                         <button type="submit" value="Edit" class="btn btn-default">Edit</button>
-                        <a href="@Url.Action("Index", "AlbumCategory")" c class="btn btn-sm btn-danger">Cancel</a>
+                        <a href="@Url.Action("Index", "Album")" c class="btn btn-sm btn-danger">Cancel</a>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
 
         public long? CoverImageId { get; set; }
 
-        public ICollection<string> Tokens { get; set; }
+        public ICollection<string> Tags { get; set; }
 
         public ICollection<HttpPostedFileBase> AlbumPostedImages { get; set; }
 
@@ -36,7 +36,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Album, AlbumEditViewModel>()
-                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
+                .ForMember(m => m.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
         }
     }
 }

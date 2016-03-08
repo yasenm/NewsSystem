@@ -18,7 +18,7 @@
 
         public string ImageTags { get; set; }
 
-        public ICollection<string> Tokens { get; set; }
+        public ICollection<string> Tags { get; set; }
 
         [AllowHtml]
         public string Text { get; set; }
@@ -32,7 +32,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<NSImage, NSImageEditViewModel>()
-                .ForMember(m => m.Tokens, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
+                .ForMember(m => m.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
         }
     }
 }

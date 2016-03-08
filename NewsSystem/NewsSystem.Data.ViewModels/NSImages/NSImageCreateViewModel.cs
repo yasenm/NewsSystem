@@ -12,7 +12,7 @@
     {
         public NSImageCreateViewModel()
         {
-            this.Tokens = new List<string>();
+            this.Tags = new List<string>();
         }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Field is required!")]
@@ -23,7 +23,7 @@
 
         public string ImageTags { get; set; }
 
-        public ICollection<string> Tokens { get; set; }
+        public ICollection<string> Tags { get; set; }
 
         public byte[] ByteContent { get; set; }
 

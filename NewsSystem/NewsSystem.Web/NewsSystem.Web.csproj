@@ -315,7 +315,7 @@
     <Content Include="Areas\AdminPanel\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Home\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Home\Articles.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\AlbumCategory\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Album\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\AlbumCategory\AlbumCategoryTree.cshtml" />
     <Content Include="Content\AdminPanel\plugins\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\AdminPanel\plugins\fonts\fontawesome-webfont.ttf" />

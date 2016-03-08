@@ -14,11 +14,6 @@
             this.AlbumCategoryService = acService;
         }
 
-        public ActionResult Index()
-        {
-            return this.View();
-        }
-
         public ActionResult AlbumCategoryTree()
         {
             var model = this.AlbumCategoryService.GetAll();

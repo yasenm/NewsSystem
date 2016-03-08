@@ -2,6 +2,6 @@
 {
     public static class NSImagesConstants
     {
-        public static int PageSize = 2;
+        public static int PageSize = 40;
     }
 }

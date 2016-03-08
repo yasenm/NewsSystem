@@ -12,7 +12,7 @@
     {
         public AlbumCreateViewModel()
         {
-            this.Tokens = new List<string>();
+            this.Tags = new List<string>();
         }
 
         [StringLength(200, MinimumLength = 4, ErrorMessage = "You must use more than 4 and less than 200 characters")]
@@ -24,6 +24,6 @@
 
         public long AlbumCategoryId { get; set; }
 
-        public ICollection<string> Tokens { get; set; }
+        public ICollection<string> Tags { get; set; }
     }
 }
