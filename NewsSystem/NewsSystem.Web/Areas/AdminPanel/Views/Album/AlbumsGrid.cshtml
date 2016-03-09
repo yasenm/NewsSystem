@@ -12,7 +12,7 @@
         {
             <div class="col-lg-3 word-wraped col-md-4 col-xs-6 thumb" style="margin-bottom: 30px;">
                 <p>@album.Name</p>
-                class="col-lg-3 word-wraped col-md-4 col-xs-6 thumb"
+                <div class="thumbnail">
                     <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = album.CoverImageId })" alt="No image found" class="img-responsive albums-grid-container" />
                 </div>
                 <a href="@Url.Action("Edit", "Album", new { albumId = album.Id})" class="btn btn-sm btn-default">Edit</a>
