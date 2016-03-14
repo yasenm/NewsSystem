@@ -203,13 +203,17 @@
 
         public IQueryable<NSImageGridViewModel> GetImagesToChoose(string text, string tags, long albumId)
         {
+            if (text == null)
+            {
+                text = string.Empty;
+            }
             var album = this.Data.Albums.GetById(albumId);
             var queryableImagesCollection = this.Data.NSImages.All()
                 .Where(nsi => nsi.Albums.Where(a => a.Id == albumId).FirstOrDefault() == null);
 
             if (text != string.Empty && text != null)
             {
-                queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Title.Contains(text) || nsi.Description.Contains(text));
+                queryableImagesCollection = queryableImagesCollection.Where(nsi => nsi.Title.Contains(text.Trim().ToLower()) || nsi.Description.Contains(text.Trim().ToLower()));
             }
 
             var result = queryableImagesCollection.OrderByDescending(nsi => nsi.CreatedOn).Project().To<NSImageGridViewModel>();

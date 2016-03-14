@@ -1,7 +1,10 @@
-﻿@using NewsSystem.Data.ViewModels.NSImages
+﻿@using PagedList
+@using PagedList.Mvc
+
+@using NewsSystem.Data.ViewModels.NSImages
 @using NewsSystem.Web.Common.Constants
 
-@model IQueryable<NSImageGridViewModel>
+@model PagedList<NSImageGridViewModel>
 
 <div class="modal-body" style="padding:40px 50px;">
     @if (Model.Count() > 0)
@@ -13,11 +16,24 @@
             <div class="list-group panel-body">
                 @foreach (var image in Model)
                 {
-                    <div class="col-md-2 img-thumbnail">
-                        <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
-                        <input type="checkbox" class="image-select-input" data-imgid="@image.Id" name="NSImage@(image.Id)" value="@image.Id" />
+                    <div class="col-md-2 img-thumbnail" style="height:90px;">
+                        <label for="image-with-id-@image.Id">
+                            <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = image.Id })" alt="Image not found" class="img-responsive" />
+                        </label>
+                        <input id="image-with-id-@image.Id" type="checkbox" class="image-select-input" data-imgid="@image.Id" name="NSImage@(image.Id)" value="@image.Id" />
                     </div>
                 }
+                <div class="col-md-12">
+                    @Html.PagedListPager(Model,
+                        page => Url.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = this.ViewBag.AlbumId, text = this.ViewBag.LastText, tags = this.ViewBag.LastTags, page }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "choose-img-modal-container"
+                        }
+                    ))
+                </div>
             </div>
         </div>
     }

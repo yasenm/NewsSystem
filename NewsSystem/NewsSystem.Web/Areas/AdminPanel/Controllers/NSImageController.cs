@@ -39,14 +39,16 @@
             return this.PartialView("NSImagesAlbumGrid", collection);
         }
 
-        public ActionResult NSImagesAlbumChooseGrid(long albumId, string text, string tags)
+        public ActionResult NSImagesAlbumChooseGrid(long albumId, string text, string tags, int page = 1)
         {
-            var collection = this.NSImageService.GetImagesToChoose(text.Trim().ToLower(), tags, albumId);
+            var collection = this.NSImageService.GetImagesToChoose(text, tags, albumId);
+
+            var model = new PagedList<NSImageGridViewModel>(collection, page, NSImagesConstants.PageSize);
 
             this.ViewBag.AlbumId = albumId;
             this.ViewBag.LastText = text;
             this.ViewBag.LastTags = tags;
-            return this.PartialView("NSImagesAlbumChooseGrid", collection);
+            return this.PartialView("NSImagesAlbumChooseGrid", model);
         }
 
         [HttpGet]

@@ -28,15 +28,15 @@
             </div>
         </div>
         <div class="col-md-12">
-        @Html.PagedListPager(Model,
-            page => Url.Action("NSImagesGrid", "NSImage", new { page }),
-            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
-            new AjaxOptions()
-            {
-                HttpMethod = "GET",
-                UpdateTargetId = "images-grid-wrapper"
-            }
-        ))
+            @Html.PagedListPager(Model,
+                page => Url.Action("NSImagesGrid", "NSImage", new { page }),
+                PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                new AjaxOptions()
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "images-grid-wrapper"
+                }
+            ))
         </div>
     </div>
 </div>
