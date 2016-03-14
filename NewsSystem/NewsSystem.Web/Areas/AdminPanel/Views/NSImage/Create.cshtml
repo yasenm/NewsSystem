@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
-                    <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tags.ToArray())" />
+                    <input type="text" class="form-control" id="tokenfield" name="Tags" value="@string.Join(", ", Model.Tags.ToArray())" />
                 </div>
                 <div class="form-group">
                     <div>
@@ -55,7 +55,7 @@
 
     <script>
         $(document).ready(function () {
-            APP.NSImages.init('@Url.AbsoluteAction("GetTokens", "Tag")', '#tokenfield');
+            APP.NSImages.init('@Url.AbsoluteAction("GetTags", "Tag")', '#tokenfield');
             APP.TinymceInitializer.basicInit();
         })
     </script>

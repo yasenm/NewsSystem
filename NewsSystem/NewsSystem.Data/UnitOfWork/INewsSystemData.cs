@@ -13,7 +13,7 @@
 
         IRepository<Album> Albums { get; }
 
-        IRepository<AlbumCategory> AlbumCategories { get; }
+        IRepository<Category> Categories { get; }
 
         IRepository<Tag> Tags { get; }
 

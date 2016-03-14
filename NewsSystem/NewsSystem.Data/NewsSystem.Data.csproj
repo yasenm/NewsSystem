@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201603020504341_StartConfiguration.Designer.cs">
       <DependentUpon>201603020504341_StartConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603130555515_Added_AbstractClassDescribableEntityForArticlesImagesAlbumsAlbumCategories.cs" />
+    <Compile Include="Migrations\201603130555515_Added_AbstractClassDescribableEntityForArticlesImagesAlbumsAlbumCategories.Designer.cs">
+      <DependentUpon>201603130555515_Added_AbstractClassDescribableEntityForArticlesImagesAlbumsAlbumCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.cs" />
+    <Compile Include="Migrations\201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.Designer.cs">
+      <DependentUpon>201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +94,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603020504341_StartConfiguration.resx">
       <DependentUpon>201603020504341_StartConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603130555515_Added_AbstractClassDescribableEntityForArticlesImagesAlbumsAlbumCategories.resx">
+      <DependentUpon>201603130555515_Added_AbstractClassDescribableEntityForArticlesImagesAlbumsAlbumCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.resx">
+      <DependentUpon>201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

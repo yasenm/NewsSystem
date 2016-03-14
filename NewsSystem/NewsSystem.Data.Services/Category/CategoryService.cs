@@ -7,38 +7,38 @@
     using AutoMapper.QueryableExtensions;
 
     using NewsSystem.Data.Services.Contracts;
-    using NewsSystem.Data.Services.Contracts.Albums;
+    using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.UnitOfWork;
-    using NewsSystem.Data.ViewModels.AlbumCategories;
+    using NewsSystem.Data.ViewModels.Categories;
 
-    public class AlbumCategoryService : IDataService, IAlbumCategoryService
+    public class CategoryService : IDataService, ICategoryService
     {
         public INewsSystemData Data { get; set; }
 
-        public AlbumCategoryService(INewsSystemData data)
+        public CategoryService(INewsSystemData data)
         {
             this.Data = data;
         }
 
-        public IEnumerable<AlbumCategoryViewModel> GetAll()
+        public IEnumerable<CategoryViewModel> GetAll()
         {
-            var collection = this.Data.AlbumCategories.All()
+            var collection = this.Data.Categories.All()
                 .Where(ac => ac.ParentId == null)
                 .ToList()
                 .AsQueryable()
                 .Project()
-                .To<AlbumCategoryViewModel>()
+                .To<CategoryViewModel>()
                 .ToList();
 
             return collection;
         }
 
 
-        public IEnumerable<AlbumCategoryDDLViewModel> GetForDDLAll()
+        public IEnumerable<CategoryDDLViewModel> GetForDDLAll()
         {
-            var collection = this.Data.AlbumCategories.All()
+            var collection = this.Data.Categories.All()
                 .Project()
-                .To<AlbumCategoryDDLViewModel>()
+                .To<CategoryDDLViewModel>()
                 .ToList();
 
             return collection;

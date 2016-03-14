@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
-            <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tags.ToArray())" />
+            <input type="text" class="form-control" id="tokenfield" name="Tags" value="@string.Join(", ", Model.Tags.ToArray())" />
         </div>
         <div>
             <button type="submit" value="Create" class="btn btn-default">Create</button>
@@ -45,7 +45,7 @@
     <script>
         $(document).ready(function () {
             APP.Albums.initEdit();
-            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTokens", "Tag")');
+            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTags", "Tag")');
             APP.TinymceInitializer.basicInit();
         })
     </script>

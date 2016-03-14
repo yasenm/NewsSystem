@@ -5,15 +5,16 @@
     using System.Web.Mvc;
 
     using NewsSystem.Data.Services.Contracts.Albums;
+    using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.ViewModels.Albums;
     using Base;
 
     public class AlbumController : AdminBaseController
     {
         private IAlbumService AlbumService;
-        private IAlbumCategoryService AlbumCategoryService;
+        private ICategoryService AlbumCategoryService;
 
-        public AlbumController(IAlbumService albumService, IAlbumCategoryService acService)
+        public AlbumController(IAlbumService albumService, ICategoryService acService)
         {
             this.AlbumService = albumService;
             this.AlbumCategoryService = acService;

@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using NewsSystem.Data.Common.Models;
+    using Groups;
 
-    public class Article : DeletableEntity
+    public class Article : DescribableEntity, ITagableEntity
     {
         private ICollection<Tag> tags;
         private ICollection<NSImage> headImages;
@@ -18,10 +19,6 @@
 
         [Key]
         public long Id { get; set; }
-
-        public string Title { get; set; }
-
-        public string Content { get; set; }
 
         public virtual ICollection<Tag> Tags
         {

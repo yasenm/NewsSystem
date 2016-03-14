@@ -15,7 +15,7 @@
         }
 
         [HttpGet]
-        public ActionResult GetTokens()
+        public ActionResult GetTags()
         {
             var tags = this.TagsService.GetAllTagsNames();
             return Json(tags, JsonRequestBehavior.AllowGet);

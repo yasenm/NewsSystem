@@ -121,58 +121,58 @@ namespace NewsSystem.Data.Migrations
 
         private void AlbumCategoriesSeed()
         {
-            if (!this.Data.Context.AlbumCategories.Any())
+            if (!this.Data.Context.Categories.Any())
             {
                 // Add generated parent categories
                 for (int i = 0; i < 5; i++)
                 {
-                    var albumCategory = new AlbumCategory();
-                    albumCategory.Name = StringGenerator.RandomStringWithSpaces(5, 40);
-                    albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
-                    albumCategory.ParentId = null;
+                    var category = new Category();
+                    category.Title = StringGenerator.RandomStringWithSpaces(5, 40);
+                    category.Description = StringGenerator.RandomStringWithSpaces(35, 400);
+                    category.ParentId = null;
+                    category.IsRoot = true;
 
-                    this.Data.AlbumCategories.Add(albumCategory);
-                    //context.AlbumCategories.AddOrUpdate(albumCategory);
+                    this.Data.Categories.Add(category);
                 }
 
                 this.Data.SaveChanges();
-                //context.SaveChanges();
 
-                var parents = this.Data.AlbumCategories.All().ToList();
+                var parents = this.Data.Categories.All()
+                    .Where(c => c.IsRoot == true && c.ParentId == null)
+                    .ToList();
+
                 // Add generated child categories
                 for (int i = 0; i < 30; i++)
                 {
-                    var albumCategory = new AlbumCategory();
-                    albumCategory.Name = StringGenerator.RandomStringWithSpaces(5, 40);
-                    albumCategory.Text = StringGenerator.RandomStringWithSpaces(35, 400);
-                    albumCategory.ParentId = parents[NumberGenerator.RandomNumber(0, parents.Count - 1)].Id;
+                    var category = new Category();
+                    category.Title = StringGenerator.RandomStringWithSpaces(5, 40);
+                    category.Description = StringGenerator.RandomStringWithSpaces(35, 400);
+                    category.ParentId = parents[NumberGenerator.RandomNumber(0, parents.Count - 1)].Id;
 
-                    this.Data.AlbumCategories.Add(albumCategory);
-                    //context.AlbumCategories.AddOrUpdate(albumCategory);
+                    this.Data.Categories.Add(category);
                 }
 
                 this.Data.SaveChanges();
-                //context.SaveChanges();
             }
         }
 
         private void AlbumsSeed()
         {
-            if (!this.Data.Context.AlbumCategories.Any())
+            if (!this.Data.Context.Categories.Any())
             {
                 return;
             }
 
             if (!this.Data.Context.Albums.Any())
             {
-                var albumCategories = this.Data.AlbumCategories.All().Where(ac => ac.Parent != null).ToList();
+                var albumCategories = this.Data.Categories.All().Where(ac => ac.Parent != null).ToList();
 
                 for (int i = 0; i < 50; i++)
                 {
                     var newAlbum = new Album();
-                    newAlbum.Name = StringGenerator.RandomStringWithoutSpaces(5, 40);
-                    newAlbum.Text = StringGenerator.RandomStringWithSpaces(400, 1500);
-                    newAlbum.AlbumCategoryId = albumCategories[NumberGenerator.RandomNumber(0, albumCategories.Count - 1)].Id;
+                    newAlbum.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
+                    newAlbum.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
+                    newAlbum.Categories.Add(albumCategories[NumberGenerator.RandomNumber(0, albumCategories.Count - 1)]);
 
                     this.Data.Albums.Add(newAlbum);
                     //context.Albums.AddOrUpdate(newAlbum);
@@ -191,7 +191,7 @@ namespace NewsSystem.Data.Migrations
                 {
                     var article = new Article();
                     article.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
-                    article.Content = StringGenerator.RandomStringWithSpaces(400, 1500);
+                    article.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
 
                     this.Data.Articles.Add(article);
                     //context.Articles.AddOrUpdate(article);

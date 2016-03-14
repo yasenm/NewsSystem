@@ -72,12 +72,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlbumCategories\AlbumCategoryDDLViewModel.cs" />
-    <Compile Include="AlbumCategories\AlbumCategoryViewModel.cs" />
+    <Compile Include="Categories\CategoryDDLViewModel.cs" />
+    <Compile Include="Categories\CategoryViewModel.cs" />
     <Compile Include="Albums\AlbumCreateViewModel.cs" />
     <Compile Include="Albums\AlbumEditViewModel.cs" />
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="Common\DescribableEntityViewModel.cs" />
     <Compile Include="NSImages\NSImageCreateViewModel.cs" />
     <Compile Include="NSImages\NSImageEditViewModel.cs" />
     <Compile Include="NSImages\NSImageGridViewModel.cs" />

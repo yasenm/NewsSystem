@@ -16,6 +16,7 @@ namespace NewsSystem.Web.App_Start
     using NewsSystem.Data.Services.Articles;
     using NewsSystem.Data.Services.Contracts;
     using NewsSystem.Data.Services.Contracts.Albums;
+    using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.Services.Contracts.NSImages;
     using NewsSystem.Data.Services.Images;
     using NewsSystem.Data.UnitOfWork;
@@ -76,7 +77,7 @@ namespace NewsSystem.Web.App_Start
 
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<IAlbumService>().To<AlbumService>();
-            kernel.Bind<IAlbumCategoryService>().To<AlbumCategoryService>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();
             kernel.Bind<ITagsService>().To<TagsService>();
             kernel.Bind<INSImageService>().To<NSImageService>();
         }        

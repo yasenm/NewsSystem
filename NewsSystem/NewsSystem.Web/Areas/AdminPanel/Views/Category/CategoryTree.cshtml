@@ -1,0 +1,29 @@
+﻿@using NewsSystem.Data.ViewModels.Categories
+@using NewsSystem.Web.Common.Constants
+
+@model IEnumerable<CategoryViewModel>
+
+<div class="panel @CommonStyles.PanelStyle">
+    <div class="panel-heading">
+        <h3 class="panel-title">Album Categories</h3>
+    </div>
+    @foreach (var category in Model)
+    {
+        <div class="panel-body word-wraped">
+            <div class="list-group">
+                <a href="javascript:;" data-toggle="collapse" data-target="#album-category-@category.Id" class="list-group-item active" aria-expanded="false">
+                    @category.Title<i class="fa fa-fw fa-arrow-circle-down"></i>
+                </a>
+                @if (category.Children.Count > 0)
+                {
+                    <span id="album-category-@category.Id" class="collapse" aria-expanded="false">
+                        @foreach (var child in category.Children)
+                        {
+                            <a href="@Url.Action("SearchByAlbumCategory", "Album", new { categoryId = child.Id })" class="list-group-item album-category-search-link">@child.Title</a>
+                        }
+                    </span>
+                }
+            </div>
+        </div>
+    }
+</div>

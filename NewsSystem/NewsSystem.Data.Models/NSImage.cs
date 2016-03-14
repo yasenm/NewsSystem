@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using NewsSystem.Data.Common.Models;
+    using Groups;
 
-    public class NSImage : DeletableEntity
+    public class NSImage : DescribableEntity, ITagableEntity
     {
         private ICollection<Album> albums;
         private ICollection<Tag> tags;
@@ -19,11 +20,7 @@
         [Key]
         public long Id { get; set; }
 
-        public string Title { get; set; }
-
         public string ImageTags { get; set; }
-        
-        public string Text { get; set; }
 
         public byte[] ByteContent { get; set; }
 

@@ -216,7 +216,7 @@
     <Compile Include="App_Start\ViewEnginesConfiguration.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\AdminPanel\AdminPanelAreaRegistration.cs" />
-    <Compile Include="Areas\AdminPanel\Controllers\AlbumCategoryController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\CategoryController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\AlbumController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\ArticleController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\Base\AdminBaseController.cs" />
@@ -316,7 +316,7 @@
     <Content Include="Areas\AdminPanel\Views\Home\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Home\Articles.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Album\Index.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\AlbumCategory\AlbumCategoryTree.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Category\CategoryTree.cshtml" />
     <Content Include="Content\AdminPanel\plugins\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\AdminPanel\plugins\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\AdminPanel\plugins\fonts\fontawesome-webfont.woff" />

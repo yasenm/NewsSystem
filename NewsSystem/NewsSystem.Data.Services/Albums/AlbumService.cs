@@ -18,11 +18,13 @@
     {
         public INewsSystemData Data { get; set; }
         private INSImageService NSImageService { get; set; }
+        private ITagsService TagsService { get; set; }
 
-        public AlbumService(INewsSystemData data, INSImageService nsiService)
+        public AlbumService(INewsSystemData data, INSImageService nsiService, ITagsService tagsService)
         {
             this.Data = data;
             this.NSImageService = nsiService;
+            this.TagsService = tagsService;
         }
 
         public AlbumEditViewModel GetAlbumForEdit(long albumId)
@@ -40,13 +42,13 @@
                 //Album editAlbum = Mapper.Map<Album>(editModel);
                 Album editAlbum = this.Data.Albums.GetById(editModel.Id);
                 this.NSImageService.SaveImagesToAlbum(editModel.AlbumPostedImages, editAlbum.Id);
-                editAlbum.Text = editModel.Text;
-                editAlbum.Name = editModel.Name;
+                editAlbum.Description = editModel.Description;
+                editAlbum.Title = editModel.Title;
 
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();
 
-                this.SaveTokensToAlbum(editAlbum, editModel.Tags);
+                this.TagsService.SaveTagsToTagableEntity(editAlbum, editModel.Tags);
                 return true;
             }
             catch (Exception e)
@@ -65,7 +67,7 @@
                 this.Data.Albums.Add(album);
                 this.Data.SaveChanges();
 
-                this.SaveTokensToAlbum(album, albumModel.Tags);
+                this.TagsService.SaveTagsToTagableEntity(album, albumModel.Tags);
                 return true;
             }
             catch (Exception e)
@@ -105,7 +107,7 @@
             var queryableAlbums = this.Data.Albums.All();
             if (searchText != null && searchText != string.Empty)
             {
-                queryableAlbums = queryableAlbums.Where(a => a.Name.ToLower().Contains(searchText));
+                queryableAlbums = queryableAlbums.Where(a => a.Title.ToLower().Contains(searchText));
             }
             if (tags != null && tags != string.Empty)
             {
@@ -126,7 +128,7 @@
         public IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId)
         {
             var result = this.Data.Albums.All()
-                .Where(a => a.AlbumCategoryId == categoryId)
+                .Where(a => a.Categories.FirstOrDefault(c => c.Id == categoryId) != null)
                 .ToList()
                 .AsQueryable()
                 .Project()
@@ -134,40 +136,6 @@
                 .ToList();
 
             return result;
-        }
-
-        private void SaveTokensToAlbum(Album album, ICollection<string> chosenTokens)
-        {
-            if (chosenTokens.Count > 0)
-            {
-                var tokens = chosenTokens.ToList()[0].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                album.Tags.Clear();
-                this.Data.SaveChanges();
-
-                foreach (var token in tokens)
-                {
-                    var dbTag = this.Data.Tags
-                        .All()
-                        .FirstOrDefault(tnsi => tnsi.Name.ToLower() == token.ToLower());
-
-                    if (dbTag == null)
-                    {
-                        dbTag = new Tag
-                        {
-                            Name = token,
-                        };
-
-                        this.Data.Tags.Add(dbTag);
-                        this.Data.SaveChanges();
-                    }
-
-                    dbTag.Albums.Add(album);
-                    album.Tags.Add(dbTag);
-                    this.Data.Tags.Update(dbTag);
-                    this.Data.Albums.Update(album);
-                    this.Data.SaveChanges();
-                }
-            }
         }
     }
 }

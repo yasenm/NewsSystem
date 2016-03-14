@@ -56,14 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Albums\AlbumCategoryService.cs" />
+    <Compile Include="Category\CategoryService.cs" />
     <Compile Include="Albums\AlbumService.cs" />
     <Compile Include="Articles\ArticleService.cs" />
     <Compile Include="Contracts\Albums\IAlbumService.cs" />
     <Compile Include="Contracts\NSImages\INSImageService.cs" />
     <Compile Include="Contracts\Tags\ITagsService.cs" />
     <Compile Include="Contracts\Users\IAccountService.cs" />
-    <Compile Include="Contracts\Albums\IAlbumCategoryService.cs" />
+    <Compile Include="Contracts\Category\ICategoryService.cs" />
     <Compile Include="Contracts\Articles\IArticleService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Images\NSImageService.cs" />

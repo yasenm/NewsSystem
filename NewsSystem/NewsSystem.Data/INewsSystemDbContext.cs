@@ -17,7 +17,7 @@
 
         IDbSet<Album> Albums { get; set; }
 
-        IDbSet<AlbumCategory> AlbumCategories { get; set; }
+        IDbSet<Category> Categories { get; set; }
 
         DbContext DbContext { get; }
 

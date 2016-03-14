@@ -1,8 +1,6 @@
 ﻿@using NewsSystem.Data.ViewModels.Albums
 @using NewsSystem.Web.Helpers
 
-@using NewsSystem.Web.Common.Constants
-
 @model AlbumEditViewModel
 
 @Styles.Render("~/Content/bootstrap-tokenfield")
@@ -10,7 +8,7 @@
 <div class="row padding-form">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <strong>@Model.Name</strong>
+            <strong>@Model.Title</strong>
         </h3>
     </div>
 
@@ -23,18 +21,18 @@
                 @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
                 <div class="list-group panel-body">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Name, new { })
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Title, new { })
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Text, new { })
-                        @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Text, null, new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Description, new { })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
-                        <input type="text" class="form-control" id="tokenfield" name="Tokens" value="@string.Join(", ", Model.Tags.ToArray())" />
+                        <input type="text" class="form-control" id="tokenfield" name="Tags" value="@string.Join(", ", Model.Tags.ToArray())" />
                     </div>
                     <div class="form-group">
                         <div>
@@ -105,8 +103,8 @@
     <script>
         $(document).ready(function () {
             APP.Albums.initEdit();
-            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTokens", "Tag")');
-            APP.NSImages.init('@Url.AbsoluteAction("GetTokens", "Tag")', '#nsimagesSearchTokenfield');
+            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTags", "Tag")');
+            APP.NSImages.init('@Url.AbsoluteAction("GetTags", "Tag")', '#nsimagesSearchTokenfield');
             APP.NSImages.searchImagesForAlbumInit();
             APP.TinymceInitializer.basicInit();
         })

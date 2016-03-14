@@ -24,7 +24,7 @@
 
         public IDbSet<Album> Albums { get; set; }
 
-        public IDbSet<AlbumCategory> AlbumCategories { get; set; }
+        public IDbSet<Category> Categories { get; set; }
 
         public IDbSet<Tag> Tags { get; set; }
 

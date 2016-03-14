@@ -4,14 +4,17 @@
     using System.ComponentModel.DataAnnotations;
 
     using NewsSystem.Data.Common.Models;
+    using Groups;
 
-    public class Album : DeletableEntity
+    public class Album : DescribableEntity, ITagableEntity, ICategorableEntity
     {
+        private ICollection<Category> categories;
         private ICollection<Tag> tags;
         private ICollection<NSImage> nsImages;
 
         public Album()
         {
+            this.Categories = new HashSet<Category>();
             this.Tags = new HashSet<Tag>();
             this.NSImages = new HashSet<NSImage>();
         }
@@ -19,17 +22,13 @@
         [Key]
         public long Id { get; set; }
 
-        [StringLength(200, MinimumLength = 4)]
-        public string Name { get; set; }
-
-        [StringLength(5000, MinimumLength = 4)]
-        public string Text { get; set; }
-
         public long? CoverImageId { get; set; }
-
-        public long AlbumCategoryId { get; set; }
-
-        public virtual AlbumCategory AlbumCategory { get; set; }
+        
+        public virtual ICollection<Category> Categories
+        {
+            get { return this.categories; }
+            set { this.categories = value; }
+        }
 
         public virtual ICollection<Tag> Tags
         {

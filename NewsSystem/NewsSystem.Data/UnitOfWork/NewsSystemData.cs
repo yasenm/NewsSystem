@@ -44,11 +44,11 @@
             }
         }
 
-        public IRepository<AlbumCategory> AlbumCategories
+        public IRepository<Category> Categories
         {
             get
             {
-                return this.GetDeletableEntityRepository<AlbumCategory>();
+                return this.GetDeletableEntityRepository<Category>();
             }
         }
 
