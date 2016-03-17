@@ -234,6 +234,8 @@
             NSImage image = this.Data.NSImages.GetById(model.Id);
             image.Title = model.Title;
             image.Description = model.Description;
+            image.Summary = model.Summary;
+
             if (model.PostedContent != null)
             {
                 image.ByteContent = this.ConvertPostedFileToNSImage(model.PostedContent).ByteContent;

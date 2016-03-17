@@ -7,5 +7,9 @@
     public interface IArticleService
     {
         IEnumerable<ArticleViewModel> GetAll();
+
+        ArticleEditViewModel GetEditModel(long articleId);
+
+        bool Edit(ArticleEditViewModel model);
     }
 }

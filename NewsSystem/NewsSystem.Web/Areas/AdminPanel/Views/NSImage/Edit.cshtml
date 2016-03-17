@@ -3,8 +3,6 @@
 
 @model NSImageEditViewModel
 
-@Styles.Render("~/Content/bootstrap-tokenfield")
-
 <div class="container-fluid">
     <div class="row">
         @using (Html.BeginForm("Edit", "NSImage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
@@ -23,6 +21,11 @@
                         @Html.LabelFor(m => m.Description, new { })
                         @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Summary, new { })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
@@ -50,11 +53,10 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/tinymce")
-    @Scripts.Render("~/bundles/admin-panel-ns-images")
 
     <script>
         $(document).ready(function () {
-            APP.NSImages.init('@Url.AbsoluteAction("GetTags", "Tag")', '#tokenfield');
+            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
             APP.TinymceInitializer.basicInit();
         })
     </script>

@@ -20,12 +20,5 @@
         {
             return this.View();
         }
-
-        public ActionResult Articles()
-        {
-            var articlesCollection = this.ArticleService.GetAll();
-
-            return this.View(articlesCollection);
-        }
 	}
 }

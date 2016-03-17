@@ -3,8 +3,6 @@
 
 @model AlbumEditViewModel
 
-@Styles.Render("~/Content/bootstrap-tokenfield")
-
 <div class="row padding-form">
     <div class="panel-heading">
         <h3 class="panel-title">
@@ -19,6 +17,7 @@
 
             <div class="col-md-8">
                 @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
+                @Html.HiddenFor(m => m.CoverImageId, new { @Value = Model.CoverImageId, @id = "hidden-edit-album-cover-image-id" })
                 <div class="list-group panel-body">
                     <div class="form-group">
                         @Html.LabelFor(m => m.Title, new { })
@@ -29,6 +28,11 @@
                         @Html.LabelFor(m => m.Description, new { })
                         @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Summary, new { })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Tags, new { @for = "tokenfield" })
@@ -102,9 +106,8 @@
 
     <script>
         $(document).ready(function () {
+            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
             APP.Albums.initEdit();
-            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTags", "Tag")');
-            APP.NSImages.init('@Url.AbsoluteAction("GetTags", "Tag")', '#nsimagesSearchTokenfield');
             APP.NSImages.searchImagesForAlbumInit();
             APP.TinymceInitializer.basicInit();
         })

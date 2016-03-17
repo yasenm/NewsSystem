@@ -1,8 +1,5 @@
 ﻿@using NewsSystem.Web.Helpers
 
-@Styles.Render("~/Content/bootstrap-tokenfield")
-
-
 <div class="row">
     <div class="col-md-9" id="images-grid-wrapper">
         @Html.Action("NSImagesGrid", "NSImage", new { })
@@ -25,7 +22,7 @@
     <script>
         $(document).ready(function () {
             APP.NSImages.indexInit();
-            APP.NSImages.init('@Url.AbsoluteAction("GetTags", "Tag")', '#search-images-by-tags-sfield');
+            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")');
         })
     </script>
 }

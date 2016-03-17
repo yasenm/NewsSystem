@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articles\ArticleEditViewModel.cs" />
     <Compile Include="Categories\CategoryDDLViewModel.cs" />
     <Compile Include="Categories\CategoryViewModel.cs" />
     <Compile Include="Albums\AlbumCreateViewModel.cs" />

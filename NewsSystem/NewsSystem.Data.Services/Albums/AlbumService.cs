@@ -44,6 +44,7 @@
                 this.NSImageService.SaveImagesToAlbum(editModel.AlbumPostedImages, editAlbum.Id);
                 editAlbum.Description = editModel.Description;
                 editAlbum.Title = editModel.Title;
+                editAlbum.Summary = editModel.Summary;
 
                 this.Data.Albums.Update(editAlbum);
                 this.Data.SaveChanges();

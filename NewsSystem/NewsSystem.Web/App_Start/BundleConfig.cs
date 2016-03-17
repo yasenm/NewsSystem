@@ -47,7 +47,9 @@
                         "~/Content/AdminPanel/bootstrap.min.css",
                         "~/Content/AdminPanel/sb-admin.css",
                         "~/Content/AdminPanel/plugins/morris.css",
-                        "~/Content/AdminPanel/plugins/fonts/font-awesome.css"));
+                        "~/Content/AdminPanel/plugins/fonts/font-awesome.css",
+                        "~/Content/bootstrap-tokenfield/bootstrap-tokenfield.css",
+                        "~/Content/bootstrap-tokenfield/bootstrap-typehead.css"));
 
             bundles.Add(new StyleBundle("~/Content/AdminPanel/admin-side-css").IncludeDirectory(
                         "~/Content/AdminPanel/site", "*.css", true));
@@ -97,6 +99,7 @@
         {
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-bootstrap").Include(
                       "~/Scripts/AdminPanel/plugins/bootstrap.min.js",
+                      "~/Scripts/AdminPanel/common/common-tags-js.js",
                       "~/Scripts/bootstrap-tokenfield.js"
                       //"~/Scripts/AdminPanel/plugins/morris/raphael.min.js",
                       //"~/Scripts/AdminPanel/plugins/morris/morris.js",

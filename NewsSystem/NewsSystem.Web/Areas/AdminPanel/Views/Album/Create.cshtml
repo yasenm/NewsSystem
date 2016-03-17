@@ -4,8 +4,6 @@
 
 @model AlbumCreateViewModel
 
-@Styles.Render("~/Content/bootstrap-tokenfield")
-
 <div class="container">
     @using (Html.BeginForm("Create", "Album", FormMethod.Post, new { @class = "form" }))
     {
@@ -45,7 +43,8 @@
     <script>
         $(document).ready(function () {
             APP.Albums.initEdit();
-            APP.Albums.initEditTokens('@Url.AbsoluteAction("GetTags", "Tag")');
+
+            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
             APP.TinymceInitializer.basicInit();
         })
     </script>

@@ -67,19 +67,6 @@ APP.NSImages = (function () {
         }
 
     return {
-        init: function (tokensUrl, selector) {
-            APP.HttpRequester.getData(tokensUrl)
-                .success(function (data) {
-                    $(selector).tokenfield({
-                        autocomplete: {
-                            source: data,
-                            delay: 100
-                        },
-                        showAutocompleteOnFocus: false
-                    })
-                })
-        },
-
         searchImagesForAlbumInit: function () {
             registerEventsForImagesToChooseGrid();
             clickForSelectedImages();
