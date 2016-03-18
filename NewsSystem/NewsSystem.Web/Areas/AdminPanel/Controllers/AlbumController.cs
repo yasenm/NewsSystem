@@ -26,10 +26,13 @@
         }
 
         [HttpGet]
-        public ActionResult AlbumsGrid()
+        public ActionResult AlbumsGrid(long? categoryId)
         {
-            var model = this.AlbumService.GetAlbums();
-            return this.PartialView("AlbumsGrid", model);
+            if (categoryId != null)
+            {
+                return this.PartialView(this.AlbumService.GetAlbumsByCategoryId((long)categoryId));
+            }
+            return this.PartialView(this.AlbumService.GetAlbums());
         }
 
         [HttpGet]
@@ -88,7 +91,7 @@
             var deleted = this.AlbumService.Delete(albumId);
             if (deleted)
             {
-                return this.AlbumsGrid();
+                return this.AlbumsGrid(null);
             }
 
             return this.Content("Unable to do action!");
@@ -98,13 +101,6 @@
         public ActionResult Search(string searchText, string tags)
         {
             var model = this.AlbumService.GetAlbumsBySearchText(searchText, tags);
-            return this.PartialView("AlbumsGrid", model);
-        }
-
-        [HttpGet]
-        public ActionResult SearchByAlbumCategory(long categoryId)
-        {
-            var model = this.AlbumService.GetAlbumsByCategoryId(categoryId);
             return this.PartialView("AlbumsGrid", model);
         }
 

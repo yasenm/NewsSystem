@@ -8,11 +8,13 @@
 
     public class NSImage : DescribableEntity, ITagableEntity
     {
+        private ICollection<Article> articles;
         private ICollection<Album> albums;
         private ICollection<Tag> tags;
         
         public NSImage()
         {
+            this.Articles = new HashSet<Article>();
             this.Albums = new HashSet<Album>();
             this.Tags = new HashSet<Tag>();
         }
@@ -36,6 +38,12 @@
         {
             get { return this.tags; }
             set { this.tags = value; }
+        }
+
+        public virtual ICollection<Article> Articles
+        {
+            get { return this.articles; }
+            set { this.articles = value; }
         }
     }
 }

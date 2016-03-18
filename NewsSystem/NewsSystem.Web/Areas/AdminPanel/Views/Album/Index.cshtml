@@ -1,6 +1,8 @@
-﻿<div class="row">
+﻿@using NewsSystem.Web.Helpers;
+
+<div class="row">
     <div class="col-md-2">
-        @Html.Action("CategoryTree", "Category")
+        @Html.Action("CategoryTree", "Category", new { Action = "AlbumsGrid", Controller = "Album", UpdateTargetId = "albums-grid" })
     </div>
     <div id="albums-grid" class="col-md-8">
         @Html.Action("AlbumsGrid", "Album", new { })
@@ -21,5 +23,6 @@
 
     <script>
         APP.Albums.init();
+        APP.CommonTagsModule.initByElementId('@Url.AbsoluteAction("GetTags", "Tag")', 'search-albums-by-tags-sfield');
     </script>
 }

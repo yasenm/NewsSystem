@@ -55,6 +55,7 @@
     <Compile Include="Album.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Contracts\IPublishableEntity.cs" />
     <Compile Include="Groups\ICategorableEntity.cs" />
     <Compile Include="Groups\ITagableEntity.cs" />
     <Compile Include="NSImage.cs" />

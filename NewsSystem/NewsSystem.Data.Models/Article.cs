@@ -1,12 +1,15 @@
 ﻿namespace NewsSystem.Data.Models
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    using NewsSystem.Data.Common.Models;
+    using Contracts;
     using Groups;
 
-    public class Article : DescribableEntity, ITagableEntity
+    using NewsSystem.Data.Common.Models;
+
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System;
+
+    public class Article : DescribableEntity, ITagableEntity, IPublishableEntity
     {
         private ICollection<Tag> tags;
         private ICollection<NSImage> headImages;
@@ -31,5 +34,13 @@
             get { return this.headImages; }
             set { this.headImages = value; }
         }
+
+        public DateTime? PublicationDate { get; set; }
+
+        public bool IsPublished { get; set; }
+
+        public string PublishApprovedBy { get; set; }
+
+        public bool IsQueuedForPublish { get; set; }
     }
 }

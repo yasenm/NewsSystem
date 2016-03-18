@@ -5,21 +5,35 @@
 
 <div class="panel @CommonStyles.PanelStyle">
     <div class="panel-heading">
-        <h3 class="panel-title">Album Categories</h3>
+        <h3 class="panel-title">Categories</h3>
     </div>
     @foreach (var category in Model)
     {
         <div class="panel-body word-wraped">
             <div class="list-group">
-                <a href="javascript:;" data-toggle="collapse" data-target="#album-category-@category.Id" class="list-group-item active" aria-expanded="false">
+                <a href="javascript:;" data-toggle="collapse" data-target="#category-@category.Id" class="list-group-item active" aria-expanded="false">
                     @category.Title<i class="fa fa-fw fa-arrow-circle-down"></i>
                 </a>
                 @if (category.Children.Count > 0)
                 {
-                    <span id="album-category-@category.Id" class="collapse" aria-expanded="false">
+                    <span id="category-@category.Id" class="collapse" aria-expanded="false">
                         @foreach (var child in category.Children)
                         {
-                            <a href="@Url.Action("SearchByAlbumCategory", "Album", new { categoryId = child.Id })" class="list-group-item album-category-search-link">@child.Title</a>
+                            @Ajax.ActionLink(child.Title, (string)this.ViewBag.Action, (string)this.ViewBag.Controller,
+                            new
+                            {
+                                categoryId = child.Id,
+                            },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "GET",
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = (string)this.ViewBag.UpdateTargetId,
+                                OnComplete = CommonToastrSettings.CompleteAction,
+                                OnFailure = CommonToastrSettings.FailedAction,
+                                OnBegin = CommonToastrSettings.BeginAction,
+                            },
+                            new { @class = "list-group-item album-category-search-link" })
                         }
                     </span>
                 }

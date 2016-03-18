@@ -22,7 +22,7 @@
     <script>
         $(document).ready(function () {
             APP.NSImages.indexInit();
-            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")');
+            APP.CommonTagsModule.initByElementId('@Url.AbsoluteAction("GetTags", "Tag")', 'search-images-by-tags-sfield');
         })
     </script>
 }

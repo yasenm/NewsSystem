@@ -13,6 +13,19 @@ APP.CommonTagsModule = (function () {
                         showAutocompleteOnFocus: false
                     })
                 })
+        },
+
+        initByElementId: function (tokensUrl, selectedId) {
+            APP.HttpRequester.getData(tokensUrl)
+                .success(function (data) {
+                    $('#' + selectedId).tokenfield({
+                        autocomplete: {
+                            source: data,
+                            delay: 100
+                        },
+                        showAutocompleteOnFocus: false
+                    })
+                })
         }
     }
 }());

@@ -14,11 +14,6 @@ APP.Albums = (function () {
 
     return {
         init: function () {
-            $('.album-category-search-link').click(function (e) {
-                e.preventDefault();
-                var searchUrl = $(this).attr('href');
-                albumsGridUpdate(searchUrl);
-            });
 
             $('#search-albums-btn').click(function () {
                 var searchText = $('#search-albums-by-text-sfield').val();

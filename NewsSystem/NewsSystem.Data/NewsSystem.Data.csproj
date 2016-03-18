@@ -65,6 +65,14 @@
     <Compile Include="Migrations\201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.Designer.cs">
       <DependentUpon>201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603180552136_Added_IPublishableInterface_ForNowOnlyAppliedToArticles.cs" />
+    <Compile Include="Migrations\201603180552136_Added_IPublishableInterface_ForNowOnlyAppliedToArticles.Designer.cs">
+      <DependentUpon>201603180552136_Added_IPublishableInterface_ForNowOnlyAppliedToArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603180555427_Added_SetOfArticlesForNSImage.cs" />
+    <Compile Include="Migrations\201603180555427_Added_SetOfArticlesForNSImage.Designer.cs">
+      <DependentUpon>201603180555427_Added_SetOfArticlesForNSImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.resx">
       <DependentUpon>201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603180552136_Added_IPublishableInterface_ForNowOnlyAppliedToArticles.resx">
+      <DependentUpon>201603180552136_Added_IPublishableInterface_ForNowOnlyAppliedToArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603180555427_Added_SetOfArticlesForNSImage.resx">
+      <DependentUpon>201603180555427_Added_SetOfArticlesForNSImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
