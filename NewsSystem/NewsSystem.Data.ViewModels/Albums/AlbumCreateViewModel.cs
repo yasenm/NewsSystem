@@ -1,29 +1,21 @@
 ﻿namespace NewsSystem.Data.ViewModels.Albums
 {
+    using Categories;
+    using Common;
+    using Infrastructure.Mapping;
+    using Models;
+
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    using NewsSystem.Common.Constants.Error;
-    using NewsSystem.Data.Infrastructure.Mapping;
-    using NewsSystem.Data.Models;
-    using System.Web.Mvc;
-
-    public class AlbumCreateViewModel : IMapFrom<Album>
+    public class AlbumCreateViewModel : DescribableEntityViewModel, IMapFrom<Album>
     {
         public AlbumCreateViewModel()
         {
             this.Tags = new List<string>();
         }
 
-        [StringLength(200, MinimumLength = 4, ErrorMessage = "You must use more than 4 and less than 200 characters")]
-        public string Name { get; set; }
-        
-        [AllowHtml]
-        [StringLength(5000, MinimumLength = 4, ErrorMessage = "You must use more than 4 and less than 5000 characters")]
-        public string Text { get; set; }
-
-        public long AlbumCategoryId { get; set; }
-
         public ICollection<string> Tags { get; set; }
+
+        public List<CategoryCheckboxViewModel> ChosenCategories { get; set; }
     }
 }

@@ -1,17 +1,16 @@
 ﻿namespace NewsSystem.Data.ViewModels.Albums
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using System.Web.Mvc;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
 
-    using NewsSystem.Data.Infrastructure.Mapping;
-    using NewsSystem.Data.Models;
-    using NewsSystem.Data.ViewModels.NSImages;
+    using Infrastructure.Mapping;
+    using Models;
+    using NSImages;
     using Common;
+    using Categories;
 
     public class AlbumEditViewModel : DescribableEntityViewModel, IMapFrom<Album>, IHaveCustomMappings
     {
@@ -27,10 +26,15 @@
 
         public ICollection<NSImageGridViewModel> AlbumImages { get; set; }
 
+        public ICollection<long> CategoriesIds { get; set; }
+
+        public List<CategoryCheckboxViewModel> ChosenCategories { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Album, AlbumEditViewModel>()
-                .ForMember(m => m.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)));
+                .ForMember(m => m.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)))
+                .ForMember(m => m.CategoriesIds, opt => opt.MapFrom(src => src.Categories.Select(c => c.Id)));
         }
     }
 }

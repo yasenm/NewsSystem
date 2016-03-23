@@ -9,19 +9,27 @@
     using System.ComponentModel.DataAnnotations;
     using System;
 
-    public class Article : DescribableEntity, ITagableEntity, IPublishableEntity
+    public class Article : DescribableEntity, ITagableEntity, IPublishableEntity, ICategorableEntity
     {
+        private ICollection<Category> categories;
         private ICollection<Tag> tags;
         private ICollection<NSImage> headImages;
 
         public Article()
         {
+            this.Categories = new HashSet<Category>();
             this.Tags = new HashSet<Tag>();
             this.HeadImages = new HashSet<NSImage>();
         }
 
         [Key]
         public long Id { get; set; }
+
+        public virtual ICollection<Category> Categories
+        {
+            get { return this.categories; }
+            set { this.categories = value; }
+        }
 
         public virtual ICollection<Tag> Tags
         {

@@ -7,11 +7,11 @@
 
     public class CategoryController : AdminBaseController
     {
-        private ICategoryService categoryService { get; set; }
+        private ICategoryService CategoryService { get; set; }
 
         public CategoryController(ICategoryService cService)
         {
-            this.categoryService = cService;
+            this.CategoryService = cService;
         }
 
         public ActionResult CategoryTree(string Action, string Controller, string UpdateTargetId)
@@ -21,8 +21,19 @@
             this.ViewBag.Controller = Controller;
             this.ViewBag.UpdateTargetId = UpdateTargetId;
 
-            var model = this.categoryService.GetAll();
+            var model = this.CategoryService.GetAll();
             return this.PartialView("CategoryTree", model);
         }
-	}
+
+        public ActionResult CategoryTreeSelectMode(string Action, string Controller, string UpdateTargetId)
+        {
+
+            this.ViewBag.Action = Action;
+            this.ViewBag.Controller = Controller;
+            this.ViewBag.UpdateTargetId = UpdateTargetId;
+
+            var model = this.CategoryService.GetAll();
+            return this.PartialView("CategoryTreeSelectMode", model);
+        }
+    }
 }

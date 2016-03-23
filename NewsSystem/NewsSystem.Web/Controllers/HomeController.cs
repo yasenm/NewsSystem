@@ -16,8 +16,6 @@
 
         public ActionResult Index()
         {
-            var collection = this.ArticleService.GetAll();
-            var some = collection;
             return View();
         }
 

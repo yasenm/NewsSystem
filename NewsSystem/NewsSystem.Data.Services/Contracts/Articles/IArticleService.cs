@@ -8,7 +8,11 @@
     {
         IEnumerable<ArticleViewModel> GetAll();
 
+        IEnumerable<ArticleViewModel> Get(long categoryId);
+
         ArticleEditViewModel GetEditModel(long articleId);
+
+        bool Create(ArticleCreateViewModel model);
 
         bool Edit(ArticleEditViewModel model);
     }

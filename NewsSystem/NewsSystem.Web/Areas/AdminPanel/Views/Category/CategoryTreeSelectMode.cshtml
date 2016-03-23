@@ -1,0 +1,32 @@
+﻿@using NewsSystem.Data.ViewModels.Categories
+@using NewsSystem.Web.Common.Constants
+
+@model IEnumerable<CategoryViewModel>
+
+<div class="panel @CommonStyles.PanelStyle">
+    <div class="panel-heading">
+        <h3 class="panel-title">Categories</h3>
+    </div>
+    <div class="panel-body">
+        @foreach (var category in Model)
+        {
+            <div class="form-group">
+                <label data-target="#category-@category.Id" class="list-group-item active" aria-expanded="false">
+                    @category.Title
+                </label>
+                @if (category.Children.Count > 0)
+                {
+                    foreach (var child in category.Children)
+                    {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="input-category-box" id="category-box-@child.Id" value="@child.Id" data-categorableentity="@ViewBag.CategorableEntityId"/>
+                                @child.Title
+                            </label>
+                        </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+</div>

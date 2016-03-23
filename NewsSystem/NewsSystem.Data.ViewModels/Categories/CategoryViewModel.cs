@@ -17,7 +17,7 @@
 
         public string Description { get; set; }
 
-        public ICollection<CategoryViewModel> Children { get; set; }
+        public List<CategoryViewModel> Children { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

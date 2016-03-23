@@ -1,23 +1,14 @@
-﻿@using NewsSystem.Data.ViewModels.Articles
-
-@model ICollection<ArticleViewModel>
-
-<div>
-    <h2>Articles</h2>
-    @foreach (var article in Model)
-    {
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">@article.Title</h3>
-                <div class="pull-right">
-                    <a href="@Url.Action("Edit", "Article", new { articleId = article.Id })" class="btn btn-success">Edit</a>
-                    <a href="@Url.Action("Edit", "Article", new { articleId = article.Id })" class="btn btn-danger">Delete</a>
-                </div>
-            </div>
-            <div class="panel-body">
-                @Html.Raw(article.Summary)
-            </div>
+﻿<div class="row">
+    <div class="col-md-2">
+        @Html.Action("CategoryTree", "Category", new { Action = "ArticlesList", Controller = "Article", UpdateTargetId = "articles-list" })
+    </div>
+    <div id="articles-list" class="col-md-8">
+        @Html.Action("ArticlesList", "Article", new { })
+    </div>
+    <div class="col-md-2 text-center">
+        <div>
+            <a href="@Url.Action("Create", "Article", null)" class="btn btn-default btn-block">Add article</a>
         </div>
-    }
+        <br />
+    </div>
 </div>
-

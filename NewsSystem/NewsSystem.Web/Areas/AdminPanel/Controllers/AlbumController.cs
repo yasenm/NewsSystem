@@ -12,12 +12,12 @@
     public class AlbumController : AdminBaseController
     {
         private IAlbumService AlbumService;
-        private ICategoryService AlbumCategoryService;
+        private ICategoryService CategoryService;
 
-        public AlbumController(IAlbumService albumService, ICategoryService acService)
+        public AlbumController(IAlbumService albumService, ICategoryService categoryService)
         {
             this.AlbumService = albumService;
-            this.AlbumCategoryService = acService;
+            this.CategoryService = categoryService;
         }
 
         public ActionResult Index()
@@ -39,10 +39,7 @@
         public ActionResult Create()
         {
             var model = new AlbumCreateViewModel();
-            var categories = this.AlbumCategoryService.GetForDDLAll();
-            List<SelectListItem> ddl = new List<SelectListItem>();
-            ddl.AddRange(new SelectList(categories, "Id", "Name"));
-            this.ViewBag.Categories = new SelectList(ddl, "Value", "Text");
+            model.ChosenCategories = this.CategoryService.GetAllCheckbox().ToList();
 
             return this.View(model);
         }
@@ -58,7 +55,6 @@
                     return this.RedirectToAction("Index", "AlbumCategory");
                 }
             }
-
             return this.View(createModel);
         }
 
@@ -66,6 +62,19 @@
         public ActionResult Edit(long albumId)
         {
             var model = this.AlbumService.GetAlbumForEdit(albumId);
+            model.ChosenCategories = this.CategoryService.GetAllCheckbox().ToList();
+
+            foreach (var chosenCat in model.ChosenCategories)
+            {
+                foreach (var cat in chosenCat.Children)
+                {
+                    if (model.CategoriesIds.Contains(cat.Id))
+                    {
+                        cat.IsChecked = true;
+                    }
+                }
+            }
+
             return this.View(model);
         }
 

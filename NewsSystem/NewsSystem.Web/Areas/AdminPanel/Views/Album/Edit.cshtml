@@ -4,20 +4,32 @@
 @model AlbumEditViewModel
 
 <div class="row padding-form">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <strong>@Model.Title</strong>
-        </h3>
-    </div>
-
     <div class="row">
         @using (Html.BeginForm("Edit", "Album", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
 
-            <div class="col-md-8">
-                @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
-                @Html.HiddenFor(m => m.CoverImageId, new { @Value = Model.CoverImageId, @id = "hidden-edit-album-cover-image-id" })
+            @Html.HiddenFor(m => m.Id, new { @Value = Model.Id, @id = "hidden-edit-album-id" })
+            @Html.HiddenFor(m => m.CoverImageId, new { @Value = Model.CoverImageId, @id = "hidden-edit-album-cover-image-id" })
+
+            <div class="col-md-2 word-wraped">
+                @for (int i = 0; i < Model.ChosenCategories.Count; i++)
+                {
+                    @Html.HiddenFor(m => m.ChosenCategories[i].Title)
+
+                    <h4>
+                        <strong>@Model.ChosenCategories[i].Title</strong>
+                    </h4>
+                    for (int j = 0; j < Model.ChosenCategories[i].Children.Count; j++)
+                    {
+                        <div>
+                            @Html.EditorFor(m => m.ChosenCategories[i].Children[j])
+                        </div>
+                    }
+                }
+                @*@Html.Action("CategoryTreeSelectMode", "Category", new { })*@
+            </div>
+            <div class="col-md-6">
                 <div class="list-group panel-body">
                     <div class="form-group">
                         @Html.LabelFor(m => m.Title, new { })

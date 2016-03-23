@@ -7,24 +7,27 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using NewsSystem.Data.Models;
-    using NewsSystem.Data.Services.Contracts;
-    using NewsSystem.Data.Services.Contracts.Albums;
-    using NewsSystem.Data.Services.Contracts.NSImages;
-    using NewsSystem.Data.UnitOfWork;
-    using NewsSystem.Data.ViewModels.Albums;
+    using Models;
+    using Contracts;
+    using Contracts.Albums;
+    using Contracts.Category;
+    using Contracts.NSImages;
+    using UnitOfWork;
+    using ViewModels.Albums;
 
     public class AlbumService : IDataService, IAlbumService
     {
         public INewsSystemData Data { get; set; }
         private INSImageService NSImageService { get; set; }
         private ITagsService TagsService { get; set; }
+        private ICategoryService CategoryService { get; set; }
 
-        public AlbumService(INewsSystemData data, INSImageService nsiService, ITagsService tagsService)
+        public AlbumService(INewsSystemData data, INSImageService nsiService, ITagsService tagsService, ICategoryService cService)
         {
             this.Data = data;
             this.NSImageService = nsiService;
             this.TagsService = tagsService;
+            this.CategoryService = cService;
         }
 
         public AlbumEditViewModel GetAlbumForEdit(long albumId)
@@ -50,6 +53,7 @@
                 this.Data.SaveChanges();
 
                 this.TagsService.SaveTagsToTagableEntity(editAlbum, editModel.Tags);
+                this.CategoryService.SaveCategorableEntityToCategories(editAlbum, editModel.ChosenCategories);
                 return true;
             }
             catch (Exception e)
@@ -69,6 +73,8 @@
                 this.Data.SaveChanges();
 
                 this.TagsService.SaveTagsToTagableEntity(album, albumModel.Tags);
+                this.CategoryService.SaveCategorableEntityToCategories(album, albumModel.ChosenCategories);
+
                 return true;
             }
             catch (Exception e)
