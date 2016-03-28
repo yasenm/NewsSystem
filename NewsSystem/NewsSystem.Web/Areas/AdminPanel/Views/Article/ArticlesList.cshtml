@@ -1,8 +1,10 @@
 ﻿@using NewsSystem.Data.ViewModels.Articles
 
-@model ICollection<ArticleViewModel>
+@using PagedList
+@using PagedList.Mvc
 
-<h2>Articles</h2>
+@model PagedList<ArticleViewModel>
+
 @foreach (var article in Model)
 {
     <div class="panel panel-primary">
@@ -18,3 +20,15 @@
         </div>
     </div>
 }
+
+<div class="row">
+    @Html.PagedListPager(Model,
+        page => Url.Action("ArticlesList", "Article", new { categoryId = this.ViewBag.CategoryId, page }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "articles-list"
+        }
+    ))
+</div>

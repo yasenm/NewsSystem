@@ -94,7 +94,7 @@
                         </a>
                     </span>
                 </div>
-                <input type="text" id="nsimagesSearchTokenfield" name="NSImageTags" value=" " class="form-control" placeholder="By tags..." />
+                <input type="text" id="nsimagesSearchTokenfield" name="NSImageTags" value="" class="form-control" placeholder="By tags..." />
                 <br />
             </div>
             <div id="choose-img-modal-container">
@@ -118,7 +118,8 @@
 
     <script>
         $(document).ready(function () {
-            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
+            APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")');
+            APP.CommonTagsModule.initByElementId('@Url.AbsoluteAction("GetTags", "Tag")', 'nsimagesSearchTokenfield');
             APP.Albums.initEdit();
             APP.NSImages.searchImagesForAlbumInit();
             APP.TinymceInitializer.basicInit();

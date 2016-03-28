@@ -13,13 +13,11 @@
     {
         private ICollection<Category> categories;
         private ICollection<Tag> tags;
-        private ICollection<NSImage> headImages;
 
         public Article()
         {
             this.Categories = new HashSet<Category>();
             this.Tags = new HashSet<Tag>();
-            this.HeadImages = new HashSet<NSImage>();
         }
 
         [Key]
@@ -37,12 +35,6 @@
             set { this.tags = value; }
         }
 
-        public virtual ICollection<NSImage> HeadImages
-        {
-            get { return this.headImages; }
-            set { this.headImages = value; }
-        }
-
         public DateTime? PublicationDate { get; set; }
 
         public bool IsPublished { get; set; }
@@ -50,5 +42,7 @@
         public string PublishApprovedBy { get; set; }
 
         public bool IsQueuedForPublish { get; set; }
+
+        public long? CoverImageId { get; set; }
     }
 }

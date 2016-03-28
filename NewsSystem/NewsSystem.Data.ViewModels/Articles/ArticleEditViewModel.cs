@@ -8,6 +8,7 @@
     using Models;
 
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class ArticleEditViewModel : DescribableEntityViewModel, IMapFrom<Article>, IHaveCustomMappings
@@ -19,6 +20,10 @@
         public List<long> CategoriesIds { get; set; }
 
         public List<CategoryCheckboxViewModel> ChosenCategories { get; set; }
+
+        [Range(1, long.MaxValue, ErrorMessage = "A choice of image is required!")]
+        [Required(ErrorMessage = "A choice of image is required!")]
+        public long CoverImageId { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

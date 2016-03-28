@@ -14,7 +14,6 @@ APP.Albums = (function () {
 
     return {
         init: function () {
-
             $('#search-albums-btn').click(function () {
                 var searchText = $('#search-albums-by-text-sfield').val();
                 var tags = $('#search-albums-by-tags-sfield').val();

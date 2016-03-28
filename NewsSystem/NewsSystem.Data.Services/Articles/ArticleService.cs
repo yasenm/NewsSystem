@@ -61,6 +61,7 @@
                 article.Title = model.Title;
                 article.Description = model.Description;
                 article.Summary = model.Summary;
+                article.CoverImageId = model.CoverImageId;
 
                 this.CategoryService.SaveCategorableEntityToCategories(article, model.ChosenCategories);
 

@@ -114,6 +114,9 @@
 
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-ns-images").Include(
                       "~/Scripts/AdminPanel/ns-images/ns-images.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin-panel-articles").Include(
+                      "~/Scripts/AdminPanel/articles/articles.js"));
         }
 
         private static void RegisterClientSideScripts(BundleCollection bundles)

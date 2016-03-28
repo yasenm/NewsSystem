@@ -44,13 +44,16 @@
                         @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
-
-                    @*<div class="form-group">
-                        <div>
-                            @Html.LabelFor(m => m.CategoriesIds, new { @for = "category-input" })
-                            @Html.DropDownListFor(m => m.CategoriesIds, (SelectList)ViewBag.Categories, new { id = "category-input", @class = "form-control", multiple = "" })
-                        </div>
-                    </div>*@
+                    <div class="form-group">
+                        <label for="AlbumChoice">Link album</label>
+                        <input type="button" name="ChoseFromGalleries" id="AlbumChoice" class="btn btn-default" value="Albums" />
+                    </div>
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.CoverImageId, new { id = "cover-image-input", @class = "" })
+                        <label for="CoverImageChoice">Chose cover image</label>
+                        <input type="button" name="CoverImageChoice" id="CoverImageChoice" class="btn btn-default" value="Images" />
+                        @Html.ValidationMessageFor(m => m.CoverImageId, null, new { @class = "text-danger" })
+                    </div>
                 </div>
 
                 <div>
@@ -62,14 +65,36 @@
     </div>
 </div>
 
+<div id="albums-grid-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="album-choice-modal-grid">
+                @Html.Action("AlbumsChoiceGrid", "Album", new { })
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cover-image-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="cover-image-modal-grid">
+                @Html.Action("NSImagesCoverImageGrid", "NSImage", new { })
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section scripts{
+    @Scripts.Render("~/bundles/admin-panel-articles")
     @Scripts.Render("~/bundles/tinymce")
 
     <script>
         $(document).ready(function () {
             APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
             APP.TinymceInitializer.basicInit();
+            APP.Articles.initCRUD();
         })
     </script>
 }

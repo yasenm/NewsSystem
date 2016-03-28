@@ -23,7 +23,7 @@
                         <input id="image-with-id-@image.Id" type="checkbox" class="image-select-input" data-imgid="@image.Id" name="NSImage@(image.Id)" value="@image.Id" />
                     </div>
                 }
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     @Html.PagedListPager(Model,
                         page => Url.Action("NSImagesAlbumChooseGrid", "NSImage", new { albumId = this.ViewBag.AlbumId, text = this.ViewBag.LastText, tags = this.ViewBag.LastTags, page }),
                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(

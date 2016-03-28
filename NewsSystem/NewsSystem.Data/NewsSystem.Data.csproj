@@ -81,6 +81,18 @@
     <Compile Include="Migrations\201603202243516_Fixed_RelationShip.Designer.cs">
       <DependentUpon>201603202243516_Fixed_RelationShip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603270231345_FixedArticlesToNSImages.cs" />
+    <Compile Include="Migrations\201603270231345_FixedArticlesToNSImages.Designer.cs">
+      <DependentUpon>201603270231345_FixedArticlesToNSImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603270247400_RemovedRelationshipBetweenArticlesAndNSImages.cs" />
+    <Compile Include="Migrations\201603270247400_RemovedRelationshipBetweenArticlesAndNSImages.Designer.cs">
+      <DependentUpon>201603270247400_RemovedRelationshipBetweenArticlesAndNSImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603270250322_CoverImageIdNullableAddedToArticle.cs" />
+    <Compile Include="Migrations\201603270250322_CoverImageIdNullableAddedToArticle.Designer.cs">
+      <DependentUpon>201603270250322_CoverImageIdNullableAddedToArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +140,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603202243516_Fixed_RelationShip.resx">
       <DependentUpon>201603202243516_Fixed_RelationShip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603270231345_FixedArticlesToNSImages.resx">
+      <DependentUpon>201603270231345_FixedArticlesToNSImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603270247400_RemovedRelationshipBetweenArticlesAndNSImages.resx">
+      <DependentUpon>201603270247400_RemovedRelationshipBetweenArticlesAndNSImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603270250322_CoverImageIdNullableAddedToArticle.resx">
+      <DependentUpon>201603270250322_CoverImageIdNullableAddedToArticle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

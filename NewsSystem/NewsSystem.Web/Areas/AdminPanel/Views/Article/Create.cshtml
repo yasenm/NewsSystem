@@ -24,7 +24,6 @@
                         </div>
                     }
                 }
-                @*@Html.Action("CategoryTreeSelectMode", "Category", new { })*@
             </div>
             <div class="col-md-10">
                 <div class="list-group panel-body">
@@ -43,7 +42,15 @@
                         @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-default">Chose album</a>
+                        @Html.LabelFor(m => m.Summary, new { })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
+                    </div>
                 </div>
+
+
 
                 <div>
                     <button type="submit" value="Create" class="btn btn-default">Create</button>

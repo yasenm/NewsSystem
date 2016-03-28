@@ -48,7 +48,7 @@
             this.ViewBag.AlbumId = albumId;
             this.ViewBag.LastText = text;
             this.ViewBag.LastTags = tags;
-            return this.PartialView("NSImagesAlbumChooseGrid", model);
+            return this.PartialView(model);
         }
 
         [HttpGet]
@@ -59,6 +59,20 @@
                 var nsPicturesCollection = this.NSImageService.GetImages(searchText, tags);
 
                 var model = new PagedList<NSImageGridViewModel>(nsPicturesCollection, page, NSImagesConstants.PageSize);
+
+                return this.PartialView(model);
+            }
+
+            return HttpNotFound();
+        }
+        
+        public ActionResult NSImagesCoverImageGrid(string tags, string searchText, int page = 1)
+        {
+            if (page > 0)
+            {
+                var nsPicturesCollection = this.NSImageService.GetImages(searchText, tags);
+
+                var model = new PagedList<NSImageGridViewModel>(nsPicturesCollection, page, 1);
 
                 return this.PartialView(model);
             }

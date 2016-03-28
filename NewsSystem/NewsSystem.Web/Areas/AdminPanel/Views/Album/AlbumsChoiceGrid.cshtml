@@ -1,0 +1,41 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@using NewsSystem.Data.ViewModels.Albums
+@using NewsSystem.Web.Common.Constants
+
+@model PagedList<AlbumGridViewModel>
+
+<div class="modal-body" style="padding:40px 50px;">
+    @if (Model.Count() > 0)
+    {
+        <div class="row panel @CommonStyles.PanelStyle">
+            <div class="panel-heading">
+                <h3 class="panel-title">Albums</h3>
+            </div>
+            <div class="list-group panel-body">
+                @foreach (var album in Model)
+                {
+                    <div class="col-md-3 img-thumbnail" style="height:90px;">
+                        <label for="album-with-id-@album.Id">
+                            <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = album.CoverImageId })" alt="Image not found" class="img-responsive" />
+                        </label>
+
+                        <input id="album-with-id-@album.Id" type="checkbox" class="album-select-input" data-imgid="@album.Id" name="Album@(album.Id)" value="@album.Id" />
+                    </div>
+                }
+                <div class="col-md-12 text-center">
+                    @Html.PagedListPager(Model,
+                        page => Url.Action("AlbumsChoiceGrid", "Album", new { page }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                            new AjaxOptions()
+                            {
+                                HttpMethod = "GET",
+                                UpdateTargetId = "album-choice-modal-grid"
+                            }
+                        ))
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -5,7 +5,7 @@
     using Data.ViewModels.Articles;
 
     using NewsSystem.Web.Areas.AdminPanel.Controllers.Base;
-
+    using PagedList;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -25,13 +25,17 @@
             return this.View();
         }
 
-        public ActionResult ArticlesList(long? categoryId)
+        [HttpGet]
+        public ActionResult ArticlesList(long? categoryId, int page = 1)
         {
+            this.ViewBag.CategoryId = categoryId;
             if (categoryId != null)
             {
-                return this.PartialView(this.ArticleService.Get((long)categoryId));
+                var collection = new PagedList<ArticleViewModel>(this.ArticleService.Get((long)categoryId), page, 5);
+                return this.PartialView(collection);
             }
-            return this.PartialView(this.ArticleService.GetAll());
+            var model = new PagedList<ArticleViewModel>(this.ArticleService.GetAll(), page, 5);
+            return this.PartialView(model);
         }
 
         [HttpGet]

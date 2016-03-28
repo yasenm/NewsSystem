@@ -82,6 +82,7 @@
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
     <Compile Include="Common\DescribableEntityViewModel.cs" />
+    <Compile Include="NSImages\CoverImageViewModel.cs" />
     <Compile Include="NSImages\NSImageCreateViewModel.cs" />
     <Compile Include="NSImages\NSImageEditViewModel.cs" />
     <Compile Include="NSImages\NSImageGridViewModel.cs" />

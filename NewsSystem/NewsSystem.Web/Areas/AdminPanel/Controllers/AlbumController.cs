@@ -8,7 +8,7 @@
     using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.ViewModels.Albums;
     using Base;
-
+    using PagedList;
     public class AlbumController : AdminBaseController
     {
         private IAlbumService AlbumService;
@@ -33,6 +33,12 @@
                 return this.PartialView(this.AlbumService.GetAlbumsByCategoryId((long)categoryId));
             }
             return this.PartialView(this.AlbumService.GetAlbums());
+        }
+        
+        public ActionResult AlbumsChoiceGrid(int page = 1)
+        {
+            var model = new PagedList<AlbumGridViewModel>(this.AlbumService.GetAlbums(), page, 20);
+            return this.PartialView(model);
         }
 
         [HttpGet]
