@@ -7,13 +7,13 @@ namespace NewsSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers : IMigrationMetadata
+    public sealed partial class StartConfigurationOfDatabaseModels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(StartConfigurationOfDatabaseModels));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603130628033_Added_CategoriesClass_Removed_AlbumCategories_CategoriesNowAreLinkedToAlbumsOnlySoonToOthers"; }
+            get { return "201603300615040_StartConfigurationOfDatabaseModels"; }
         }
         
         string IMigrationMetadata.Source

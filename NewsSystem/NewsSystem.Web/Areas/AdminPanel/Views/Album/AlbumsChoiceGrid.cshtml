@@ -20,8 +20,13 @@
                         <label for="album-with-id-@album.Id">
                             <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = album.CoverImageId })" alt="Image not found" class="img-responsive" />
                         </label>
-
-                        <input id="album-with-id-@album.Id" type="checkbox" class="album-select-input" data-imgid="@album.Id" name="Album@(album.Id)" value="@album.Id" />
+                        <input id="album-with-id-@album.Id"
+                               type="radio"
+                               @(this.ViewBag.SelectedId != null && this.ViewBag.SelectedId == album.Id ? "checked" : string.Empty)
+                               class="album-select-input"
+                               data-imgid="@album.Id"
+                               name="AlbumChoiceRadioButton"
+                               value="@album.Id" />
                     </div>
                 }
                 <div class="col-md-12 text-center">

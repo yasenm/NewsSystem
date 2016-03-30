@@ -67,7 +67,9 @@
                 </div>
             </div>
             <div class="col-md-4" id="album-cover-holder">
-                <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.CoverImageId })" alt="No cover photo for album found..." class="img-responsive img-rounded" />
+                <div>
+                    <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.CoverImageId })" alt="No cover photo for album found..." class="img-responsive img-rounded" />
+                </div>
             </div>
         }
     </div>

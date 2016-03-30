@@ -16,6 +16,11 @@ APP.Articles = (function () {
                 var chosenImageId = $(this).val();
                 $('#cover-image-input').val(chosenImageId);
             })
+
+            $(".album-select-input").change(function () {
+                var chosenAlbumId = $(this).val();
+                $('#album-selected-input').val(chosenAlbumId);
+            })
         }
     }
 }());

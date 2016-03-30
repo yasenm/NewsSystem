@@ -66,13 +66,15 @@
             return HttpNotFound();
         }
         
-        public ActionResult NSImagesCoverImageGrid(string tags, string searchText, int page = 1)
+        public ActionResult NSImagesCoverImageGrid(long? selectedId, string tags, string searchText, int page = 1)
         {
+            this.ViewBag.SelectedId = selectedId;
+
             if (page > 0)
             {
                 var nsPicturesCollection = this.NSImageService.GetImages(searchText, tags);
 
-                var model = new PagedList<NSImageGridViewModel>(nsPicturesCollection, page, 1);
+                var model = new PagedList<NSImageGridViewModel>(nsPicturesCollection, page, PagedListSettings.GlobalListCount);
 
                 return this.PartialView(model);
             }

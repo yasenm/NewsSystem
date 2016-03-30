@@ -21,6 +21,8 @@
 
         public List<CategoryCheckboxViewModel> ChosenCategories { get; set; }
 
+        public long? RelatedAlbumId { get; set; }
+
         [Range(1, long.MaxValue, ErrorMessage = "A choice of image is required!")]
         [Required(ErrorMessage = "A choice of image is required!")]
         public long CoverImageId { get; set; }

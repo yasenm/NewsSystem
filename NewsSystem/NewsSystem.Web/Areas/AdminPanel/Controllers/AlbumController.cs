@@ -1,14 +1,17 @@
 ﻿namespace NewsSystem.Web.Areas.AdminPanel.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
+    using Base;
 
+    using NewsSystem.Common.Constants;
     using NewsSystem.Data.Services.Contracts.Albums;
     using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.ViewModels.Albums;
-    using Base;
+
     using PagedList;
+
+    using System.Linq;
+    using System.Web.Mvc;
+
     public class AlbumController : AdminBaseController
     {
         private IAlbumService AlbumService;
@@ -35,9 +38,11 @@
             return this.PartialView(this.AlbumService.GetAlbums());
         }
         
-        public ActionResult AlbumsChoiceGrid(int page = 1)
+        public ActionResult AlbumsChoiceGrid(long? selectedId, int page = 1)
         {
-            var model = new PagedList<AlbumGridViewModel>(this.AlbumService.GetAlbums(), page, 20);
+            this.ViewBag.SelectedId = selectedId;
+
+            var model = new PagedList<AlbumGridViewModel>(this.AlbumService.GetAlbums(), page, PagedListSettings.GlobalListCount);
             return this.PartialView(model);
         }
 

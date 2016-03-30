@@ -43,6 +43,8 @@
 
         public bool IsQueuedForPublish { get; set; }
 
-        public long? CoverImageId { get; set; }
+        public long CoverImageId { get; set; }
+
+        public long? RelatedAlbumId { get; set; }
     }
 }

@@ -129,6 +129,7 @@ namespace NewsSystem.Data.Migrations
                     var category = new Category();
                     category.Title = StringGenerator.RandomStringWithSpaces(5, 40);
                     category.Description = StringGenerator.RandomStringWithSpaces(35, 400);
+                    category.Summary = StringGenerator.RandomStringWithSpaces(20, 150);
                     category.ParentId = null;
                     category.IsRoot = true;
 
@@ -173,6 +174,7 @@ namespace NewsSystem.Data.Migrations
                     newAlbum.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
                     newAlbum.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
                     newAlbum.Categories.Add(albumCategories[NumberGenerator.RandomNumber(0, albumCategories.Count - 1)]);
+                    newAlbum.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
 
                     this.Data.Albums.Add(newAlbum);
                     //context.Albums.AddOrUpdate(newAlbum);
@@ -192,6 +194,7 @@ namespace NewsSystem.Data.Migrations
                     var article = new Article();
                     article.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
                     article.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
+                    article.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
 
                     this.Data.Articles.Add(article);
                     //context.Articles.AddOrUpdate(article);
