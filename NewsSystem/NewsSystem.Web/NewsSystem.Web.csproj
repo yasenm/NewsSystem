@@ -223,6 +223,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\NSImageController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\TagController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\ThemeController.cs" />
     <Compile Include="Constants\Common\CommonStyles.cs" />
     <Compile Include="Constants\Common\CommonToastrSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -233,7 +234,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Contracts\IEmailHelper.cs" />
+    <Compile Include="Helpers\Contracts\IGridMvcHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\GridMvcHelper.cs" />
     <Compile Include="Helpers\UrlHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -303,6 +306,7 @@
     <Content Include="Content\site\Site.css" />
     <Content Include="Scripts\AdminPanel\albums\albums.js" />
     <Content Include="Scripts\AdminPanel\articles\articles.js" />
+    <Content Include="Scripts\AdminPanel\common\common-modal-triggers.js" />
     <Content Include="Scripts\AdminPanel\common\common-tags-js.js" />
     <Content Include="Scripts\AdminPanel\ns-images\ns-images.js" />
     <Content Include="Scripts\AdminPanel\plugins\bootstrap.js" />
@@ -361,6 +365,10 @@
     <Content Include="Areas\AdminPanel\Views\Shared\EditorTemplates\CategoryCheckboxViewModel.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Album\AlbumsChoiceGrid.cshtml" />
     <Content Include="Areas\AdminPanel\Views\NSImage\NSImagesCoverImageGrid.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Article\ArticlesTable.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Theme\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Theme\ThemesTable.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Theme\Create.cshtml" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

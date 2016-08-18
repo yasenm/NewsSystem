@@ -7,7 +7,7 @@
     using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.UnitOfWork;
     using NewsSystem.Data.ViewModels.Categories;
-
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -91,6 +91,9 @@
 
         private void SaveCategoryToCategorableEntity(ICategorableEntity tagableEntity, Category dbCategory)
         {
+            // Should make it more Generic!!!!
+            //Type entityTag = tagableEntity.GetType();
+
             var entityIsAlbum = tagableEntity as Album;
             if (entityIsAlbum != null)
             {

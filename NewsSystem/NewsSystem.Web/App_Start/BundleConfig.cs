@@ -59,6 +59,9 @@
 
             bundles.Add(new StyleBundle("~/Content/full-jquery-ui").IncludeDirectory(
                         "~/Content/themes/base", "*.css", true));
+
+            bundles.Add(new StyleBundle("~/Content/gridmvc").Include(
+                        "~/Content/Gridmvc.css"));
         }
 
         private static void RegisterScripts(BundleCollection bundles)
@@ -117,6 +120,15 @@
 
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-articles").Include(
                       "~/Scripts/AdminPanel/articles/articles.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin-panel-common-modal-triggers").Include(
+                      "~/Scripts/AdminPanel/common/common-modal-triggers.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
+                      //"~/Scripts/ladda-bootstrap/*.min.js",
+                      //"~/Scripts/URI.js",
+                      //"~/Scripts/gridmvc-ext.js",
+                      "~/Scripts/gridmvc.min.js"));
         }
 
         private static void RegisterClientSideScripts(BundleCollection bundles)

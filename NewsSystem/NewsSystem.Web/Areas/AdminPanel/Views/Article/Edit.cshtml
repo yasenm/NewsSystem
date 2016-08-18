@@ -5,6 +5,10 @@
 
 <div class="container-fluid">
     <div class="row">
+        @if (!string.IsNullOrEmpty(this.ViewBag.Error))
+        {
+            <h3>@this.ViewBag.Error</h3>
+        }
         @using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
@@ -14,19 +18,20 @@
             <div class="col-md-2 word-wraped">
                 @for (int i = 0; i < Model.ChosenCategories.Count; i++)
                 {
-                    @Html.HiddenFor(m => m.ChosenCategories[i].Title)
+                @Html.HiddenFor(m => m.ChosenCategories[i].Title)
 
-                    <h4>
-                        <strong>@Model.ChosenCategories[i].Title</strong>
-                    </h4>
+                <h4>
+                    <strong>@Model.ChosenCategories[i].Title</strong>
+                </h4>
                     for (int j = 0; j < Model.ChosenCategories[i].Children.Count; j++)
                     {
-                        <div>
-                            @Html.EditorFor(m => m.ChosenCategories[i].Children[j])
-                        </div>
+                <div>
+                    @Html.EditorFor(m => m.ChosenCategories[i].Children[j])
+                </div>
                     }
                 }
             </div>
+
             <div class="col-md-6">
                 <div class="list-group panel-body">
                     <div class="form-group">
@@ -45,6 +50,23 @@
                         @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
+                        @Html.LabelFor(m => m.IsMain, new { })
+                        @Html.CheckBoxFor(m => m.IsMain, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.IsMain, null, new { @class = "text-danger" })
+                    </div>
+                    @if (Model.IsMain)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.IsTopMain, new { })
+                            @Html.CheckBoxFor(m => m.IsTopMain, new { @class = "form-control" })
+                        </div>
+                    }
+                    @Html.ValidationMessageFor(m => m.IsTopMain, null, new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ChosenTags, new { @for = "tokenfield" })
+                        <input type="text" class="form-control" id="tokenfield" name="ChosenTags" value="@string.Join(", ", Model.ChosenTags.ToArray())" />
+                    </div>
+                    <div class="form-group">
                         @Html.HiddenFor(m => m.RelatedAlbumId, new { id = "album-selected-input", @class = "" })
                         <label for="AlbumChoice">Link album</label>
                         <input type="button" name="ChoseFromGalleries" id="AlbumChoice" class="btn btn-default" value="Albums" />
@@ -56,16 +78,15 @@
                         @Html.ValidationMessageFor(m => m.CoverImageId, null, new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div>
-                    <button type="submit" value="Edit" class="btn btn-default">Edit</button>
-                    <a href="@Url.Action("Index", "NSImage")" class="btn btn-sm btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-default">Save</button>
+                    <a href="@Url.Action("Index", "Article")" class="btn btn-sm btn-danger">Cancel</a>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div>
-                    <img src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.CoverImageId })" alt="No cover photo for album found..." class="img-responsive img-rounded" />
+                    <img id="cover-image-holder" src="@Url.Action("NSImage", "NSImage", new { Area = string.Empty, imageId = Model.CoverImageId })" alt="No cover photo for album found..." class="img-responsive img-rounded" />
                 </div>
             </div>
         }
@@ -75,6 +96,27 @@
 <div id="albums-grid-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <input type="text" id="albumSearchTextfield" name="AlbumSearchText" value="@(this.ViewBag.LastText != null ? this.ViewBag.LastText : string.Empty)" class="form-control" placeholder="By text..." />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="albumSearchTokenfield" name="AlbumSearchTags" value="" class="form-control" placeholder="By tags..." />
+                </div>
+                <div class="text-center">
+                    <span class="input-group-btn">
+                        <a href="@Url.Action("AlbumsChoiceGrid", "Album", new { selectedId = this.ViewBag.SelectedRelatedAlbumId })"
+                           class="btn btn-primary"
+                           id="search-albums-grid">
+                            <i class="fa fa-search"></i> Search
+                        </a>
+                    </span>
+                </div>
+            </div>
             <div id="album-choice-modal-grid">
                 @Html.Action("AlbumsChoiceGrid", "Album", new { selectedId = Model.RelatedAlbumId })
             </div>
@@ -85,6 +127,27 @@
 <div id="cover-image-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <input type="text" id="nsimagesSearchTextfield" name="NSImageSearchText" value="@(this.ViewBag.LastText != null ? this.ViewBag.LastText : string.Empty)" class="form-control" placeholder="By text..." />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="nsimagesSearchTokenfield" name="NSImageSearchTags" value="" class="form-control" placeholder="By tags..." />
+                </div>
+                <div class="text-center">
+                    <span class="input-group-btn">
+                        <a href="@Url.Action("NSImagesCoverImageGrid", "NSImage", new { selectedId = this.ViewBag.SelectedCoverImageId })"
+                           class="btn btn-primary"
+                           id="search-cover-images-grid">
+                            <i class="fa fa-search"></i> Search
+                        </a>
+                    </span>
+                </div>
+            </div>
             <div id="cover-image-modal-grid">
                 @Html.Action("NSImagesCoverImageGrid", "NSImage", new { selectedId = Model.CoverImageId })
             </div>
@@ -92,16 +155,19 @@
     </div>
 </div>
 
-
 @section scripts{
+    @Scripts.Render("~/bundles/admin-panel-common-modal-triggers")
     @Scripts.Render("~/bundles/admin-panel-articles")
     @Scripts.Render("~/bundles/tinymce")
-
     <script>
         $(document).ready(function () {
             APP.CommonTagsModule.init('@Url.AbsoluteAction("GetTags", "Tag")')
             APP.TinymceInitializer.basicInit();
-            APP.Articles.initCRUD();
+            APP.CommonTagsModule.initByElementId('@Url.AbsoluteAction("GetTags", "Tag")', 'nsimagesSearchTokenfield');
+            //APP.Articles.initCRUD();
+            APP.CommonModalTriggers.initCoverImageEvents();
+            APP.CommonModalTriggers.initAlbumSelectEvents();
+
         })
     </script>
 }

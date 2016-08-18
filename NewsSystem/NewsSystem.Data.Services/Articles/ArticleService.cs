@@ -16,20 +16,22 @@
     {
         public INewsSystemData Data { get; set; }
         private ICategoryService CategoryService { get; set; }
+        private ITagsService TagsService { get; set; }
 
-        public ArticleService(INewsSystemData data, ICategoryService categoryService)
+        public ArticleService(INewsSystemData data, ICategoryService categoryService, ITagsService tagsService)
         {
             this.Data = data;
             this.CategoryService = categoryService;
+            this.TagsService = tagsService;
         }
 
-        public IEnumerable<ArticleViewModel> GetAll()
+        public IQueryable<ArticleViewModel> GetAll()
         {
             var collection = this.Data.Articles
                 .All()
+                .OrderBy(a => a.CreatedOn)
                 .Project()
-                .To<ArticleViewModel>()
-                .ToList();
+                .To<ArticleViewModel>();
 
             return collection;
         }
@@ -57,23 +59,42 @@
         {
             try
             {
+                //var article = Mapper.Map<Article>(model);
                 var article = this.Data.Articles.GetById(model.Id);
                 article.Title = model.Title;
                 article.Description = model.Description;
                 article.Summary = model.Summary;
                 article.CoverImageId = model.CoverImageId;
                 article.RelatedAlbumId = model.RelatedAlbumId;
+                article.IsMain = model.IsMain;
+                article.IsTopMain = model.IsTopMain;
 
                 this.CategoryService.SaveCategorableEntityToCategories(article, model.ChosenCategories);
+                this.TagsService.SaveTagsToTagableEntity(article, model.ChosenTags);
 
                 this.Data.Articles.Update(article);
                 this.Data.SaveChanges();
+                if (article.IsTopMain)
+                {
+                    this.RemoveTopMainsAndKeepUpdated(article.Id);
+                }
                 return true;
             }
             catch (Exception e)
             {
                 return false;
                 throw;
+            }
+        }
+
+        private void RemoveTopMainsAndKeepUpdated(long id)
+        {
+            var topMainArticles = this.Data.Articles.All().Where(a => a.IsTopMain && a.Id != id).ToList();
+            foreach (var article in topMainArticles)
+            {
+                article.IsTopMain = false;
+                this.Data.Articles.Update(article);
+                this.Data.SaveChanges();
             }
         }
 

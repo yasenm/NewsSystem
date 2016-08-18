@@ -9,6 +9,14 @@
 
     public class ArticleCreateViewModel : DescribableEntityViewModel, IMapFrom<Article>
     {
+        public bool IsMain { get; set; }
+
+        public bool IsTopMain { get; set; }
+
         public List<CategoryCheckboxViewModel> ChosenCategories { get; set; }
+
+        public long CoverImageId { get; set; }
+
+        public long? ThemeId { get; set; }
     }
 }

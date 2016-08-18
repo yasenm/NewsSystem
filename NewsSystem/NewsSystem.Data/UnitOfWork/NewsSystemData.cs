@@ -36,6 +36,14 @@
             }
         }
 
+        public IRepository<Theme> Themes
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<Theme>();
+            }
+        }
+
         public IRepository<Album> Albums
         {
             get
@@ -65,6 +73,22 @@
             get
             {
                 return this.GetDeletableEntityRepository<NSImage>();
+            }
+        }
+
+        public IRepository<Question> Questions
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<Question>();
+            }
+        }
+
+        public IRepository<Answer> Answers
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<Answer>();
             }
         }
 

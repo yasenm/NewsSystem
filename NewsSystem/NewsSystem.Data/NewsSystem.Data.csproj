@@ -57,6 +57,18 @@
     <Compile Include="Migrations\201603300615040_StartConfigurationOfDatabaseModels.Designer.cs">
       <DependentUpon>201603300615040_StartConfigurationOfDatabaseModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604150405250_IsMain_IsTopMain_AddedForArticles.cs" />
+    <Compile Include="Migrations\201604150405250_IsMain_IsTopMain_AddedForArticles.Designer.cs">
+      <DependentUpon>201604150405250_IsMain_IsTopMain_AddedForArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604280438311_Added_Theme_Entity.cs" />
+    <Compile Include="Migrations\201604280438311_Added_Theme_Entity.Designer.cs">
+      <DependentUpon>201604280438311_Added_Theme_Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608181849387_Added_Questions_Answers_Entities_And_IsVideoAndVideoUrl_To_Articles.cs" />
+    <Compile Include="Migrations\201608181849387_Added_Questions_Answers_Entities_And_IsVideoAndVideoUrl_To_Articles.Designer.cs">
+      <DependentUpon>201608181849387_Added_Questions_Answers_Entities_And_IsVideoAndVideoUrl_To_Articles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +98,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603300615040_StartConfigurationOfDatabaseModels.resx">
       <DependentUpon>201603300615040_StartConfigurationOfDatabaseModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604150405250_IsMain_IsTopMain_AddedForArticles.resx">
+      <DependentUpon>201604150405250_IsMain_IsTopMain_AddedForArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604280438311_Added_Theme_Entity.resx">
+      <DependentUpon>201604280438311_Added_Theme_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608181849387_Added_Questions_Answers_Entities_And_IsVideoAndVideoUrl_To_Articles.resx">
+      <DependentUpon>201608181849387_Added_Questions_Answers_Entities_And_IsVideoAndVideoUrl_To_Articles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

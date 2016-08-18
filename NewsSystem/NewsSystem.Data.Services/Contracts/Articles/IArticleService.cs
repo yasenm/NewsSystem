@@ -1,12 +1,12 @@
 ﻿namespace NewsSystem.Data.Services.Contracts
 {
     using System.Collections.Generic;
-
+    using System.Linq;
     using ViewModels.Articles;
 
     public interface IArticleService
     {
-        IEnumerable<ArticleViewModel> GetAll();
+        IQueryable<ArticleViewModel> GetAll();
 
         IEnumerable<ArticleViewModel> Get(long categoryId);
 

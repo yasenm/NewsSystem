@@ -3,13 +3,8 @@
 
 namespace NewsSystem.Web.App_Start
 {
-    using System;
-    using System.Web;
-
+    using Data.Services.Themes;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
 
     using NewsSystem.Data;
     using NewsSystem.Data.Services.Albums;
@@ -19,23 +14,32 @@ namespace NewsSystem.Web.App_Start
     using NewsSystem.Data.Services.Contracts.Category;
     using NewsSystem.Data.Services.Contracts.NSImages;
     using NewsSystem.Data.Services.Images;
+    using NewsSystem.Data.Services.Tags;
     using NewsSystem.Data.UnitOfWork;
-    using Data.Services.Tags;
 
-    public static class NinjectWebCommon 
+    using Ninject;
+    using Ninject.Web.Common;
+
+    using System;
+    using System.Web;
+
+    using Web.Helpers;
+    using Web.Helpers.Contracts;
+
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -43,7 +47,7 @@ namespace NewsSystem.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -80,6 +84,9 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<ICategoryService>().To<CategoryService>();
             kernel.Bind<ITagsService>().To<TagsService>();
             kernel.Bind<INSImageService>().To<NSImageService>();
-        }        
+            kernel.Bind<IThemeService>().To<ThemeService>();
+
+            kernel.Bind<IGridMvcHelper>().To<GridMvcHelper>();
+        }
     }
 }

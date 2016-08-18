@@ -23,6 +23,14 @@
         [Key]
         public long Id { get; set; }
 
+        public bool IsVideoNews { get; set; }
+
+        public string VideoUrl { get; set; }
+
+        public bool IsMain { get; set; }
+
+        public bool IsTopMain { get; set; }
+
         public virtual ICollection<Category> Categories
         {
             get { return this.categories; }
@@ -46,5 +54,9 @@
         public long CoverImageId { get; set; }
 
         public long? RelatedAlbumId { get; set; }
+
+        public long? ThemeId { get; set; }
+
+        public virtual Theme Theme { get; set; }
     }
 }

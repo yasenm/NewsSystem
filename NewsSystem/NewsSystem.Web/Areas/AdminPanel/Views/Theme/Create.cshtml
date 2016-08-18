@@ -1,0 +1,36 @@
+﻿@using NewsSystem.Data.ViewModels.Themes
+
+@model ThemeCreateViewModel
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Create", "Theme", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-10">
+                <div class="list-group panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title, new { })
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description, new { })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Summary, new { })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" value="Create" class="btn btn-default">Create</button>
+                    <a href="@Url.Action("Index", "Theme")" class="btn btn-sm btn-danger">Cancel</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

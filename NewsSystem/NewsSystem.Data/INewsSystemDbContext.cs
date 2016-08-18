@@ -11,6 +11,8 @@
 
         IDbSet<Article> Articles { get; set; }
 
+        IDbSet<Theme> Themes { get; set; }
+
         IDbSet<NSImage> NSImages { get; set; }
 
         IDbSet<Tag> Tags { get; set; }
@@ -18,6 +20,10 @@
         IDbSet<Album> Albums { get; set; }
 
         IDbSet<Category> Categories { get; set; }
+
+        IDbSet<Question> Questions { get; set; }
+
+        IDbSet<Answer> Answers { get; set; }
 
         DbContext DbContext { get; }
 

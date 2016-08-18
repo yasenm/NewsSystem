@@ -22,6 +22,8 @@
 
         public IDbSet<Article> Articles { get; set; }
 
+        public IDbSet<Theme> Themes { get; set; }
+
         public IDbSet<Album> Albums { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
@@ -29,6 +31,10 @@
         public IDbSet<Tag> Tags { get; set; }
 
         public IDbSet<NSImage> NSImages { get; set; }
+
+        public IDbSet<Question> Questions { get; set; }
+
+        public IDbSet<Answer> Answers { get; set; }
 
         public static NewsSystemDbContext Create()
         {

@@ -15,7 +15,11 @@
     {
         public long Id { get; set; }
 
-        public ICollection<string> Tags { get; set; }
+        public bool IsMain { get; set; }
+
+        public bool IsTopMain { get; set; }
+
+        public ICollection<string> ChosenTags { get; set; }
 
         public List<long> CategoriesIds { get; set; }
 
@@ -30,7 +34,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Article, ArticleEditViewModel>()
-                .ForMember(m => m.Tags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)))
+                .ForMember(m => m.ChosenTags, opt => opt.MapFrom(src => src.Tags.Select(t => t.Name)))
                 .ForMember(m => m.CategoriesIds, opt => opt.MapFrom(src => src.Categories.Select(c => c.Id)));
         }
     }

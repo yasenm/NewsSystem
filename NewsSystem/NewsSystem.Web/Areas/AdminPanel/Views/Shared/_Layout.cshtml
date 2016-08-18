@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/AdminPanel/admin-side-css")
     @Styles.Render("~/Content/full-jquery-ui")
     @Styles.Render("~/Content/toastr")
+    @Styles.Render("~/Content/gridmvc")
     @Scripts.Render("~/bundles/common-scripts")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -136,6 +137,9 @@
                         <a href="@Url.Action("Index", "Article")"><i class="fa fa-fw fa-dashboard"></i> Articles</a>
                     </li>
                     <li>
+                        <a href="@Url.Action("Index", "Theme")"><i class="fa fa-fw fa-table"></i> Themes</a>
+                    </li>
+                    <li>
                         <a href="@Url.Action("Index", "Album")"><i class="fa fa-fw fa-bar-chart-o"></i> Albums</a>
                     </li>
                     <li>
@@ -161,12 +165,13 @@
     @Scripts.Render("~/bundles/jquery-unobtrusive")
     @Scripts.Render("~/bundles/admin-panel-bootstrap")
     @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)
-    <script>
+    @*<script>
         $('.side-nav li a').click(function () {
             $('.side-nav li').removeClass('active');
             $(this).parent().addClass('active');
         })
-    </script>
+    </script>*@
 </body>
 </html>

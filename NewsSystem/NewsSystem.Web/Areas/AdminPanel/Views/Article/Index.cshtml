@@ -1,14 +1,12 @@
 ﻿<div class="row">
-    <div class="col-md-2">
-        @Html.Action("CategoryTree", "Category", new { Action = "ArticlesList", Controller = "Article", UpdateTargetId = "articles-list" })
-    </div>
-    <div id="articles-list" class="col-md-8">
-        @Html.Action("ArticlesList", "Article", new { })
-    </div>
-    <div class="col-md-2 text-center">
+    <div class="col-md-10 col-md-offset-1 text-center">
         <div>
-            <a href="@Url.Action("Create", "Article", null)" class="btn btn-default btn-block">Add article</a>
+            <a href="@Url.Action("Create", "Article", null)" class="btn btn-primary">Add article</a>
         </div>
-        <br />
+    </div>
+</div>
+<div class="row">
+    <div id="articles-list" class="col-md-12">
+        @Html.Action("ArticlesTable", "Article", new { })
     </div>
 </div>

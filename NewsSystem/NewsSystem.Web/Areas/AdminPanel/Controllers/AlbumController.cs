@@ -38,12 +38,17 @@
             return this.PartialView(this.AlbumService.GetAlbums());
         }
         
-        public ActionResult AlbumsChoiceGrid(long? selectedId, int page = 1)
+        public ActionResult AlbumsChoiceGrid(long? selectedId, string searchTags, string searchText, int page = 1)
         {
-            this.ViewBag.SelectedId = selectedId;
+            this.ViewBag.SelectedRelatedAlbumId = selectedId;
 
-            var model = new PagedList<AlbumGridViewModel>(this.AlbumService.GetAlbums(), page, PagedListSettings.GlobalListCount);
-            return this.PartialView(model);
+            if (page > 0)
+            {
+                var model = new PagedList<AlbumGridViewModel>(this.AlbumService.GetAlbumsBySearchText(searchText, searchTags), page, PagedListSettings.GlobalListCount);
+                return this.PartialView(model);
+            }
+
+            return HttpNotFound();
         }
 
         [HttpGet]
@@ -98,7 +103,7 @@
                 var updateSucceded = this.AlbumService.EditAlbum(editModel);
                 if (updateSucceded)
                 {
-                    return this.View(editModel);
+                    return this.RedirectToAction("Index");
                 }
             }
 

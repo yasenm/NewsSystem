@@ -1,0 +1,33 @@
+﻿@using NewsSystem.Data.ViewModels.Themes
+@using NewsSystem.Common.Constants
+
+@using GridMvc.Html
+
+@model IQueryable<ThemeBasicViewModel>
+
+@(
+    Html.Grid(Model).Named("ThemesTableGrid")
+    .Columns(columns =>
+    {
+        columns.Add(field => field.Id);
+
+        columns.Add(field => field.Title);
+
+        columns.Add(field => field.Summary);
+
+        //columns.Add(field => field.CreatedOn);
+
+        //columns.Add().Titled("Edit")
+        //    .Sanitized(false)
+        //    .Encoded(false)
+        //    .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Article", new { articleId = o.Id }, new { @class = "btn btn-success" }).ToHtmlString());
+
+        //columns.Add().Titled("Delete")
+        //    .Sanitized(false)
+        //    .Encoded(false)
+        //    .RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Article", new { articleId = o.Id }, new { @class = "btn btn-danger" }).ToHtmlString());
+    })
+    .Sortable(true)
+    .Filterable(true)
+    .WithPaging(5, 4)
+)
