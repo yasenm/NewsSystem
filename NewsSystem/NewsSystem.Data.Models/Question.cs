@@ -4,7 +4,7 @@
 
     using NewsSystem.Data.Common.Models;
 
-    public class Question : DeletableEntity
+    public class Question : DescribableEntity
     {
         private ICollection<Answer> answers;
 
@@ -14,8 +14,6 @@
         }
 
         public int Id { get; set; }
-
-        public string Description { get; set; }
 
         public virtual ICollection<Answer> Answers
         {

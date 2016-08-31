@@ -98,6 +98,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\SearchNSImagesGridViewModel.cs" />
     <Compile Include="Search\SearchViewModel.cs" />
+    <Compile Include="Surveys\AnswerAdminViewModel.cs" />
+    <Compile Include="Surveys\AnswersCollectionAdminViewModel.cs" />
+    <Compile Include="Surveys\AnswerViewModel.cs" />
+    <Compile Include="Surveys\QuestionAdminViewModel.cs" />
+    <Compile Include="Surveys\QuestionViewModel.cs" />
     <Compile Include="Themes\ThemeBasicViewModel.cs" />
     <Compile Include="Themes\ThemeCreateViewModel.cs" />
     <Compile Include="Tokens\TokenViewAbstractModel.cs" />

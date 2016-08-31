@@ -92,7 +92,8 @@
         private void SaveCategoryToCategorableEntity(ICategorableEntity tagableEntity, Category dbCategory)
         {
             // Should make it more Generic!!!!
-            //Type entityTag = tagableEntity.GetType();
+            //var type = tagableEntity.GetType();
+            //this.Data.GetDeletableEntityRepository<tagableEntity as de>()
 
             var entityIsAlbum = tagableEntity as Album;
             if (entityIsAlbum != null)

@@ -89,6 +89,8 @@
     <Compile Include="Articles\ArticleService.cs" />
     <Compile Include="Contracts\Albums\IAlbumService.cs" />
     <Compile Include="Contracts\NSImages\INSImageService.cs" />
+    <Compile Include="Contracts\Surveys\IAnswersService.cs" />
+    <Compile Include="Contracts\Surveys\IQuestionsService.cs" />
     <Compile Include="Contracts\Tags\ITagsService.cs" />
     <Compile Include="Contracts\Themes\IThemeService.cs" />
     <Compile Include="Contracts\Users\IAccountService.cs" />
@@ -97,6 +99,8 @@
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Images\NSImageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Surveys\AnswersService.cs" />
+    <Compile Include="Surveys\QuestionsService.cs" />
     <Compile Include="Tags\TagsService.cs" />
     <Compile Include="Themes\ThemeService.cs" />
     <Compile Include="Users\AccountService.cs" />

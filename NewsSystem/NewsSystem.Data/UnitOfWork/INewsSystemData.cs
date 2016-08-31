@@ -1,5 +1,6 @@
 ﻿namespace NewsSystem.Data.UnitOfWork
 {
+    using Common.Models;
     using NewsSystem.Data.Common.Repository;
     using NewsSystem.Data.Models;
 

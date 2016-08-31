@@ -2,11 +2,9 @@
 {
     using NewsSystem.Data.Common.Models;
 
-    public class Answer : DeletableEntity
+    public class Answer : DescribableEntity
     {
         public int Id { get; set; }
-
-        public string Description { get; set; }
 
         public bool ChosenCount { get; set; }
 

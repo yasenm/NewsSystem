@@ -124,6 +124,9 @@
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-common-modal-triggers").Include(
                       "~/Scripts/AdminPanel/common/common-modal-triggers.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/survey").Include(
+                      "~/Scripts/AdminPanel/survey/survey.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
                       //"~/Scripts/ladda-bootstrap/*.min.js",
                       //"~/Scripts/URI.js",

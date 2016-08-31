@@ -1,0 +1,18 @@
+﻿@using NewsSystem.Data.ViewModels.Surveys
+
+@model QuestionViewModel
+
+<div class="list-group panel-body">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { })
+        @Html.DisplayFor(m => m.Title, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { })
+        @Html.DisplayFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Summary, new { })
+        @Html.DisplayFor(m => m.Summary, new { @class = "form-control" })
+    </div>
+</div>

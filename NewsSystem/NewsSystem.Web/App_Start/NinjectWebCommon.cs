@@ -3,6 +3,8 @@
 
 namespace NewsSystem.Web.App_Start
 {
+    using Data.Services.Contracts.Surveys;
+    using Data.Services.Surveys;
     using Data.Services.Themes;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -85,6 +87,8 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<ITagsService>().To<TagsService>();
             kernel.Bind<INSImageService>().To<NSImageService>();
             kernel.Bind<IThemeService>().To<ThemeService>();
+            kernel.Bind<IQuestionsService>().To<QuestionsService>();
+            kernel.Bind<IAnswersService>().To<AnswersService>();
 
             kernel.Bind<IGridMvcHelper>().To<GridMvcHelper>();
         }

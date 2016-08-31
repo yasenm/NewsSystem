@@ -37,6 +37,43 @@ namespace NewsSystem.Data.Migrations
             this.AlbumCategoriesSeed();
             this.AlbumsSeed();
             this.TokenNSImagesSeed();
+            this.QuestionsSeed();
+        }
+
+        private void QuestionsSeed()
+        {
+            if (!this.Data.Context.Questions.Any())
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    var question = new Question();
+                    question.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
+                    question.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
+                    question.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
+
+                    this.Data.Questions.Add(question);
+                    this.Data.SaveChanges();
+
+                    var answersCount = NumberGenerator.RandomNumber(1, 6);
+                    for (int j = 0; j < answersCount; j++)
+                    {
+                        AnswerByQuestionIdSeed(question.Id);
+                    }
+                }
+
+            }
+        }
+
+        private void AnswerByQuestionIdSeed(int questionId)
+        {
+            var answer = new Answer();
+            answer.QuestionId = questionId;
+            answer.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
+            answer.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
+            answer.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
+
+            this.Data.Answers.Add(answer);
+            this.Data.SaveChanges();
         }
 
         private void SeedUserRoles(NewsSystemDbContext context)
@@ -88,7 +125,8 @@ namespace NewsSystem.Data.Migrations
         {
             for (int i = 0; i < usersCount; i++)
             {
-                User newUser = new User {
+                User newUser = new User
+                {
                     UserName = StringGenerator.RandomStringWithoutSpaces(6, 20),
                     Email = StringGenerator.RandomStringWithoutSpaces(6, 20) + "@newssystem.com",
                 };
@@ -197,11 +235,9 @@ namespace NewsSystem.Data.Migrations
                     article.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
 
                     this.Data.Articles.Add(article);
-                    //context.Articles.AddOrUpdate(article);
                 }
 
                 this.Data.SaveChanges();
-                //context.SaveChanges();
             }
         }
     }
