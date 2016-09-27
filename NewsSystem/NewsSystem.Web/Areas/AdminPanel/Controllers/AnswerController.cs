@@ -21,38 +21,57 @@
             return View();
         }
 
-        //[HttpGet]
-        //public ActionResult AnswerAddPartial()
-        //{
-        //    var model = new AnswerAdminViewModel();
-        //    return this.PartialView(model);
-        //}
-        
+        [HttpGet]
+        public ActionResult AnswersList(int questionId)
+        {
+            var model = this.AnswersService.GetAllAnswersForQuestion(questionId);
+            return this.PartialView("AnswersList", model);
+        }
+
         //[HttpGet]
         //public ActionResult AddAnswersToQuestion(int questionId)
         //{
         //    var model = this.QuestionService.GetQuestionById(questionId);
         //    return this.View(model);
         //}
-        
+
         //public ActionResult AddAnswersToQuestionListPartial(int questionId)
         //{
         //    var model = this.AnswersService.GetAllAnswersForQuestion(questionId);
         //    return this.PartialView(model);
         //}
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public ActionResult Add(int questionId, string aDescription)
-        //{
-        //    var newAnswer = new AnswerAdminViewModel
-        //    {
-        //        Description = aDescription,
-        //        QuestionId = questionId
-        //    };
+        [HttpPost]
+        public ActionResult Add(int questionId, string aDescription)
+        {
+            var newAnswer = new AnswerAdminViewModel
+            {
+                Description = aDescription,
+                QuestionId = questionId
+            };
 
-        //    this.AnswersService.Create(newAnswer);
-        //    return this.AddAnswersToQuestionListPartial(questionId);
-        //}
+
+            if (this.AnswersService.Create(newAnswer))
+            {
+                return this.AnswersList(questionId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Remove(int answerId, int questionId)
+        {
+            if (this.AnswersService.Delete(answerId))
+            {
+                return this.AnswersList(questionId);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(400);
+            }
+        }
     }
 }

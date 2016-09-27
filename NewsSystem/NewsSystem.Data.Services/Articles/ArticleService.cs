@@ -120,5 +120,20 @@
                 throw;
             }
         }
+
+        public bool Delete(long articleId)
+        {
+            try
+            {
+                this.Data.Articles.Delete(articleId);
+                this.Data.SaveChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

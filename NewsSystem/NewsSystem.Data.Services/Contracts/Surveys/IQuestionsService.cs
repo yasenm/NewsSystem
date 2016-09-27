@@ -10,6 +10,8 @@
 
         QuestionViewModel GetQuestionById(int id);
 
+        QuestionAdminViewModel GetQuestionForEditId(int id);
+
         QuestionAdminViewModel Create(QuestionAdminViewModel model);
 
         bool Edit(QuestionAdminViewModel model);

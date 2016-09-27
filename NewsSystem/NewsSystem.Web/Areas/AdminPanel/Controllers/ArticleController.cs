@@ -111,9 +111,9 @@
         
         public ActionResult Delete(long articleId)
         {
-            if (true)
+            if (this.ArticleService.Delete(articleId))
             {
-                return this.Content("Delete successfull!");
+                return RedirectToAction("Index");
             }
             return this.RedirectToRoute(this.HttpContext.Request.Url.AbsolutePath, new { });
         }

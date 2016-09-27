@@ -109,6 +109,9 @@
                       //"~/Scripts/AdminPanel/plugins/morris/morris-data.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
+                      "~/Scripts/bootbox.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
                       "~/Scripts/tinymce/tinymce.js"));
 

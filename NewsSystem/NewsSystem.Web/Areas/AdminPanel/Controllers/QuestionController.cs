@@ -49,6 +49,29 @@
         }
 
         [HttpGet]
+        public ActionResult Edit(int qId)
+        {
+            var model = this.QuestionService.GetQuestionForEditId(qId);
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(QuestionAdminViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var updatedModel = this.QuestionService.Edit(model);
+                if (updatedModel)
+                {
+                    //return this.RedirectToAction("AddAnswers", "Answer", new { questionId = updatedModel.Id });
+                }
+            }
+
+            return this.View(model);
+        }
+
+        [HttpGet]
         public ActionResult QuestionDetails(int questionId)
         {
             var model = this.QuestionService.GetQuestionById(questionId);

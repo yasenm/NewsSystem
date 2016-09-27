@@ -6,39 +6,127 @@ APP.Survey = (function () {
         answerToAddContainerSelector = '.answer-to-add-container',
         answerAddBtnSelector = '.add-answer-btn',
         answerRemoveBtnSelector = '.remove-answer',
-            
+
         initAnswersPartial = function () {
             $(answerRemoveBtnSelector).click(function (e) {
                 e.preventDefault();
                 var $this = $(this);
                 $this.parent().parent().html(' ').hide();
             })
-        };
+        },
+
+        attachRemoveAnswerEvent = function (callbackEventHandler) {
+            $('.remove-answer-btn').on('click', function (e) {
+                e.preventDefault();
+                var $this = $(this);
+                var link = $this.attr("href");
+                var questionId = $this.data("questionid");
+                var answerId = $this.data("answerid");
+
+                bootbox.confirm({
+                    message: "Are you sure you want to remove this answer?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            var data = {
+                                answerId: answerId,
+                                questionId: questionId
+                            };
+
+                            APP.HttpRequester.postHTML(link, data)
+                                .success(function (success) {
+                                    $('#answers-list').html(success);
+                                    callbackEventHandler(callbackEventHandler);
+                                    toastr.success("Answer removed!");
+                                }).error(function (error) {
+                                    toastr.error("Something went wrong!");
+                                })
+                        }
+                    }
+                });
+            })
+        }
 
     return {
         init: function () {
-            $(answerAddBtnSelector).click(function (e) {
+            $('#add-answer-popup').on('click', function (e) {
                 e.preventDefault();
-                var nextAnswerFormUrl = $(this).attr('href');
-                APP.HttpRequester.getHTML(nextAnswerFormUrl)
-                    .success(function (success) {
-                        $(answerContainerSelector).html($(answerContainerSelector).html() + success);
-                        initAnswersPartial();
-                    })
-                    .error(function (error) {
-                        alert('Adding answer form went wrong!');
-                    });
+                var $this = $(this);
+                var link = $this.attr("href");
+                var questionId = $this.data("questionid");
+                console.log(link);
+
+                bootbox.prompt({
+                    title: "Add answer!",
+                    inputType: 'text',
+                    callback: function (result) {
+                        var data = {
+                            questionId: questionId,
+                            aDescription: result
+                        };
+                        console.log(data);
+                        APP.HttpRequester.postHTML(link, data)
+                            .success(function (success) {
+                                $('#answers-list').html(success);
+                                attachRemoveAnswerEvent(attachRemoveAnswerEvent);
+                                toastr.success("Answer added!");
+                            }).error(function (error) {
+                                toastr.error("Something went wrong!");
+                            })
+
+                        console.log(result);
+                    }
+                });
             });
 
-            $(questionCreateBtnSelector).click(function () {
-                var answers = [];
-                $('.answer-description').each(function () {
-                    answers.push({ Description: $(this).val() });
-                })
-                console.log(answers);
-            });
+            attachRemoveAnswerEvent(attachRemoveAnswerEvent);
+            //$('.remove-answer-btn').on('click', function (e) {
+            //    e.preventDefault();
+            //    var $this = $(this);
+            //    var link = $this.attr("href");
+            //    var questionId = $this.data("questionid");
+            //    var answerId = $this.data("answerid");
 
-            initAnswersPartial();
+            //    bootbox.confirm({
+            //        message: "Are you sure you want to remove this answer?",
+            //        buttons: {
+            //            confirm: {
+            //                label: 'Yes',
+            //                className: 'btn-success'
+            //            },
+            //            cancel: {
+            //                label: 'No',
+            //                className: 'btn-danger'
+            //            }
+            //        },
+            //        callback: function (result) {
+            //            if (result) {
+            //                var data = {
+            //                    answerId: answerId,
+            //                    questionId: questionId
+            //                };
+
+            //                APP.HttpRequester.postHTML(link, data)
+            //                    .success(function (success) {
+            //                        $('#answers-list').html(success);
+            //                        attachRemoveAnswerEvent();
+            //                        toastr.success("Answer removed!");
+            //                    }).error(function (error) {
+            //                        toastr.error("Something went wrong!");
+            //                    })
+            //            }
+            //        }
+            //    });
+            //})
         }
     }
 

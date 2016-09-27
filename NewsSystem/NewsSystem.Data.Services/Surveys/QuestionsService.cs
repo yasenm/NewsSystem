@@ -95,5 +95,13 @@
                 return false;
             }
         }
+
+        public QuestionAdminViewModel GetQuestionForEditId(int id)
+        {
+            var question = this.Data.Questions.GetById(id);
+            var model = Mapper.Map<QuestionAdminViewModel>(question);
+
+            return model;
+        }
     }
 }

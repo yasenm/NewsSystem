@@ -15,17 +15,18 @@
 
         columns.Add(field => field.Summary);
 
-        columns.Add(field => field.CreatedOn);
+        columns.Add(field => field.CreatedOn)
+        .RenderValueAs(v => string.Format("{0:d/M/yyyy HH:mm:ss}", v.CreatedOn));
 
-        //columns.Add().Titled("Edit")
-        //    .Sanitized(false)
-        //    .Encoded(false)
-        //    .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Article", new { articleId = o.Id }, new { @class = "btn btn-success" }).ToHtmlString());
+        columns.Add().Titled("Edit")
+            .Sanitized(false)
+            .Encoded(false)
+            .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Question", new { qId = o.Id }, new { @class = "btn btn-success" }).ToHtmlString());
 
-        //columns.Add().Titled("Delete")
-        //    .Sanitized(false)
-        //    .Encoded(false)
-        //    .RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Article", new { articleId = o.Id }, new { @class = "btn btn-danger" }).ToHtmlString());
+        columns.Add().Titled("Delete")
+            .Sanitized(false)
+            .Encoded(false)
+            .RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Question", new { articleId = o.Id }, new { @class = "btn btn-danger" }).ToHtmlString());
     })
     .Sortable(true)
     .Filterable(true)

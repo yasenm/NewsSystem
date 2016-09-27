@@ -25,18 +25,27 @@ APP.HttpRequester = (function () {
         return makeRequest(url, 'PUT', {}, headers);
     },
 
-    getHTML = function (url, data) {
+    makeHTMLRequest = function myfunction(url, data, method) {
         return $.ajax({
             url: url,
             data: data,
-            type: 'GET',
+            type: method,
         })
+    },
+
+    getHTML = function (url, data) {
+        return makeHTMLRequest(url, data, "GET");
+    },
+
+    postHTML = function (url, data) {
+        return makeHTMLRequest(url, data, "POST");
     }
 
     return {
         getData: getData,
         postData: postData,
         putData: putData,
-        getHTML: getHTML
+        getHTML: getHTML,
+        postHTML: postHTML
     }
 }())

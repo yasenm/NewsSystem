@@ -15,5 +15,7 @@
         bool Create(ArticleCreateViewModel model);
 
         bool Edit(ArticleEditViewModel model);
+
+        bool Delete(long articleId);
     }
 }

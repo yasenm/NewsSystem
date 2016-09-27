@@ -73,7 +73,7 @@
             {
                 this.Data.Answers.Delete(id);
                 this.Data.SaveChanges();
-                return false;
+                return true;
             }
             catch (Exception e)
             {
