@@ -80,8 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articles\NewsDetailsClientViewModel.cs" />
+    <Compile Include="Articles\NewsEditorsChoiceOverviewClientViewModel.cs" />
+    <Compile Include="Articles\NewsOverviewClientViewModel.cs" />
     <Compile Include="Articles\ArticleCreateViewModel.cs" />
     <Compile Include="Articles\ArticleEditViewModel.cs" />
+    <Compile Include="Articles\NewsPopularOverviewClientViewModel.cs" />
     <Compile Include="Categories\CategoryCheckboxViewModel.cs" />
     <Compile Include="Categories\CategoryDDLViewModel.cs" />
     <Compile Include="Categories\CategoryViewModel.cs" />

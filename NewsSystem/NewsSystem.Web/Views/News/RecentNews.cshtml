@@ -1,0 +1,19 @@
+﻿@using NewsSystem.Data.ViewModels.Articles
+
+@model IEnumerable<NewsOverviewClientViewModel>
+
+<h5 class="head">in recent news</h5>
+@foreach (var news in Model)
+{
+    <div class="article">
+        <h6>@String.Join(", ", news.CategoriesAssotiatied)</h6>
+        <a class="title" href="@Url.Action("Details", "News", new { id = news.Id })">
+            @news.Title
+        </a>
+        <a href="@Url.Action("Details", "News", new { id = news.Id })">
+            @Html.DisplayFor(m => news.CoverImage)
+            @*<img src="@Url.Action("NSImage", "NSImage", new { imageId = news.CoverImage.Id })" alt="" />*@
+        </a>
+        <p>@Html.Raw(news.Summary)</p>
+    </div>
+}

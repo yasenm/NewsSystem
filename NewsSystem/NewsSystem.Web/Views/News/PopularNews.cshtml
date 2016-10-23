@@ -1,0 +1,19 @@
+﻿@using NewsSystem.Data.ViewModels.Articles
+
+@model IEnumerable<NewsPopularOverviewClientViewModel>
+
+<div class="content-right-top">
+    <h5 class="head">Popular</h5>
+    @foreach (var news in Model)
+    {
+        <a href="@Url.Action("Details", "News", new { id = news.Id })">
+            <div class="editor text-center">
+                <h3>@news.Title</h3>
+                <p>@Html.Raw(news.Summary)</p>
+                <label>@((DateTime.Now - news.CreatedOn).Days) Days ago</label>
+                <span></span>
+            </div>
+        </a>
+
+    }
+</div>

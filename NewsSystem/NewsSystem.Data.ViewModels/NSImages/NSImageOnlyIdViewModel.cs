@@ -1,10 +1,11 @@
 ﻿namespace NewsSystem.Data.ViewModels.NSImages
 {
-    using NewsSystem.Data.Infrastructure.Mapping;
-    using NewsSystem.Data.Models;
+    using Infrastructure.Mapping;
+    using Models;
 
     public class NSImageOnlyIdViewModel : IMapFrom<NSImage>
     {
         public long Id { get; set; }
+        public string ImgTagClasses { get; set; }
     }
 }

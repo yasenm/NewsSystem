@@ -1,0 +1,25 @@
+﻿@using NewsSystem.Data.ViewModels.Articles
+
+@model IEnumerable<NewsEditorsChoiceOverviewClientViewModel>
+
+<div class="editors-pic-grids">
+    <h5>Editors Pick</h5>
+    @foreach (var news in Model)
+    {
+        <div class="editors-pic">
+            <div class="e-pic">
+                <a href="@Url.Action("Details", "News", new { id = news.Id })">
+                    @Html.DisplayFor(m => news.CoverImage)
+                </a>
+            </div>
+            <div class="e-pic-info">
+                <a href="@Url.Action("Details", "News", new { id = news.Id })">
+                    @news.Title
+                </a>
+                <span></span>
+                <label>@((DateTime.Now - news.CreatedOn).Days) Days ago</label>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+</div>

@@ -63,6 +63,7 @@
         {
             if (this.ModelState.IsValid)
             {
+                model.Author = User.Identity.Name;
                 this.ArticleService.Create(model);
                 return this.View(model);
             }

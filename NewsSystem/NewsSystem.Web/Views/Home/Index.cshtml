@@ -2,30 +2,55 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="content">
+    <div class="col-md-7 content-left">
+        @Html.Action("RecentNews", "News")
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-md-5 content-right">
+        @Html.Action("PopularNews", "News")
+        @Html.Action("EditorsChoiceNews", "News")
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="clearfix"></div>
+    <div class="features">
+        <h5>Featured news</h5>
+        <h2>Nokia offering customers printable STL phone cases for the Lumia 820</h2>
     </div>
+    <div class="col-md-7 content-left">
+        <div class="article">
+            <h5 class="head">in recent news</h5>
+            <h6>Software </h6>
+            <a class="title" href="single.html">DeltaMaker – The new kid on the block An Elegant 3D Printer and a new wicked ass thing</a>
+            <a href="single.html"><img src="images/a1.jpg" alt="" /></a>
+            <p>Products were inspired by Behance's research of especially productive teams in the creative industry. Hundreds of individuals and teams were interviewed, and Behance chronicled the work habits and best practices of creative leaders. </p>
+            <p>The paper products were initially designed by and for the Behance team as a way to stay organized. In 2007, at the insistence of friends who wanted Action Pads of their own...</p>
+        </div>
+    </div>
+    <div class="col-md-5 content-right content-right-top">
+        <h5 class="head">Popular</h5>
+        <a href="single.html">
+            <div class="editor text-center">
+                <h3>DeltaMaker – The new kid on the block An Elegant 3D Printer</h3>
+                <p>A new cheap ass 3D Printer worth checking out</p>
+                <label>2 Days Ago</label>
+                <span></span>
+            </div>
+        </a>
+        <a href="single.html">
+            <div class="editor text-center">
+                <h3>DeltaMaker – The new kid on the block An Elegant 3D Printer</h3>
+                <p>A new cheap ass 3D Printer worth checking out</p>
+                <label>2 Days Ago</label>
+                <span></span>
+            </div>
+        </a>
+        <a href="single.html">
+            <div class="editor text-center">
+                <h3>Software Review: Autodesk Inventor Fusion for Mac</h3>
+                <p>3D Printing, 3D Software</p>
+                <label>3 Days Ago</label>
+                <span></span>
+            </div>
+        </a>
+    </div>
+    <div class="clearfix"></div>
 </div>

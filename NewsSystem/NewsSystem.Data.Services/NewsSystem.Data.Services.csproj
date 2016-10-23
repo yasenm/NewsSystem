@@ -84,9 +84,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category\CategoryService.cs" />
-    <Compile Include="Albums\AlbumService.cs" />
-    <Compile Include="Articles\ArticleService.cs" />
+    <Compile Include="Contracts\Articles\IArticleClientService.cs" />
+    <Compile Include="Services\Articles\ArticleClientService.cs" />
+    <Compile Include="Services\Category\CategoryService.cs" />
+    <Compile Include="Services\Albums\AlbumService.cs" />
+    <Compile Include="Services\Articles\ArticleService.cs" />
     <Compile Include="Contracts\Albums\IAlbumService.cs" />
     <Compile Include="Contracts\NSImages\INSImageService.cs" />
     <Compile Include="Contracts\Surveys\IAnswersService.cs" />
@@ -97,17 +99,15 @@
     <Compile Include="Contracts\Category\ICategoryService.cs" />
     <Compile Include="Contracts\Articles\IArticleService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
-    <Compile Include="Images\NSImageService.cs" />
+    <Compile Include="Services\Images\NSImageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Surveys\AnswersService.cs" />
-    <Compile Include="Surveys\QuestionsService.cs" />
-    <Compile Include="Tags\TagsService.cs" />
-    <Compile Include="Themes\ThemeService.cs" />
-    <Compile Include="Users\AccountService.cs" />
+    <Compile Include="Services\Surveys\AnswersService.cs" />
+    <Compile Include="Services\Surveys\QuestionsService.cs" />
+    <Compile Include="Services\Tags\TagsService.cs" />
+    <Compile Include="Services\Themes\ThemeService.cs" />
+    <Compile Include="Services\Users\AccountService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="File\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -2,23 +2,23 @@
 {
     using System.Web.Mvc;
 
-    using NewsSystem.Data.Services.Contracts.NSImages;
-    using NewsSystem.Web.Controllers.Base;
+    using Data.Services.Contracts.NSImages;
+    using Base;
 
     public class NSImageController : BaseController
     {
-        private INSImageService NSImageService;
+        private INSImageService _nsImageService;
 
         public NSImageController(INSImageService nsiService)
         {
-            this.NSImageService = nsiService;
+            _nsImageService = nsiService;
         }
 
         [HttpGet]
         public ActionResult NSImage(long imageId)
         {
-            var imageModel = this.NSImageService.GetImageById(imageId);
-            return this.File(imageModel.ByteContent, "image/gif");
+            var imageModel = _nsImageService.GetImageById(imageId);
+            return File(imageModel.ByteContent, "image/gif");
         }
     }
 }

@@ -8,16 +8,16 @@ namespace NewsSystem.Web.App_Start
     using Data.Services.Themes;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
-    using NewsSystem.Data;
-    using NewsSystem.Data.Services.Albums;
-    using NewsSystem.Data.Services.Articles;
-    using NewsSystem.Data.Services.Contracts;
-    using NewsSystem.Data.Services.Contracts.Albums;
-    using NewsSystem.Data.Services.Contracts.Category;
-    using NewsSystem.Data.Services.Contracts.NSImages;
-    using NewsSystem.Data.Services.Images;
-    using NewsSystem.Data.Services.Tags;
-    using NewsSystem.Data.UnitOfWork;
+    using Data;
+    using Data.Services.Albums;
+    using Data.Services.Articles;
+    using Data.Services.Contracts;
+    using Data.Services.Contracts.Albums;
+    using Data.Services.Contracts.Category;
+    using Data.Services.Contracts.NSImages;
+    using Data.Services.Images;
+    using Data.Services.Tags;
+    using Data.UnitOfWork;
 
     using Ninject;
     using Ninject.Web.Common;
@@ -25,8 +25,8 @@ namespace NewsSystem.Web.App_Start
     using System;
     using System.Web;
 
-    using Web.Helpers;
-    using Web.Helpers.Contracts;
+    using Helpers;
+    using Helpers.Contracts;
 
     public static class NinjectWebCommon
     {
@@ -81,6 +81,7 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<INewsSystemDbContext>().To<NewsSystemDbContext>();
             kernel.Bind<INewsSystemData>().To<NewsSystemData>();
 
+            // Admin services
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<IAlbumService>().To<AlbumService>();
             kernel.Bind<ICategoryService>().To<CategoryService>();
@@ -91,6 +92,9 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<IAnswersService>().To<AnswersService>();
 
             kernel.Bind<IGridMvcHelper>().To<GridMvcHelper>();
+
+            // Client side services
+            kernel.Bind<IArticleClientService>().To<ArticleClientService>();
         }
     }
 }

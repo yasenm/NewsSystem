@@ -1,0 +1,90 @@
+﻿@using NewsSystem.Data.ViewModels.Articles
+
+@model NewsDetailsClientViewModel
+
+<div class="content">
+    <div class="single-page">
+        <div class="print-main">
+            <h3>Printing</h3>
+            <span class="details-sub-title">@Model.Title</span>
+            <p class="sub_head">
+                Posted by <a href="#">@Model.Author</a> on @Html.DisplayFor(m => m.CreatedOn)
+            </p>
+            <span class="img-responsive">@Html.DisplayFor(m => Model.CoverImage)</span>
+            <p class="span"><a href="#">3D Printing, </a><a href="#">3D Software,</a><a href="#"> Files to Print </a> |  on @Html.DisplayFor(m => m.CreatedOn)</p>
+            <p class="ptext">@Html.Raw(Model.Description)</p>
+        </div>
+
+    </div>
+    <div class="col-md-7 single-content-left">
+        <div class="single">
+            <div class="leave">
+                <h4>Leave a comment</h4>
+            </div>
+            <form id="commentform">
+                <p class="comment-form-author-name">
+                    <label for="author">Name</label>
+                    <input id="author" name="author" type="text" value="" size="30" aria-required="true">
+                </p>
+                <p class="comment-form-email">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text" value="" size="30" aria-required="true">
+                </p>
+                <p class="comment-form-comment">
+                    <label for="comment">Comment</label>
+                    <textarea></textarea>
+                </p>
+                <div class="clearfix"></div>
+                <p class="form-submit">
+                    <input name="submit" type="submit" id="submit" value="Send">
+                </p>
+                <div class="clearfix"></div>
+            </form>
+            <div class="comments1">
+                <h4>COMMENTS</h4>
+                <div class="comments-main">
+                    <div class="col-md-3 cmts-main-left">
+                        <img src="images/avatar.jpg" alt="">
+                    </div>
+                    <div class="col-md-9 cmts-main-right">
+                        <h5>TOM BROWN</h5>
+                        <p>Vivamus congue turpis in laoreet sem nec ultrices. Fusce blandit nunc vehicula massa vehicula tincidunt. Nam venenatis cursus urna sed gravida. Ut tincidunt elit ut quam malesuada consequat. Sed semper purus sit amet lorem elementum faucibus.</p>
+                        <div class="cmts">
+                            <div class="col-md-6 cmnts-left">
+                                <p>On April 14, 2014, 18:01</p>
+                            </div>
+                            <div class="col-md-6 cmnts-right">
+                                <a href="#">Reply</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="comments-main">
+                    <div class="col-md-3 cmts-main-left">
+                        <img src="images/avatar.jpg" alt="">
+                    </div>
+                    <div class="col-md-9 cmts-main-right">
+                        <h5>MARK JOHNSON</h5>
+                        <p>Vivamus congue turpis in laoreet sem nec ultrices. Fusce blandit nunc vehicula massa vehicula tincidunt. Nam venenatis cursus urna sed gravida. Ut tincidunt elit ut quam malesuada consequat. Sed semper purus sit amet lorem elementum faucibus.</p>
+                        <div class="cmts">
+                            <div class="col-md-6 cmnts-left">
+                                <p>On April 14, 2014, 18:01</p>
+                            </div>
+                            <div class="col-md-6 cmnts-right">
+                                <a href="#">Reply</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 content-right content-right-top">
+        @Html.Action("PopularNews", "News")
+    </div>
+    <div class="clearfix"></div>
+</div>

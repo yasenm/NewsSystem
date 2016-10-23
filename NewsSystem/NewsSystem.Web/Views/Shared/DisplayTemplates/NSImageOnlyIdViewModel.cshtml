@@ -1,0 +1,5 @@
+﻿@using NewsSystem.Data.ViewModels.NSImages
+
+@model NSImageOnlyIdViewModel
+
+<img src="@Url.Action("NSImage", "NSImage", new { imageId = Model.Id })" class="@Model.ImgTagClasses" alt="No image found..." />
