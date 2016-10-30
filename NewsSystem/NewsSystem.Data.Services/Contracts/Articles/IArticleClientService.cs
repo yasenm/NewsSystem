@@ -8,6 +8,7 @@
     {
         IQueryable<NewsOverviewClientViewModel> GetAll();
         IQueryable<T> GetAllGeneric<T>();
+        IQueryable<T> GetAllByCategoryName<T>(string catName);
         NewsDetailsClientViewModel GetById(long id);
         NewsDetailsClientViewModel GetByTitle(string title);
     }

@@ -17,6 +17,7 @@ namespace NewsSystem.Web.App_Start
     using Data.Services.Contracts.NSImages;
     using Data.Services.Images;
     using Data.Services.Tags;
+    using Data.Services.Category;
     using Data.UnitOfWork;
 
     using Ninject;
@@ -95,6 +96,7 @@ namespace NewsSystem.Web.App_Start
 
             // Client side services
             kernel.Bind<IArticleClientService>().To<ArticleClientService>();
+            kernel.Bind<ICategoryClientService>().To<CategoryClientService>();
         }
     }
 }

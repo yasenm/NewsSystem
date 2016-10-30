@@ -231,9 +231,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NSImageController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,9 +266,27 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\SIL Open Font License.txt" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\gridmvc.datepicker.css" />
     <Content Include="Content\gridmvc.datepicker.min.css" />
+    <Content Include="Content\images\a1.jpg" />
+    <Content Include="Content\images\a2.jpg" />
+    <Content Include="Content\images\abt_pic.jpg" />
+    <Content Include="Content\images\avatar.jpg" />
+    <Content Include="Content\images\ep1.jpg" />
+    <Content Include="Content\images\ep2.jpg" />
+    <Content Include="Content\images\ep3.jpg" />
+    <Content Include="Content\images\ep4.jpg" />
+    <Content Include="Content\images\features-bg.jpg" />
+    <Content Include="Content\images\nav.png" />
+    <Content Include="Content\images\p1.jpg" />
+    <Content Include="Content\images\p2.jpg" />
+    <Content Include="Content\images\p3.jpg" />
+    <Content Include="Content\images\p4.jpg" />
+    <Content Include="Content\images\p5.jpg" />
+    <Content Include="Content\images\print.jpg" />
+    <Content Include="Content\images\printing.jpg" />
     <Content Include="Content\ladda-bootstrap\ladda-themeless.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\site\style.css" />
@@ -383,6 +403,11 @@
     <Content Include="Areas\AdminPanel\Views\Question\Edit.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Question\QuestionDetails.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Answer\AnswersList.cshtml" />
+    <Content Include="Content\fonts\Antonio-Bold.ttf" />
+    <Content Include="Content\fonts\Antonio-Light.ttf" />
+    <Content Include="Content\fonts\Antonio-Regular.ttf" />
+    <Content Include="Content\fonts\Georgia Italic.ttf" />
+    <Content Include="Content\fonts\Times-Italic.ttf" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -609,6 +634,9 @@
     <Content Include="Views\Shared\DisplayTemplates\NSImageOnlyIdViewModel.cshtml" />
     <Content Include="Views\News\PopularNews.cshtml" />
     <Content Include="Views\News\EditorsChoiceNews.cshtml" />
+    <Content Include="Views\Category\TopNavbar.cshtml" />
+    <Content Include="Views\News\ByCategory.cshtml" />
+    <Content Include="Views\News\FeaturedNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -620,6 +648,7 @@
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\NSImage\" />
+    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

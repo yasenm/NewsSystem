@@ -22,13 +22,13 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Category, CategoryViewModel>()
-               .ForMember(m => m.Children, opt => opt.MapFrom(ac => ac.Children.Select(child => new CategoryViewModel
-                                                                                                   {
-                                                                                                       Id = child.Id,
-                                                                                                       Title = child.Title,
-                                                                                                       Description = child.Description,
-                                                                                                       Children = new List<CategoryViewModel>()
-                                                                                                   })));
+                .ForMember(m => m.Children, opt => opt.MapFrom(
+                    ac => ac.Children.Select(child => new CategoryViewModel{
+                        Id = child.Id,
+                        Title = child.Title,
+                        Description = child.Description,
+                        Children = new List<CategoryViewModel>()
+                    })));
         }
     }
 }

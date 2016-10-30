@@ -85,7 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Articles\IArticleClientService.cs" />
+    <Compile Include="Contracts\Category\ICategoryClientService.cs" />
     <Compile Include="Services\Articles\ArticleClientService.cs" />
+    <Compile Include="Services\Category\CategoryClientService.cs" />
     <Compile Include="Services\Category\CategoryService.cs" />
     <Compile Include="Services\Albums\AlbumService.cs" />
     <Compile Include="Services\Articles\ArticleService.cs" />

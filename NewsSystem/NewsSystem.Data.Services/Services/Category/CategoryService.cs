@@ -1,4 +1,4 @@
-﻿namespace NewsSystem.Data.Services.Albums
+﻿namespace NewsSystem.Data.Services.Category
 {
     using AutoMapper.QueryableExtensions;
     using Models;

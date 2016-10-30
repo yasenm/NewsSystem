@@ -7,20 +7,18 @@
     @Styles.Render("~/Content/bootstrap-theme")
     @Styles.Render("~/Content/client-side-css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
 
 </head>
 <body>
+    <!-- header-section-starts -->
     <div class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><h1>newssystem</h1></a>
-            </div>
-            <div class="pages">
-                <ul>
-                    <li><a class="active" href="index.html">Articles</a></li>
-                    <li><a href="3dprinting.html">3D Printers</a></li>
-                    <li><a href="404.html">Tutorials</a></li>
-                </ul>
+                <a href="index.html"><h1>konstructs</h1></a>
             </div>
             <div class="navigation">
                 <ul>
@@ -33,33 +31,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="header-bottom">
-            <div class="type">
-                <h5>Article Types</h5>
-            </div>
-            <span class="menu"></span>
-            <div class="list-nav">
-                <ul>
-                    <li><a href="3dprinting.html">3D Printing</a></li>|
-                    <li><a href="materials.html">Materials</a></li>|
-                    <li><a href="printing.html">Printing</a></li>|
-                    <li><a href="filestoprint.html">Files to Print</a></li>|
-                    <li><a href="404.html">Videos</a></li>|
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-            <!-- script for menu -->
-            <script>
-				$( "span.menu" ).click(function() {
-				  $( ".list-nav" ).slideToggle( "slow", function() {
-				    // Animation complete.
-				  });
-				});
-            </script>
-            <!-- script for menu -->
-
-            <div class="clearfix"></div>
-        </div>
+        @Html.Action("TopNavbar", "Category")
     </div>
 
     <div class="container">
@@ -137,8 +109,7 @@
             </footer>
         </div>*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/client-side-bootstrap")
     @Scripts.Render("~/bundles/common-scripts")
     @RenderSection("scripts", required: false)
 </body>

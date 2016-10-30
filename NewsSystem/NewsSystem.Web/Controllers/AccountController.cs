@@ -11,11 +11,12 @@ using Microsoft.Owin.Security;
 using NewsSystem.Web.Models;
 using NewsSystem.Data.Models;
 using NewsSystem.Data;
+using NewsSystem.Web.Controllers.Base;
 
 namespace NewsSystem.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         public AccountController()
             : this(new UserManager<User>(new UserStore<User>(new NewsSystemDbContext())))

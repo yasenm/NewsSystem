@@ -1,0 +1,65 @@
+﻿@using NewsSystem.Data.ViewModels.Articles
+
+@model IEnumerable<NewsOverviewClientViewModel>
+
+@if (Model.Count() > 0)
+{
+    {
+        var first = Model.First();
+        <div class="col-md-7 printing-content">
+            <div class="print-main">
+                <h3>@first.Title</h3>
+                <a href="@Url.Action("Details", "News", new { id = first.Id })">@first.Title</a>
+                <p class="sub_head">
+                    Posted by <a href="#">Admin</a> on @Html.DisplayFor(m => first.CreatedOn)
+                </p>
+                <a href="@Url.Action("Details", "News", new { id = first.Id })">
+                    @Html.DisplayFor(m => first.CoverImage)
+                </a>
+                <p class="ptext">@Html.Raw(first.Summary)</p>
+            </div>
+            <div class="print-grids">
+                @foreach (var news in Model)
+                {
+                    if (news.Id != first.Id)
+                    {
+                        <div class="print-grid">
+                            <div class="print-img">
+                                <a href="@Url.Action("Details", "News", new { id = news.Id })">@Html.DisplayFor(m => news.CoverImage)</a>
+                            </div>
+                            <div class="print-text">
+                                <a class="bhead" href="@Url.Action("Details", "News", new { id = news.Id })">@news.Title</a>
+                                <p><a href="#">3D Printing, </a><a href="#">3D Software,</a><a href="#"> Files to Print </a> | @Html.DisplayFor(m => news.CreatedOn)</p>
+                                <p>@Html.Raw(news.Summary)</p>
+                                <a class="more" href="@Url.Action("Details", "News", new { id = news.Id })">...Read More</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+}
+
+
+
+
+
+<div class="col-md-5 content-right">
+    @Html.Action("PopularNews", "News")
+    @Html.Action("EditorsChoiceNews", "News")
+</div>
+<div class="clearfix"></div>
+@Html.Action("FeaturedNews", "News")
+<div class="features">
+    <h5>Featured news</h5>
+    <h2>Nokia offering customers printable STL phone cases for the Lumia 820</h2>
+</div>
+<div class="col-md-7 content-left">
+    @Html.Action("RecentNews", "News")
+</div>
+<div class="col-md-5 content-right content-right-top">
+    @Html.Action("PopularNews", "News")
+</div>
+<div class="clearfix"></div>

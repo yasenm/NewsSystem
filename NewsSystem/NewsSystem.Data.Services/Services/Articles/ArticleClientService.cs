@@ -30,6 +30,18 @@ namespace NewsSystem.Data.Services.Articles
             return result;
         }
 
+        public IQueryable<T> GetAllByCategoryName<T>(string catName)
+        {
+            var result = _data.Articles.All()
+                    .Where(a => a.Categories
+                        .Where(c => c.Title == catName).FirstOrDefault() != null)
+                    .OrderByDescending(a => a.CreatedOn)
+                    .Project()
+                    .To<T>();
+
+            return result;
+        }
+
         public IQueryable<T> GetAllGeneric<T>()
         {
             var result = _data.Articles.All()

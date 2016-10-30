@@ -25,7 +25,10 @@
             configuration.CreateMap<Article, NewsOverviewClientViewModel>()
                 .ForMember(m => m.CategoriesAssotiatied, opt => opt.MapFrom(
                             art => art.Categories.Select(c => c.Title).ToList()))
-                .ForMember(m => m.CoverImage, opt => opt.MapFrom(art => new NSImageOnlyIdViewModel { Id = art.CoverImageId }));
+                .ForMember(m => m.CoverImage, opt => opt.MapFrom(
+                            art => new NSImageOnlyIdViewModel {
+                                Id = art.CoverImageId,
+                                ImgTagClasses = "img-responsive" }));
         }
     }
 }

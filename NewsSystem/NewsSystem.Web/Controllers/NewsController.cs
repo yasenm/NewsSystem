@@ -16,6 +16,15 @@
             _newsService = newsService;
         }
 
+        public ActionResult FeaturedNews()
+        {
+            var result = _newsService.GetAllGeneric<NewsEditorsChoiceOverviewClientViewModel>()
+                .Take(4)
+                .ToList();
+
+            return PartialView(result);
+        }
+
         // GET: News
         public ActionResult RecentNews()
         {
@@ -48,6 +57,15 @@
         {
             var model = _newsService.GetById(id);
             return View(model);
+        }
+
+        public ActionResult ByCategory(string title)
+        {
+            var results = _newsService.GetAllByCategoryName<NewsOverviewClientViewModel>(title)
+                .Take(5)
+                .ToList();
+
+            return View(results);
         }
 
         //public ActionResult Details(string title)

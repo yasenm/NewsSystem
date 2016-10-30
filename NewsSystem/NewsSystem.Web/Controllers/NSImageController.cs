@@ -4,6 +4,7 @@
 
     using Data.Services.Contracts.NSImages;
     using Base;
+    using System;
 
     public class NSImageController : BaseController
     {
@@ -17,8 +18,16 @@
         [HttpGet]
         public ActionResult NSImage(long imageId)
         {
-            var imageModel = _nsImageService.GetImageById(imageId);
-            return File(imageModel.ByteContent, "image/gif");
+            try
+            {
+                var imageModel = _nsImageService.GetImageById(imageId);
+                return File(imageModel.ByteContent, "image/gif");
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
