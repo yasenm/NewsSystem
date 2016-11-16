@@ -9,7 +9,10 @@
         IQueryable<NewsOverviewClientViewModel> GetAll();
         IQueryable<T> GetAllGeneric<T>();
         IQueryable<T> GetAllByCategoryName<T>(string catName);
-        NewsDetailsClientViewModel GetById(long id);
-        NewsDetailsClientViewModel GetByTitle(string title);
+        IQueryable<T> GetAllByCategoryId<T>(int id);
+        IQueryable<T> GetAllByTagName<T>(string name);
+        IQueryable<T> GetAllByTagId<T>(long id);
+        T GetById<T>(long id);
+        T GetByTitle<T>(string title);
     }
 }

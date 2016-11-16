@@ -8,9 +8,9 @@
 
     public class Album : DescribableEntity, ITagableEntity, ICategorableEntity
     {
-        private ICollection<Category> categories;
-        private ICollection<Tag> tags;
-        private ICollection<NSImage> nsImages;
+        private ICollection<Category> _categories;
+        private ICollection<Tag> _tags;
+        private ICollection<NSImage> _nsImages;
 
         public Album()
         {
@@ -26,20 +26,20 @@
         
         public virtual ICollection<Category> Categories
         {
-            get { return this.categories; }
-            set { this.categories = value; }
+            get { return this._categories; }
+            set { this._categories = value; }
         }
 
         public virtual ICollection<Tag> Tags
         {
-            get { return this.tags; }
-            set { this.tags = value; }
+            get { return this._tags; }
+            set { this._tags = value; }
         }
 
         public virtual ICollection<NSImage> NSImages
         {
-            get { return this.nsImages; }
-            set { this.nsImages = value; }
+            get { return this._nsImages; }
+            set { this._nsImages = value; }
         }
     }
 }

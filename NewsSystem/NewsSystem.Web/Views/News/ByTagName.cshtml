@@ -2,7 +2,7 @@
 
 @model IEnumerable<NewsOverviewClientViewModel>
 
-<h5 class="head">@ViewBag.CategoryTitle</h5>
+<h5 class="head">@ViewBag.TagName</h5>
 
 @if (Model.Count() > 0)
 {
@@ -15,7 +15,7 @@
                 <p class="sub_head">
                     Posted by <a href="#">Admin</a> on @Html.DisplayFor(m => first.CreatedOn)
                 </p>
-                <a href="@Url.Action("Details", "News", new { id = first.Id, title = Html.CleanerUrl(first.Title)  })">
+                <a href="@Url.Action("Details", "News", new { id = first.Id, title = Html.CleanerUrl(first.Title) })">
                     @Html.DisplayFor(m => first.CoverImage)
                 </a>
                 <p class="ptext">@Html.Raw(first.Summary)</p>
@@ -27,7 +27,7 @@
                     {
                         <div class="print-grid">
                             <div class="print-img">
-                                <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title) })">@Html.DisplayFor(m => news.CoverImage)</a>
+                                <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title)  })">@Html.DisplayFor(m => news.CoverImage)</a>
                             </div>
                             <div class="print-text">
                                 <a class="bhead" href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title)  })">@news.Title</a>

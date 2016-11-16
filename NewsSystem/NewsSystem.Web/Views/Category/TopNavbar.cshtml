@@ -1,4 +1,5 @@
 ﻿@using NewsSystem.Data.ViewModels.Categories
+@using NewsSystem.Web.Helpers
 
 @model IEnumerable<CategoryMenuClientViewModel>
 
@@ -16,9 +17,10 @@
                     @if (cat.Children.Count > 0)
                     {
                         <ul class="dropdown-menu">
+                            <li><a href="@HttpContext.Current.Server.UrlDecode(Url.Action("ByCategory", "News", new { id = cat.Id, title = Html.CleanerUrl(cat.Title) }))">All</a></li>
                             @foreach (var childCat in cat.Children)
                             {
-                                <li><a href="@Url.Action("ByCategory", "News", new { title = childCat.Title })">@childCat.Title</a></li>
+                                <li><a href="@Url.Action("ByCategory", "News", new { id = childCat.Id, title = Html.CleanerUrl(childCat.Title) })">@childCat.Title</a></li>
                             }
                         </ul>
                     }

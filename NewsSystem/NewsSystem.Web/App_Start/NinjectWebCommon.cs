@@ -28,6 +28,8 @@ namespace NewsSystem.Web.App_Start
 
     using Helpers;
     using Helpers.Contracts;
+    using Data.Services.Services.Tags;
+    using Data.Services.Contracts.Tags;
 
     public static class NinjectWebCommon
     {
@@ -97,6 +99,7 @@ namespace NewsSystem.Web.App_Start
             // Client side services
             kernel.Bind<IArticleClientService>().To<ArticleClientService>();
             kernel.Bind<ICategoryClientService>().To<CategoryClientService>();
+            kernel.Bind<ITagsClientService>().To<TagsClientService>();
         }
     }
 }

@@ -6,20 +6,6 @@
     <div class="col-md-7 content-left">
         @Html.Action("RecentNews", "News")
     </div>
-    <div class="col-md-5 content-right">
-        @Html.Action("PopularNews", "News")
-        @Html.Action("EditorsChoiceNews", "News")
-    </div>
-    <div class="clearfix"></div>
-    <div class="features">
-        <h5>Featured news</h5>
-        <h2>Nokia offering customers printable STL phone cases for the Lumia 820</h2>
-    </div>
-    <div class="col-md-7 content-left">
-        @Html.Action("RecentNews", "News")
-    </div>
-    <div class="col-md-5 content-right content-right-top">
-        @Html.Action("PopularNews", "News")
-    </div>
-    <div class="clearfix"></div>
+
+    @Html.Partial("_CommonSuroundings")
 </div>

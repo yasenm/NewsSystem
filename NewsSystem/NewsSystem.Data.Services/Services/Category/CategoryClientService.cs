@@ -2,6 +2,8 @@
 using NewsSystem.Data.Services.Contracts;
 using NewsSystem.Data.UnitOfWork;
 using AutoMapper.QueryableExtensions;
+using System;
+using AutoMapper;
 
 namespace NewsSystem.Data.Services.Category
 {
@@ -24,6 +26,18 @@ namespace NewsSystem.Data.Services.Category
                 .To<T>();
 
             return result;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var result = _data.Categories.All().FirstOrDefault(c => c.Id == id);
+
+            if (result != null)
+            {
+                var model = Mapper.Map<T>(result);
+                return model;
+            }
+            return default(T);
         }
     }
 }

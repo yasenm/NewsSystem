@@ -6,7 +6,7 @@
     <h5 class="head">Popular</h5>
     @foreach (var news in Model)
     {
-        <a href="@Url.Action("Details", "News", new { id = news.Id })">
+        <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title)  })">
             <div class="editor text-center">
                 <h3>@news.Title</h3>
                 <p>@Html.Raw(news.Summary)</p>

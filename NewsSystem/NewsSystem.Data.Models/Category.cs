@@ -6,17 +6,17 @@
 
     public class Category : DescribableEntity
     {
-        private ICollection<Category> children;
-        private ICollection<Album> albums;
-        private ICollection<Article> articles;
-        private ICollection<NSImage> nsImages;
+        private ICollection<Category> _children;
+        private ICollection<Album> _albums;
+        private ICollection<Article> _articles;
+        private ICollection<NSImage> _nsImages;
 
         public Category()
         {
-            this.Children = new HashSet<Category>();
-            this.Albums = new HashSet<Album>();
-            this.Articles = new HashSet<Article>();
-            this.nsImages = new HashSet<NSImage>();
+            Children = new HashSet<Category>();
+            Albums = new HashSet<Album>();
+            Articles = new HashSet<Article>();
+            NSImages = new HashSet<NSImage>();
         }
 
         public long Id { get; set; }
@@ -29,26 +29,26 @@
 
         public virtual ICollection<Category> Children
         {
-            get { return this.children; }
-            set { this.children = value; }
+            get { return this._children; }
+            set { this._children = value; }
         }
 
         public virtual ICollection<Album> Albums
         {
-            get { return this.albums; }
-            set { this.albums = value; }
+            get { return this._albums; }
+            set { this._albums = value; }
         }
 
         public virtual ICollection<Article> Articles
         {
-            get { return this.articles; }
-            set { this.articles = value; }
+            get { return this._articles; }
+            set { this._articles = value; }
         }
 
         public virtual ICollection<NSImage> NSImages
         {
-            get { return this.nsImages; }
-            set { this.nsImages = value; }
+            get { return this._nsImages; }
+            set { this._nsImages = value; }
         }
     }
 }

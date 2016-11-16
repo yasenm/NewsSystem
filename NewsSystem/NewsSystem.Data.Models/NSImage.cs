@@ -8,8 +8,8 @@
 
     public class NSImage : DescribableEntity, ITagableEntity
     {
-        private ICollection<Album> albums;
-        private ICollection<Tag> tags;
+        private ICollection<Album> _albums;
+        private ICollection<Tag> _tags;
         
         public NSImage()
         {
@@ -28,14 +28,14 @@
 
         public virtual ICollection<Album> Albums
         {
-            get { return this.albums; }
-            set { this.albums = value; }
+            get { return this._albums; }
+            set { this._albums = value; }
         }
 
         public virtual ICollection<Tag> Tags
         {
-            get { return this.tags; }
-            set { this.tags = value; }
+            get { return this._tags; }
+            set { this._tags = value; }
         }
     }
 }

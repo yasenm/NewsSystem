@@ -8,12 +8,12 @@
     {
         <div class="editors-pic">
             <div class="e-pic">
-                <a href="@Url.Action("Details", "News", new { id = news.Id })">
+                <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title)  })">
                     @Html.DisplayFor(m => news.CoverImage)
                 </a>
             </div>
             <div class="e-pic-info">
-                <a href="@Url.Action("Details", "News", new { id = news.Id })">
+                <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title)  })">
                     @news.Title
                 </a>
                 <span></span>

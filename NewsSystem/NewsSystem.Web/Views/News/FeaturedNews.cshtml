@@ -20,7 +20,7 @@
             <div class="item text-center @if (i == 0) { <text> active</text> }">
                 @Html.DisplayFor(m => Model[i].CoverImage)
                 <div class="carousel-caption">
-                    <a href="@Url.Action("Details", "News", new { id = Model[i].Id })">
+                    <a href="@Url.Action("Details", "News", new { id = Model[i].Id, title = Html.CleanerUrl(Model[i].Title)  })">
                         <h1>@Model[i].Title</h1>
                         <p>@Model[i].Title + @Model[i].Title</p>
                     </a>

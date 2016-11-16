@@ -7,6 +7,8 @@ using NewsSystem.Data.ViewModels.Articles;
 using System.Linq;
 using System;
 using AutoMapper;
+using System.Linq.Expressions;
+using NewsSystem.Data.Models;
 
 namespace NewsSystem.Data.Services.Articles
 {
@@ -30,16 +32,26 @@ namespace NewsSystem.Data.Services.Articles
             return result;
         }
 
+        public IQueryable<T> GetAllByCategoryId<T>(int id)
+        {
+            var result = GetArticlesByCategoriesExpression<T>(c => c.Id == id);
+            return result;
+        }
+
         public IQueryable<T> GetAllByCategoryName<T>(string catName)
         {
-            var result = _data.Articles.All()
-                    .Where(a => a.Categories
-                        .Where(c => c.Title == catName).FirstOrDefault() != null)
-                    .OrderByDescending(a => a.CreatedOn)
-                    .Project()
-                    .To<T>();
-
+            var result = GetArticlesByCategoriesExpression<T>(c => c.Title.ToLower() == catName);
             return result;
+        }
+
+        public IQueryable<T> GetAllByTagName<T>(string name)
+        {
+            return GetArticlesByTagsExpression<T>(t => t.Name.ToLower() == name);
+        }
+
+        public IQueryable<T> GetAllByTagId<T>(long id)
+        {
+            return GetArticlesByTagsExpression<T>(t => t.Id == id);
         }
 
         public IQueryable<T> GetAllGeneric<T>()
@@ -53,20 +65,48 @@ namespace NewsSystem.Data.Services.Articles
             return result;
         }
 
-        public NewsDetailsClientViewModel GetById(long id)
+        public T GetById<T>(long id)
         {
-            var newsDataModel = _data.Articles.GetById(id);
-            var newsModel = Mapper.Map<NewsDetailsClientViewModel>(newsDataModel);
-
-            return newsModel;
+            return GetSingleByExpression<T>(a => a.Id == id);
         }
 
-        public NewsDetailsClientViewModel GetByTitle(string title)
+        public T GetByTitle<T>(string title)
         {
-            var newsDataModel = _data.Articles.All().FirstOrDefault(a => a.Title.ToLower() == title.ToLower());
-            var newsModel = Mapper.Map<NewsDetailsClientViewModel>(newsDataModel);
+            return GetSingleByExpression<T>(a => a.Title.ToLower() == title.ToLower());
+        }
 
-            return newsModel;
+        // Private methods
+        private T GetSingleByExpression<T>(Expression<Func<Article, bool>> func)
+        {
+            var article = _data.Articles.All().FirstOrDefault(func);
+            if (article != null)
+            {
+                var newsModel = Mapper.Map<T>(article);
+                return newsModel;
+            }
+            return default(T);
+        }
+
+        private IQueryable<T> GetArticlesByCategoriesExpression<T>(Expression<Func<Models.Category, bool>> func)
+        {
+            var result = _data.Articles.All()
+                    .Where(a => a.Categories.AsQueryable().Where(func).FirstOrDefault() != null)
+                    .OrderByDescending(a => a.CreatedOn)
+                    .Project()
+                    .To<T>();
+
+            return result;
+        }
+
+        private IQueryable<T> GetArticlesByTagsExpression<T>(Expression<Func<Tag, bool>> func)
+        {
+            var result = _data.Articles.All()
+                    .Where(a => a.Tags.AsQueryable().Where(func).FirstOrDefault() != null)
+                    .OrderByDescending(a => a.CreatedOn)
+                    .Project()
+                    .To<T>();
+
+            return result;
         }
     }
 }

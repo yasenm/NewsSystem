@@ -32,5 +32,10 @@
 
             return View();
         }
+
+        public ActionResult CommonSuroundPartialView()
+        {
+            return PartialView();
+        }
     }
 }

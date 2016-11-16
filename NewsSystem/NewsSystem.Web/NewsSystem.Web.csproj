@@ -236,6 +236,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NSImageController.cs" />
     <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,6 +244,7 @@
     <Compile Include="Helpers\Contracts\IGridMvcHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\GridMvcHelper.cs" />
+    <Compile Include="Helpers\TitleHelper.cs" />
     <Compile Include="Helpers\UrlHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -637,6 +639,10 @@
     <Content Include="Views\Category\TopNavbar.cshtml" />
     <Content Include="Views\News\ByCategory.cshtml" />
     <Content Include="Views\News\FeaturedNews.cshtml" />
+    <Content Include="Views\Tag\NewsTags.cshtml" />
+    <Content Include="Views\News\ByTagName.cshtml" />
+    <Content Include="Views\Shared\_CommonSuroundings.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -648,7 +654,6 @@
     <Folder Include="Scripts\plugins\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\NSImage\" />
-    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

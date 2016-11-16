@@ -6,19 +6,19 @@
 
     public class Question : DescribableEntity
     {
-        private ICollection<Answer> answers;
+        private ICollection<Answer> _answers;
 
         public Question()
         {
-            this.answers = new HashSet<Answer>();
+            this._answers = new HashSet<Answer>();
         }
 
         public int Id { get; set; }
 
         public virtual ICollection<Answer> Answers
         {
-            get { return this.answers; }
-            set { this.answers = value; }
+            get { return this._answers; }
+            set { this._answers = value; }
         }
     }
 }

@@ -110,7 +110,8 @@
     <Compile Include="Surveys\QuestionViewModel.cs" />
     <Compile Include="Themes\ThemeBasicViewModel.cs" />
     <Compile Include="Themes\ThemeCreateViewModel.cs" />
-    <Compile Include="Tokens\TokenViewAbstractModel.cs" />
+    <Compile Include="Tags\TagClientViewModel.cs" />
+    <Compile Include="Users\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

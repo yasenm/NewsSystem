@@ -6,13 +6,12 @@
 @foreach (var news in Model)
 {
     <div class="article">
-        <h6>@String.Join(", ", news.CategoriesAssotiatied)</h6>
+        <h6>@Html.Action("NewsTags", "Tag", new { newsId = news.Id })</h6>
         <a class="title" href="@Url.Action("Details", "News", new { id = news.Id })">
             @news.Title
         </a>
         <a href="@Url.Action("Details", "News", new { id = news.Id })">
             @Html.DisplayFor(m => news.CoverImage)
-            @*<img src="@Url.Action("NSImage", "NSImage", new { imageId = news.CoverImage.Id })" alt="" />*@
         </a>
         <p>@Html.Raw(news.Summary)</p>
     </div>

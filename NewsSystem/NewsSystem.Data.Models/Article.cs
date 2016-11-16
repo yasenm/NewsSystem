@@ -11,8 +11,8 @@
 
     public class Article : DescribableEntity, ITagableEntity, IPublishableEntity, ICategorableEntity
     {
-        private ICollection<Category> categories;
-        private ICollection<Tag> tags;
+        private ICollection<Category> _categories;
+        private ICollection<Tag> _tags;
 
         public Article()
         {
@@ -33,14 +33,14 @@
 
         public virtual ICollection<Category> Categories
         {
-            get { return this.categories; }
-            set { this.categories = value; }
+            get { return this._categories; }
+            set { this._categories = value; }
         }
 
         public virtual ICollection<Tag> Tags
         {
-            get { return this.tags; }
-            set { this.tags = value; }
+            get { return this._tags; }
+            set { this._tags = value; }
         }
 
         public DateTime? PublicationDate { get; set; }

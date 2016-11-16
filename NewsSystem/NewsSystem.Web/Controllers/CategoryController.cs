@@ -23,5 +23,10 @@ namespace NewsSystem.Web.Controllers
 
             return PartialView(result);
         }
+
+        public ActionResult SmallCategoryList(int id)
+        {
+            return PartialView();
+        }
     }
 }

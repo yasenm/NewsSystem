@@ -1,18 +1,24 @@
-﻿using NewsSystem.Web.Controllers.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using NewsSystem.Data.Services.Contracts.Tags;
+using NewsSystem.Data.ViewModels.Tags;
+using NewsSystem.Web.Controllers.Base;
 using System.Web.Mvc;
 
 namespace NewsSystem.Web.Controllers
 {
     public class TagController : BaseController
     {
-        public ActionResult NewsTags(int newsId)
-        {
+        private ITagsClientService _tagsService;
 
-            return View();
+        public TagController(ITagsClientService tagsService)
+        {
+            _tagsService = tagsService;
+        }
+
+        public ActionResult NewsTags(long newsId)
+        {
+            var result = _tagsService.GetAllGenericForArticle<TagClientViewModel>(newsId);
+
+            return PartialView(result);
         }
     }
 }

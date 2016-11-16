@@ -7,9 +7,9 @@
 
     public class Tag : DeletableEntity
     {
-        private ICollection<Article> articles;
-        private ICollection<Album> albums;
-        private ICollection<NSImage> nsImages;
+        private ICollection<Article> _articles;
+        private ICollection<Album> _albums;
+        private ICollection<NSImage> _nsImages;
 
         public Tag()
         {
@@ -25,20 +25,20 @@
 
         public virtual ICollection<Article> Articles
         {
-            get { return this.articles; }
-            set { this.articles = value; }
+            get { return this._articles; }
+            set { this._articles = value; }
         }
 
         public virtual ICollection<Album> Albums
         {
-            get { return this.albums; }
-            set { this.albums = value; }
+            get { return this._albums; }
+            set { this._albums = value; }
         }
 
         public virtual ICollection<NSImage> NSImages
         {
-            get { return this.nsImages; }
-            set { this.nsImages = value; }
+            get { return this._nsImages; }
+            set { this._nsImages = value; }
         }
     }
 }
