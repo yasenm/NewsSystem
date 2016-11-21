@@ -22,9 +22,15 @@
             );
 
             routes.MapRoute(
+                name: "NewsDetails",
+                url: "news/details/{id}/{title}",
+                defaults: new { controller = "News", action = "Details", title = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "News",
                 url: "news/{action}/{id}/{title}",
-                defaults: new { controller = "News", action = "Details", title = UrlParameter.Optional }
+                defaults: new { controller = "News", title = UrlParameter.Optional }
             );
 
             routes.MapRoute(

@@ -8,6 +8,7 @@ namespace NewsSystem.Data.Services.Contracts.Tags
 {
     public interface ITagsClientService
     {
+        T GetTagById<T>(long id);
         IQueryable<T> GetAll<T>();
         IEnumerable<T> GetAllGenericForArticle<T>(long artId);
     }

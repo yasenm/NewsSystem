@@ -25,6 +25,8 @@
 
         IDbSet<Answer> Answers { get; set; }
 
+        IDbSet<Comment> Comments { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

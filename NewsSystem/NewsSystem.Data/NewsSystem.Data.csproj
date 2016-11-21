@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201608201532026_Changed_Questions_And_Answers_ToDescribableEntities.Designer.cs">
       <DependentUpon>201608201532026_Changed_Questions_And_Answers_ToDescribableEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.cs" />
+    <Compile Include="Migrations\201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.Designer.cs">
+      <DependentUpon>201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608201532026_Changed_Questions_And_Answers_ToDescribableEntities.resx">
       <DependentUpon>201608201532026_Changed_Questions_And_Answers_ToDescribableEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.resx">
+      <DependentUpon>201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

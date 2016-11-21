@@ -227,12 +227,14 @@ namespace NewsSystem.Data.Migrations
         {
             if (!this.Data.Context.Articles.Any())
             {
+                var users = Data.Users.All().ToList();
                 for (int i = 0; i < 10; i++)
                 {
                     var article = new Article();
                     article.Title = StringGenerator.RandomStringWithoutSpaces(5, 40);
                     article.Description = StringGenerator.RandomStringWithSpaces(400, 1500);
                     article.Summary = StringGenerator.RandomStringWithSpaces(70, 250);
+                    article.AuthorId = users[NumberGenerator.RandomNumber(0, users.Count() - 1)].Id;
 
                     this.Data.Articles.Add(article);
                 }

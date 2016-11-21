@@ -30,22 +30,22 @@
         {
             return this.View();
         }
-        
+
         public ActionResult ArticlesList(long? categoryId, int page = 1)
         {
             this.ViewBag.CategoryId = categoryId;
             if (categoryId != null)
             {
-                var collection = new PagedList<ArticleViewModel>(this.ArticleService.Get((long)categoryId), page, 5);
+                var collection = new PagedList<ArticleViewModel>(this.ArticleService.Get<ArticleViewModel>((long)categoryId), page, 5);
                 return this.PartialView(collection);
             }
-            var model = new PagedList<ArticleViewModel>(this.ArticleService.GetAll(), page, 5);
+            var model = new PagedList<ArticleViewModel>(this.ArticleService.GetAll<ArticleViewModel>(), page, 5);
             return this.PartialView(model);
         }
-        
+
         public ActionResult ArticlesTable()
         {
-            var collection = this.ArticleService.GetAll();
+            var collection = this.ArticleService.GetAll<ArticleViewModel>();
             return this.PartialView(collection);
         }
 
@@ -64,7 +64,7 @@
             if (this.ModelState.IsValid)
             {
                 model.Author = User.Identity.Name;
-                this.ArticleService.Create(model);
+                this.ArticleService.Create(model, User.Identity.Name);
                 return this.View(model);
             }
 
@@ -75,7 +75,7 @@
         [HttpGet]
         public ActionResult Edit(long articleId)
         {
-            var model = this.ArticleService.GetEditModel(articleId);
+            var model = this.ArticleService.GetEditModel<ArticleEditViewModel>(articleId);
             model.ChosenCategories = this.CategoryService.GetAllCheckbox().ToList();
 
             foreach (var chosenCat in model.ChosenCategories)
@@ -109,7 +109,7 @@
             this.ViewBag.Error = "Unable to save!";
             return this.View(model);
         }
-        
+
         public ActionResult Delete(long articleId)
         {
             if (this.ArticleService.Delete(articleId))

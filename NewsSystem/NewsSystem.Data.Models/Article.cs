@@ -31,18 +31,6 @@
 
         public bool IsTopMain { get; set; }
 
-        public virtual ICollection<Category> Categories
-        {
-            get { return this._categories; }
-            set { this._categories = value; }
-        }
-
-        public virtual ICollection<Tag> Tags
-        {
-            get { return this._tags; }
-            set { this._tags = value; }
-        }
-
         public DateTime? PublicationDate { get; set; }
 
         public bool IsPublished { get; set; }
@@ -58,5 +46,21 @@
         public long? ThemeId { get; set; }
 
         public virtual Theme Theme { get; set; }
+
+        public string AuthorId { get; set; }
+
+        public virtual User Author { get; set; }
+
+        public virtual ICollection<Category> Categories
+        {
+            get { return this._categories; }
+            set { this._categories = value; }
+        }
+
+        public virtual ICollection<Tag> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
     }
 }

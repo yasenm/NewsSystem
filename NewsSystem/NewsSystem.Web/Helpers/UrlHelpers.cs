@@ -1,5 +1,6 @@
 ﻿namespace NewsSystem.Web.Helpers
 {
+    using NewsSystem.Common;
     using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
@@ -27,7 +28,8 @@
         {
             string cleanTitle = title.Trim().ToLower().Replace(" ", "-");
             //Removes invalid character like .,-_ etc
-            cleanTitle = Regex.Replace(cleanTitle, @"[^a-zA-Z0-9\/_|+ -]", "");
+            //cleanTitle = Regex.Replace(cleanTitle, @"[^a-zA-Z0-9\/_|+ -]", "");
+            cleanTitle = CyrilicStringTransliterator.TranslateToEnglishLetters(cleanTitle);
             return cleanTitle;
         }
     }

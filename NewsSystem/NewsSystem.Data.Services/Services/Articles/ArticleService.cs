@@ -25,33 +25,33 @@
             this.TagsService = tagsService;
         }
 
-        public IQueryable<ArticleViewModel> GetAll()
+        public IQueryable<T> GetAll<T>()
         {
             var collection = this.Data.Articles
                 .All()
                 .OrderBy(a => a.CreatedOn)
                 .Project()
-                .To<ArticleViewModel>();
+                .To<T>();
 
             return collection;
         }
 
-        public IEnumerable<ArticleViewModel> Get(long categoryId)
+        public IEnumerable<T> Get<T>(long categoryId)
         {
             var collection = this.Data.Articles
                 .All()
                 .Where(a => a.Categories.FirstOrDefault(c => c.Id == categoryId) != null)
                 .Project()
-                .To<ArticleViewModel>()
+                .To<T>()
                 .ToList();
 
             return collection;
         }
 
-        public ArticleEditViewModel GetEditModel(long articleId)
+        public T GetEditModel<T>(long articleId)
         {
             var article = this.Data.Articles.GetById(articleId);
-            var model = Mapper.Map<ArticleEditViewModel>(article);
+            var model = Mapper.Map<T>(article);
             return model;
         }
 
@@ -98,11 +98,13 @@
             }
         }
 
-        public bool Create(ArticleCreateViewModel model)
+        public bool Create(ArticleCreateViewModel model, string userName)
         {
             try
             {
+                var user = Data.Users.All().FirstOrDefault(u => u.UserName == userName).Id;
                 var article = Mapper.Map<Article>(model);
+                article.AuthorId = user;
 
                 this.Data.Articles.Add(article);
                 this.Data.SaveChanges();

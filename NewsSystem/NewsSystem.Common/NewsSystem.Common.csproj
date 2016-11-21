@@ -72,6 +72,7 @@
     <Compile Include="Constants\NSImagesConstants.cs" />
     <Compile Include="Constants\PagedListSettings.cs" />
     <Compile Include="Constants\UsersConstants.cs" />
+    <Compile Include="CyrilicStringTransliterator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerators\NumberGenerator.cs" />
     <Compile Include="RandomGenerators\StringGenerator.cs" />

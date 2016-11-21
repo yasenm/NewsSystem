@@ -92,6 +92,14 @@
             }
         }
 
+        public IRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetDeletableEntityRepository<Comment>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.Context.SaveChanges();

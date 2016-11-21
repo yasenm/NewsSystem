@@ -8,9 +8,7 @@
     public interface ITagsService
     {
         ICollection<string> GetAllTagsNames();
-
         bool SaveTagsToTagableEntity(ITagableEntity tagableEntity, ICollection<string> choosenTags);
-
         ICollection<Tag> GetTagsByTitle(ICollection<string> tagNames);
     }
 }

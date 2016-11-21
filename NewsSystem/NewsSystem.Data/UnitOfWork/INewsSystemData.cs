@@ -26,6 +26,8 @@
 
         IRepository<Answer> Answers { get; }
 
+        IRepository<Comment> Comments { get; }
+
         int SaveChanges();
     }
 }

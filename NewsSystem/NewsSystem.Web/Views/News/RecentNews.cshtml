@@ -1,4 +1,5 @@
 ﻿@using NewsSystem.Data.ViewModels.Articles
+@using NewsSystem.Common
 
 @model IEnumerable<NewsOverviewClientViewModel>
 
@@ -7,10 +8,10 @@
 {
     <div class="article">
         <h6>@Html.Action("NewsTags", "Tag", new { newsId = news.Id })</h6>
-        <a class="title" href="@Url.Action("Details", "News", new { id = news.Id })">
+        <a class="title" href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title) })">
             @news.Title
         </a>
-        <a href="@Url.Action("Details", "News", new { id = news.Id })">
+        <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title) })">
             @Html.DisplayFor(m => news.CoverImage)
         </a>
         <p>@Html.Raw(news.Summary)</p>

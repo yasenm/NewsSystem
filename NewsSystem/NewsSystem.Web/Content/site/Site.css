@@ -44,3 +44,9 @@ input[type="checkbox"].input-validation-error {
 .word-wraped {
     word-wrap: break-word;
 }
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100% !important;
+    max-height: 760px;
+}

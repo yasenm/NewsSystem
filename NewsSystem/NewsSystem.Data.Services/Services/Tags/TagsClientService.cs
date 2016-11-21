@@ -1,4 +1,5 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using NewsSystem.Data.Services.Contracts.Tags;
 using NewsSystem.Data.UnitOfWork;
 using System;
@@ -14,6 +15,17 @@ namespace NewsSystem.Data.Services.Services.Tags
         public TagsClientService(INewsSystemData data)
         {
             _data = data;
+        }
+
+        public T GetTagById<T>(long id)
+        {
+            var dataModel = _data.Tags.All().FirstOrDefault(t => t.Id == id);
+            if (dataModel != null)
+            {
+                var result = Mapper.Map<T>(dataModel);
+                return result;
+            }
+            return default(T);
         }
 
         public IQueryable<T> GetAll<T>()

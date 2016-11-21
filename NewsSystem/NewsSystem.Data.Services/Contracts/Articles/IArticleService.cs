@@ -6,13 +6,13 @@
 
     public interface IArticleService
     {
-        IQueryable<ArticleViewModel> GetAll();
+        IQueryable<T> GetAll<T>();
 
-        IEnumerable<ArticleViewModel> Get(long categoryId);
+        IEnumerable<T> Get<T>(long categoryId);
 
-        ArticleEditViewModel GetEditModel(long articleId);
+        T GetEditModel<T>(long articleId);
 
-        bool Create(ArticleCreateViewModel model);
+        bool Create(ArticleCreateViewModel model, string userName);
 
         bool Edit(ArticleEditViewModel model);
 

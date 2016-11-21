@@ -36,6 +36,8 @@
 
         public IDbSet<Answer> Answers { get; set; }
 
+        public IDbSet<Comment> Comments { get; set; }
+
         public static NewsSystemDbContext Create()
         {
             return new NewsSystemDbContext();

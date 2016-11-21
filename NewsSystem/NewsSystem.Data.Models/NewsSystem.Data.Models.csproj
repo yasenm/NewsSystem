@@ -56,6 +56,7 @@
     <Compile Include="Answer.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Contracts\IPublishableEntity.cs" />
     <Compile Include="Groups\ICategorableEntity.cs" />
     <Compile Include="Groups\ITagableEntity.cs" />

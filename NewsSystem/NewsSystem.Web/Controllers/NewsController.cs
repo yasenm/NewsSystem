@@ -7,14 +7,18 @@
     using System.Web.Mvc;
     using Data.ViewModels.Articles;
     using System.Web.Http;
+    using Data.Services.Contracts.Tags;
+    using Data.ViewModels.Tags;
 
     public class NewsController : BaseController
     {
         private IArticleClientService _newsService;
+        private ITagsClientService _tagService;
 
-        public NewsController(IArticleClientService newsService)
+        public NewsController(IArticleClientService newsService, ITagsClientService tagService)
         {
             _newsService = newsService;
+            _tagService = tagService;
         }
 
         public ActionResult FeaturedNews()
@@ -74,7 +78,8 @@
 
         public ActionResult ByTagName([FromBody]long id, string name)
         {
-            ViewBag.TagName = name;
+            ViewBag.TagName = _tagService.GetTagById<TagClientViewModel>(id).Name;
+
             var tagId = id;
             var results = _newsService.GetAllByTagId<NewsOverviewClientViewModel>(id)
                 .ToList();
