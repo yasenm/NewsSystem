@@ -93,9 +93,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -183,7 +183,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
@@ -221,6 +222,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\AlbumController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\ArticleController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\Base\AdminBaseController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\CommentController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\NSImageController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\QuestionController.cs" />
@@ -232,6 +234,7 @@
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NSImageController.cs" />
@@ -643,11 +646,14 @@
     <Content Include="Views\News\ByTagName.cshtml" />
     <Content Include="Views\Shared\_CommonSuroundings.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Comments\ForNews.cshtml" />
+    <Content Include="Views\Comments\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminPanel\Models\" />
     <Folder Include="Areas\AdminPanel\Views\AdminBase\" />
+    <Folder Include="Areas\AdminPanel\Views\Comment\" />
     <Folder Include="Areas\AdminPanel\Views\Shared\DisplayTemplates\" />
     <Folder Include="Areas\AdminPanel\Views\Tag\" />
     <Folder Include="Controllers\Api\" />

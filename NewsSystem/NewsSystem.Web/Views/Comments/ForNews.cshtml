@@ -1,0 +1,43 @@
+﻿@using NewsSystem.Data.ViewModels.Comments
+
+@model IEnumerable<CommentBasicViewModel>
+
+<div class="comments1">
+    <h4>COMMENTS</h4>
+    @foreach (var comment in Model)
+    {
+        <div class="comments-main">
+            <div class="col-md-2 cmts-main-left">
+                <img src="http://localhost:5844/NSImage/NSImage?imageId=3" alt="">
+            </div>
+            <div class="col-md-10 cmts-main-right">
+                <div class="col-md-10">
+                    <h5>@comment.AuthorName</h5>
+                    <p>@comment.Content</p>
+                    <div class="cmts">
+                        <div class="col-md-6 cmnts-left">
+                            <p>On @String.Format("{0:MMMM dd, yyyy, hh:mm}", comment.CreatedOn)</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    @using (Ajax.BeginForm("Delete", "Comments",
+                       new AjaxOptions
+                       {
+                           HttpMethod = "Post",
+                           InsertionMode = InsertionMode.Replace,
+                           UpdateTargetId = "article-comments"
+                       }))
+                    {
+                        @*<a class="btn btn-sm btn-danger pull-right" >
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>*@
+                        <input type="submit"  value="Delete" />
+                    }
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+</div>

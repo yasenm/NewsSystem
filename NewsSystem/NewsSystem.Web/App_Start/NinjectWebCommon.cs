@@ -30,6 +30,8 @@ namespace NewsSystem.Web.App_Start
     using Helpers.Contracts;
     using Data.Services.Services.Tags;
     using Data.Services.Contracts.Tags;
+    using Data.Services.Contracts.Comments;
+    using Data.Services.Services.Comments;
 
     public static class NinjectWebCommon
     {
@@ -100,6 +102,7 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<IArticleClientService>().To<ArticleClientService>();
             kernel.Bind<ICategoryClientService>().To<CategoryClientService>();
             kernel.Bind<ITagsClientService>().To<TagsClientService>();
+            kernel.Bind<ICommentsClientService>().To<CommentsClientService>();
         }
     }
 }

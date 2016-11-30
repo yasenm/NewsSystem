@@ -1,0 +1,47 @@
+﻿@using NewsSystem.Data.ViewModels.Comments
+@using System.Web.Configuration
+
+@model CommentAddOrUpdateViewModel
+
+<div class="leave">
+    <h4>Leave a comment</h4>
+</div>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+@using (Ajax.BeginForm("Form", "Comments",
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.ReplaceWith,
+                    UpdateTargetId = "article-comments"
+                },
+                new { id = "commentform" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.ArticleId)
+
+    <p class="comment-form-author-name">
+        @Html.LabelFor(m => Model.AuthorName)
+        @Html.TextBoxFor(m => Model.AuthorName)
+    </p>
+    @*<p class="comment-form-email">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" value="" size="30" aria-required="true">
+        </p>*@
+    <p class="comment-form-comment">
+        @Html.LabelFor(m => Model.Content)
+        @Html.TextAreaFor(m => Model.Content)
+    </p>
+    <p class="recaptcha-container">
+        <div class="g-recaptcha" data-sitekey="@WebConfigurationManager.AppSettings["reCaptchaSiteKey"]"></div>
+    </p>
+    <div class="clearfix"></div>
+    <p class="form-submit">
+        <input type="submit" value="Send">
+    </p>
+    <div class="clearfix"></div>
+}
+
+@section scripts{
+}

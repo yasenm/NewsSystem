@@ -6,7 +6,10 @@ namespace NewsSystem.Data.Models
     {
         public long Id { get; set; }
         public string Content { get; set; }
-        public string AuthorId { get; set; }
-        public virtual User Author { get; set; }
+        public string AuthorName { get; set; }
+        public long AvatarId { get; set; }
+        public string AvatarUrl { get; set; }
+        public long ArticleId { get; set; }
+        public virtual Article Article { get; set; }
     }
 }

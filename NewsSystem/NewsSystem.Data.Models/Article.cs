@@ -13,11 +13,13 @@
     {
         private ICollection<Category> _categories;
         private ICollection<Tag> _tags;
+        private ICollection<Comment> _comments;
 
         public Article()
         {
-            this.Categories = new HashSet<Category>();
-            this.Tags = new HashSet<Tag>();
+            Categories = new HashSet<Category>();
+            Tags = new HashSet<Tag>();
+            Comments = new HashSet<Comment>();
         }
 
         [Key]
@@ -61,6 +63,12 @@
         {
             get { return this._tags; }
             set { this._tags = value; }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return _comments; }
+            set { _comments = value; }
         }
     }
 }

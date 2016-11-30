@@ -94,6 +94,8 @@
     <Compile Include="Albums\AlbumEditViewModel.cs" />
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="Comments\CommentAddOrUpdateViewModel.cs" />
+    <Compile Include="Comments\CommentBasicViewModel.cs" />
     <Compile Include="Common\DescribableEntityViewModel.cs" />
     <Compile Include="NSImages\CoverImageViewModel.cs" />
     <Compile Include="NSImages\NSImageCreateViewModel.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Themes\ThemeBasicViewModel.cs" />
     <Compile Include="Themes\ThemeCreateViewModel.cs" />
     <Compile Include="Tags\TagClientViewModel.cs" />
+    <Compile Include="Users\AuthorBasicViewModel.cs" />
     <Compile Include="Users\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

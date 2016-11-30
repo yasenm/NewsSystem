@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.Designer.cs">
       <DependentUpon>201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221935094_AddedForeignKeyArticleToComments.cs" />
+    <Compile Include="Migrations\201611221935094_AddedForeignKeyArticleToComments.Designer.cs">
+      <DependentUpon>201611221935094_AddedForeignKeyArticleToComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.cs" />
+    <Compile Include="Migrations\201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.Designer.cs">
+      <DependentUpon>201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.resx">
       <DependentUpon>201611211822187_AddingCommentsManyToOneUser_ChangingArticlesManytToOneUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221935094_AddedForeignKeyArticleToComments.resx">
+      <DependentUpon>201611221935094_AddedForeignKeyArticleToComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.resx">
+      <DependentUpon>201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
