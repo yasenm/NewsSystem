@@ -1,6 +1,8 @@
-﻿@using NewsSystem.Data.ViewModels.Articles
+﻿@using PagedList
+@using PagedList.Mvc
+@using NewsSystem.Data.ViewModels.Articles
 
-@model IEnumerable<NewsOverviewClientViewModel>
+@model IPagedList<NewsOverviewClientViewModel>
 
 <h5 class="head">@ViewBag.CategoryTitle</h5>
 
@@ -40,6 +42,9 @@
                     }
                 }
             </div>
+
+            @(Html.PagedListPager(Model,
+            page => Url.Action("ByCategory", "News", new { id = ViewBag.CategoryId, title = ViewBag.CategoryTitle, page })))
         </div>
     }
 }

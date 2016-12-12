@@ -44,7 +44,7 @@ namespace NewsSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Form(CommentAddOrUpdateViewModel model)
         {
-            if (ValidateRecaptcha())
+            if (!ValidateRecaptcha())
             {
                 ModelState.AddModelError("reCaptcha", "reCaptcha didn't go as expected.");
             }
@@ -61,7 +61,7 @@ namespace NewsSystem.Web.Controllers
             return PartialView(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(long commentId, long newsId)
         {

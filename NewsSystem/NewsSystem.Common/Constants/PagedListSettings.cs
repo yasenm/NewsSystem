@@ -2,6 +2,7 @@
 {
     public class PagedListSettings
     {
-        public const int GlobalListCount = 20;
+        public static int GlobalListCount = 1; //20;
+        public static int DefaultStartPage = 1;
     }
 }

@@ -12,6 +12,8 @@
     {
         public long Id { get; set; }
         public string Title { get; set; }
+        public bool IsMain { get; set; }
+        public bool IsTopMain { get; set; }
         public NSImageOnlyIdViewModel CoverImage { get; set; }
         public DateTime CreatedOn { get; set; }
 

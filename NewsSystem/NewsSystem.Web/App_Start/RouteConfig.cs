@@ -10,6 +10,12 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "RssFeed",
+                url: "rss/{action}",
+                defaults: new { controller = "Rss", action = "News" }
+            );
+
+            routes.MapRoute(
                 name: "NewsTags",
                 url: "news/tag/{id}/{name}",
                 defaults: new { controller = "News", action = "ByTagName" }

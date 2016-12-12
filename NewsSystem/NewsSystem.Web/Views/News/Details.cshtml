@@ -6,8 +6,12 @@
     <meta property="og:url" content="@HttpContext.Current.Request.Path" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="@Model.Summary" />
-    <meta property="og:image" content="@Url.Action("NSImage", "NSImage", new { id = Model.CoverImageId })" />I
+    <meta property="og:image" content="@Url.Action("NSImage", "NSImage", new { id = Model.CoverImageId })" />
     <meta property="og:title" content="@Model.Title" />
+}
+
+@{ 
+    ViewBag.Title = Model.Title;
 }
 
 <div class="content">
@@ -42,4 +46,14 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
+
+    @if (User.IsInRole(UsersConstants.AdminRole))
+    {
+        @Styles.Render("~/Content/toastr")
+        @Scripts.Render("~/bundles/toastr")
+        @Scripts.Render("~/bundles/client/comments")
+        <script>
+            APP.Comments.init();
+        </script>
+    }
 }

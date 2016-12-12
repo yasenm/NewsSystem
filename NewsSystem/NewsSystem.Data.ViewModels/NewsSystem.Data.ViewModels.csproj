@@ -86,6 +86,7 @@
     <Compile Include="Articles\ArticleCreateViewModel.cs" />
     <Compile Include="Articles\ArticleEditViewModel.cs" />
     <Compile Include="Articles\NewsPopularOverviewClientViewModel.cs" />
+    <Compile Include="Articles\NewsRssFeedViewModel.cs" />
     <Compile Include="Categories\CategoryCheckboxViewModel.cs" />
     <Compile Include="Categories\CategoryDDLViewModel.cs" />
     <Compile Include="Categories\CategoryMenuClientViewModel.cs" />

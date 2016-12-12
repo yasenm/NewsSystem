@@ -1,9 +1,8 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div class="content">
+﻿<div class="content">
     <div class="col-md-7 content-left">
+        <div class="mid-carousel-container">
+            @Html.Action("FeaturedNews", "News")
+        </div>
         @Html.Action("RecentNews", "News")
     </div>
 

@@ -1,0 +1,49 @@
+﻿@using NewsSystem.Web.Models.Weather
+@using NewsSystem.Common.Extensions
+
+@model WeatherCollectionViewModel
+
+@*<div class="content-right-top">
+        <h5 class="head">Weather</h5>
+        <div class="editor text-center">
+            <h3>@Model.Name</h3>
+            <img src="@string.Format("http://openweathermap.org/img/w/{0}.png", Model.Weather[0].Icon)" alt="" />
+            <p>@Model.Main.Temp Celsius</p>
+            <label>@Model.Weather[0].DecodedDescription</label>
+            <span></span>
+        </div>
+    </div>*@
+
+<div id="weather-cities-view" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner widget-content" role="listbox">
+        @for (int i = 0; i < Model.List.Count(); i++)
+        {
+            <div class="item @if (i == 0) { <text> active</text> }">
+                <h2 class="celsius left-widget-info text-center">
+                    @String.Format("{0:0}", Model.List[i].Main.Temp).PadLeft(3).ToHTMLString() &#8451;
+                </h2>
+                <div class="right-widget-info">
+                    <h4 class="top-heading">@Model.List[i].Name</h4>
+                    <p class="bottom-info-plate">
+                        <img src="@string.Format("http://openweathermap.org/img/w/{0}.png", Model.List[i].Weather[0].Icon)"
+                             style="max-height:26px;"
+                             alt="" />
+                        мин @String.Format("{0:0}", Model.List[i].Main.Temp_min).PadLeft(3).ToHTMLString() &#8451;
+                        макс @String.Format("{0:0}", Model.List[i].Main.Temp_max).PadLeft(3).ToHTMLString() &#8451;
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#weather-cities-view" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#weather-cities-view" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

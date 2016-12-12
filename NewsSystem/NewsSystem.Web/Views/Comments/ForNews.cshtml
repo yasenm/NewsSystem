@@ -22,18 +22,11 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    @using (Ajax.BeginForm("Delete", "Comments",
-                       new AjaxOptions
-                       {
-                           HttpMethod = "Post",
-                           InsertionMode = InsertionMode.Replace,
-                           UpdateTargetId = "article-comments"
-                       }))
+                    @if (User.IsInRole(UsersConstants.AdminRole))
                     {
-                        @*<a class="btn btn-sm btn-danger pull-right" >
+                        <a class="btn btn-sm btn-danger pull-right delete-comment-btn" href="@Url.Action("Delete", "Comments", new { commentId = comment.Id, newsId = comment.ArticleId })">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </a>*@
-                        <input type="submit"  value="Delete" />
+                        </a>
                     }
                 </div>
             </div>

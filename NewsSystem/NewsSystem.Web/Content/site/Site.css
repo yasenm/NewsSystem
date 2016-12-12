@@ -50,3 +50,73 @@ input[type="checkbox"].input-validation-error {
     width: 100% !important;
     max-height: 760px;
 }
+
+
+.features h5 {
+    width: 25% !important;
+}
+
+.features h2 {
+    width: 100% !important;
+}
+
+#widgets {
+    color: white;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: inline-block;
+    font-family: 'Antonio-Regular', Arial;
+}
+
+    #widgets .widget-content {
+        border: solid 2px #1ac7c3;
+        padding-left: 4px;
+        overflow: hidden;
+    }
+
+        #widgets .widget-content .left-widget-info {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 3px;
+            width: 100px;
+        }
+
+        #widgets .widget-content .right-widget-info {
+            display: inline-block;
+            vertical-align: middle;
+            border-left: solid 2px #1ac7c3;
+        }
+
+            #widgets .widget-content .right-widget-info .top-heading {
+                padding: 3px;
+                color: #1ac7c3;
+                font-size: 1.3em;
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            #widgets .widget-content .right-widget-info .bottom-info-plate {
+                font-size: 1.35em;
+                font-weight: 300;
+                background: #1ac7c3;
+                padding: 3px;
+            }
+
+    #widgets .weather-widget .celsius {
+    }
+
+#weather-cities-view {
+    overflow: hidden;
+}
+
+    #weather-cities-view .carousel-inner {
+        overflow: visible;
+    }
+
+.mid-carousel-container img {
+    max-height: 420px !important;
+}
+
+.mid-carousel-container .features {
+    min-height: 70% !important;
+}

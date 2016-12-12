@@ -91,8 +91,10 @@
             bundles.Add(new ScriptBundle("~/bundles/common-scripts").Include(
                         "~/Scripts/common/app.js",
                         "~/Scripts/common/http-requester.js",
-                        "~/Scripts/common/tinymce-initializer.js",
-                        "~/Scripts/common/url-builder.js"));
+                        "~/Scripts/common/url-builder.js",
+                        "~/Scripts/moment.min.js",
+                        "~/Scripts/common/moment-js-settings-locale.js",
+                        "~/Scripts/common/global.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/common-scripts").IncludeDirectory(
             //            "~/Scripts/common", "*.js", true));
@@ -129,12 +131,18 @@
 
             bundles.Add(new ScriptBundle("~/bundles/survey").Include(
                       "~/Scripts/AdminPanel/survey/survey.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/tinymce-settings").Include(
+                        "~/Scripts/common/tinymce-initializer.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
                       //"~/Scripts/ladda-bootstrap/*.min.js",
                       //"~/Scripts/URI.js",
                       //"~/Scripts/gridmvc-ext.js",
                       "~/Scripts/gridmvc.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                      "~/Scripts/jquery-ui-1.11.4.min.js"));
         }
 
         private static void RegisterClientSideScripts(BundleCollection bundles)
@@ -142,6 +150,9 @@
             bundles.Add(new ScriptBundle("~/bundles/client-side-bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/client/comments").Include(
+                        "~/Scripts/client/comments/comments.js"));
         }
     }
 }

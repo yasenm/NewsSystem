@@ -2,6 +2,7 @@
 
 @model IList<NewsEditorsChoiceOverviewClientViewModel>
 
+<h5 class="head">Featured News</h5>
 <div id="featured-news-view" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -19,10 +20,10 @@
         {
             <div class="item text-center @if (i == 0) { <text> active</text> }">
                 @Html.DisplayFor(m => Model[i].CoverImage)
-                <div class="carousel-caption">
+                <div class="carousel-caption features">
+                    @*<h5>Featured news</h5>*@
                     <a href="@Url.Action("Details", "News", new { id = Model[i].Id, title = Html.CleanerUrl(Model[i].Title)  })">
-                        <h1>@Model[i].Title</h1>
-                        <p>@Model[i].Title + @Model[i].Title</p>
+                        <h2>@Model[i].Title</h2>
                     </a>
                 </div>
             </div>

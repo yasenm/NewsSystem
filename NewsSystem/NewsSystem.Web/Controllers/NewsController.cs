@@ -8,7 +8,10 @@
     using Data.ViewModels.Articles;
     using System.Web.Http;
     using Data.Services.Contracts.Tags;
-    using Data.ViewModels.Tags;
+    using NewsSystem.Common.Extensions;
+    using PagedList;
+    using NewsSystem.Common.Constants;
+    using Constants.Common;
 
     public class NewsController : BaseController
     {
@@ -24,7 +27,7 @@
         public ActionResult FeaturedNews()
         {
             var result = _newsService.GetAllGeneric<NewsEditorsChoiceOverviewClientViewModel>()
-                .Take(4)
+                .Where(m => m.IsMain)
                 .ToList();
 
             return PartialView(result);
@@ -43,7 +46,7 @@
         public ActionResult PopularNews()
         {
             var result = _newsService.GetAllGeneric<NewsPopularOverviewClientViewModel>()
-                .Take(4)
+                .Take(5)
                 .ToList();
 
             return PartialView(result);
@@ -61,28 +64,31 @@
         public ActionResult Details(long id)
         {
             var model = _newsService.GetById<NewsDetailsClientViewModel>(id);
+
             return View(model);
         }
 
-        public ActionResult ByCategory(int id, string title)
+        public ActionResult ByCategory(int id, string title, int? page)
         {
+            ViewBag.Title = $"{CommonSettings.SiteDefaultTitle} - {title}";
             ViewBag.CategoryTitle = title;
+            ViewBag.CategoryId = id;
+
             var results = _newsService
-                //.GetAllByCategoryName<NewsOverviewClientViewModel>(title)
                 .GetAllByCategoryId<NewsOverviewClientViewModel>(id)
-                .Take(5)
-                .ToList();
+                .ToPagedList(page == null ? PagedListSettings.DefaultStartPage : (int)page, PagedListSettings.GlobalListCount);
 
             return View(results);
         }
 
-        public ActionResult ByTagName([FromBody]long id, string name)
+        public ActionResult ByTagName([FromBody]long id, string name, int? page)
         {
-            ViewBag.TagName = _tagService.GetTagById<TagClientViewModel>(id).Name;
+            ViewBag.TagName = name;
+            ViewBag.TagId = id;
 
-            var tagId = id;
-            var results = _newsService.GetAllByTagId<NewsOverviewClientViewModel>(id)
-                .ToList();
+            var results = _newsService
+                .GetAllByTagId<NewsOverviewClientViewModel>(id)
+                .ToPagedList(page == null ? PagedListSettings.DefaultStartPage : (int)page, PagedListSettings.GlobalListCount);
 
             return View(results);
         }

@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/images/news-site-icon.png" rel="shortcut icon" type="image/x-icon" />
+    <title>@(ViewBag.Title ?? CommonSettings.SiteDefaultTitle)</title>
     @RenderSection("OpenGraph", required: false)
     @Styles.Render("~/Content/bootstrap-theme")
     @Styles.Render("~/Content/client-side-css")
@@ -19,16 +20,19 @@
     <div class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><h1>konstructs</h1></a>
+                <a href="@Url.Action("Index", "Home", new { })"><h1>@CommonSettings.SiteDefaultTitle </h1></a>
             </div>
             <div class="navigation">
-                <ul>
-                    <li><a href="contact.html">Advertise</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a class="active" href="contact.html">Contact Us</a></li>
+                <ul id="widgets">
+                    <li class="time-widget">
+                        @Html.Partial("_Clock")
+                    </li>
+                    <li id="weather-widget-li" class="weather-widget">
+                        @*@Html.Action("City", "Weather")*@
+                    </li>
                 </ul>
             </div>
-            <div class="clearfix"></div>
+            @*<div class="clearfix"></div>*@
         </div>
     </div>
     <div class="container">
@@ -83,35 +87,15 @@
             </div>
         </div>
     </div>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", null, new { Area = string.Empty, @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home", null, new { Area = string.Empty })</li>
-                        <li>@Html.ActionLink("About", "About", "Home", null, new { Area = string.Empty })</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { Area = string.Empty })</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>*@
-    @*<div class="container body-content">
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>*@
 
     @Scripts.Render("~/bundles/client-side-bootstrap")
     @Scripts.Render("~/bundles/common-scripts")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            APP.Global.initTime();
+            APP.Global.initWeather('@Url.AbsoluteAction("City", "Weather")');
+        });
+    </script>
 </body>
 </html>

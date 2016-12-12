@@ -3,7 +3,7 @@ APP.Articles = (function () {
     
 
     return {
-        initCRUD: function () {
+        initCRUD: function (){ 
 
         }
     }
