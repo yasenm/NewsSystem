@@ -10,23 +10,28 @@
     <meta property="og:title" content="@Model.Title" />
 }
 
-@{ 
+@{
     ViewBag.Title = Model.Title;
 }
 
 <div class="content">
     <div class="single-page">
         <div class="print-main">
-            <h3>Printing</h3>
-            <span class="details-sub-title">@Model.Title</span>
+            <h3>@Model.Title</h3>
+            @Html.DisplayFor(m => m.Stats)
             <p class="sub_head">
-                Posted by <a href="#">@Model.Author</a> on @Html.DisplayFor(m => m.CreatedOn)
+                Posted by <a href="#">@Model.Author</a>
             </p>
             <span class="img-responsive">@Html.DisplayFor(m => Model.CoverImage)</span>
             <p class="span">
                 @Html.Action("NewsTags", "Tag", new { newsId = Model.Id }) |  on @Html.DisplayFor(m => m.CreatedOn)
             </p>
             <p class="ptext">@Html.Raw(Model.Description)</p>
+            <br />
+            @if (Model.RelatedAlbumId.HasValue)
+            {
+                @Html.Action("Carousel", "Albums", new { id = Model.RelatedAlbumId })
+            }
         </div>
 
     </div>

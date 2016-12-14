@@ -22,6 +22,8 @@
 
         public IDbSet<Article> Articles { get; set; }
 
+        public IDbSet<VisitorIp> VisitorsIps { get; set; }
+
         public IDbSet<Theme> Themes { get; set; }
 
         public IDbSet<Album> Albums { get; set; }

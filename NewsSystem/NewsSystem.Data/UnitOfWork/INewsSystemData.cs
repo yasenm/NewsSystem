@@ -1,6 +1,5 @@
 ﻿namespace NewsSystem.Data.UnitOfWork
 {
-    using Common.Models;
     using NewsSystem.Data.Common.Repository;
     using NewsSystem.Data.Models;
 
@@ -11,6 +10,8 @@
         IRepository<User> Users { get; }
 
         IRepository<Article> Articles { get; }
+
+        IRepository<VisitorIp> VisitorsIps { get; }
 
         IRepository<Theme> Themes { get; }
 

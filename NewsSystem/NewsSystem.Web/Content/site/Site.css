@@ -102,9 +102,6 @@ input[type="checkbox"].input-validation-error {
                 padding: 3px;
             }
 
-    #widgets .weather-widget .celsius {
-    }
-
 #weather-cities-view {
     overflow: hidden;
 }
@@ -119,4 +116,24 @@ input[type="checkbox"].input-validation-error {
 
 .mid-carousel-container .features {
     min-height: 70% !important;
+}
+
+    .stats-container img {
+        max-width: 25px;
+    }
+
+.margin-left-5 {
+    margin-left: 5px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.margin-left-20 {
+    margin-left: 20px;
 }

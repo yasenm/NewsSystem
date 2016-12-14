@@ -26,6 +26,11 @@
                         @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
                     </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Summary, new { })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
+                    </div>
                 </div>
 
                 <div>

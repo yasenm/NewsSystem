@@ -63,6 +63,7 @@
 
         public ActionResult Details(long id)
         {
+            _newsService.UpdateVisitorIp(id, HttpContext.Request.UserHostAddress);
             var model = _newsService.GetById<NewsDetailsClientViewModel>(id);
 
             return View(model);

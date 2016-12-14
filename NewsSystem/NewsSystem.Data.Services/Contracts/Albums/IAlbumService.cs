@@ -5,7 +5,7 @@
 
     public interface IAlbumService
     {
-        AlbumEditViewModel GetAlbumForEdit(long albumId);
+        T GetAlbumForEdit<T>(long albumId);
 
         bool EditAlbum(AlbumEditViewModel editModel);
 
@@ -13,20 +13,10 @@
 
         bool Delete(long albumId);
 
-        IEnumerable<AlbumGridViewModel> GetAlbums();
+        IEnumerable<T> GetAlbums<T>();
 
         IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText, string tags);
 
-        IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId); 
-
-        //IEnumerable<AlbumGridViewModel> Search();
-
-        //IEnumerable<AlbumGridViewModel> Search(long albumId);
-
-        //IEnumerable<AlbumGridViewModel> Search(long albumId, string searchText);
-
-        //IEnumerable<AlbumGridViewModel> Search(string searchText);
-
-
+        IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId);
     }
 }

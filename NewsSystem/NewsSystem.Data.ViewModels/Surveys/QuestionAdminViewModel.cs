@@ -8,6 +8,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using System;
 
     public class QuestionAdminViewModel : DescribableEntityViewModel, IMapFrom<Question>
     {
@@ -16,6 +17,8 @@
         public ICollection<AnswerAdminViewModel> Answers { get; set; }
 
         public string NewAnswerDescription { get; set; }
+
+        public DateTime EndsOn { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

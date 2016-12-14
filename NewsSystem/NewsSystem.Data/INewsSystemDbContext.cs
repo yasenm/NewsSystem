@@ -11,6 +11,8 @@
 
         IDbSet<Article> Articles { get; set; }
 
+        IDbSet<VisitorIp> VisitorsIps { get; set; }
+
         IDbSet<Theme> Themes { get; set; }
 
         IDbSet<NSImage> NSImages { get; set; }

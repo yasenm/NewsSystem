@@ -35,7 +35,7 @@
             {
                 return this.PartialView(this.AlbumService.GetAlbumsByCategoryId((long)categoryId));
             }
-            return this.PartialView(this.AlbumService.GetAlbums());
+            return this.PartialView(this.AlbumService.GetAlbums<AlbumGridViewModel>());
         }
         
         public ActionResult AlbumsChoiceGrid(long? selectedId, string searchTags, string searchText, int page = 1)
@@ -77,7 +77,7 @@
         [HttpGet]
         public ActionResult Edit(long albumId)
         {
-            var model = this.AlbumService.GetAlbumForEdit(albumId);
+            var model = this.AlbumService.GetAlbumForEdit<AlbumEditViewModel>(albumId);
             model.ChosenCategories = this.CategoryService.GetAllCheckbox().ToList();
 
             foreach (var chosenCat in model.ChosenCategories)

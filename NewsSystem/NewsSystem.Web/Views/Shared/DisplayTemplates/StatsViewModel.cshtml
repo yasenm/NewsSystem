@@ -1,0 +1,12 @@
+﻿@using NewsSystem.Data.ViewModels.Shared
+
+@model StatsViewModel
+
+<p class="sub_head stats-container">
+    @if (Model.CreatedOn.HasValue)
+    {
+        <img src="~/Content/images/date-icon.png" alt="Alternate Text" />  @Html.DisplayFor(m => m.CreatedOn)
+    }
+    <img src="~/Content/images/views-icon.png" alt="Alternate Text" />  @Model.VisitorsCount
+    <img src="~/Content/images/comments-icon.png" alt="Alternate Text" />  @Model.CommentsCount
+</p>

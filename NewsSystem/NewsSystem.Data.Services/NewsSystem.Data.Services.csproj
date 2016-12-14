@@ -116,7 +116,9 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
+    <Compile Include="Contracts\Albums\IAlbumClientService.cs" />
     <None Include="packages.config" />
+    <Compile Include="Services\Albums\AlbumClientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewsSystem.Data.Common\NewsSystem.Data.Common.csproj">

@@ -7,10 +7,13 @@
 @foreach (var news in Model)
 {
     <div class="article">
-        <h6>@Html.Action("NewsTags", "Tag", new { newsId = news.Id })</h6>
         <a class="title" href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title) })">
             @news.Title
         </a>
+        <h6>@Html.Action("NewsTags", "Tag", new { newsId = news.Id })</h6>
+        <div class="container margin-left-15">
+            @Html.DisplayFor(m => news.Stats)
+        </div>
         <a href="@Url.Action("Details", "News", new { id = news.Id, title = Html.CleanerUrl(news.Title) })">
             @Html.DisplayFor(m => news.CoverImage)
         </a>

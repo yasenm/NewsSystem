@@ -108,5 +108,46 @@ namespace NewsSystem.Data.Services.Articles
 
             return result;
         }
+
+        public void UpdateVisitorIp(long id, string userHostAddress)
+        {
+            try
+            {
+                var ipAddress = AddOrUpdateVisitorIp(userHostAddress);
+                if (ipAddress != null)
+                {
+                    var article = _data.Articles.GetById(id);
+                    article.VisitorsIps.Add(ipAddress);
+                    _data.Articles.Update(article);
+                    ipAddress.Articles.Add(article);
+                    _data.VisitorsIps.Update(ipAddress);
+                    _data.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
+
+        private VisitorIp AddOrUpdateVisitorIp(string userHostAddress)
+        {
+            try
+            {
+                var ip = _data.VisitorsIps.All().FirstOrDefault(vi => vi.IpAddress == userHostAddress);
+                if (ip != null)
+                {
+                    return ip;
+                }
+                var ipAddress = new VisitorIp { IpAddress = userHostAddress, LastVisit = DateTime.Now };
+                _data.VisitorsIps.Add(ipAddress);
+                _data.SaveChanges();
+                return ipAddress;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

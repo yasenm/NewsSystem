@@ -10,6 +10,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using Shared;
 
     public class NewsOverviewClientViewModel : IMapFrom<Article>, IHaveCustomMappings
     {
@@ -19,6 +20,7 @@
         public NSImageOnlyIdViewModel CoverImage { get; set; }
         public DateTime CreatedOn { get; set; }
         public List<string> CategoriesAssotiatied { get; set; }
+        public StatsViewModel Stats { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
@@ -28,7 +30,14 @@
                 .ForMember(m => m.CoverImage, opt => opt.MapFrom(
                             art => new NSImageOnlyIdViewModel {
                                 Id = art.CoverImageId,
-                                ImgTagClasses = "img-responsive" }));
+                                ImgTagClasses = "img-responsive" }))
+                .ForMember(m => m.Stats,
+                    opt => opt.MapFrom(art => new StatsViewModel
+                    {
+                        VisitorsCount = art.VisitorsIps.Count,
+                        CommentsCount = art.Comments.Where(c => !c.IsDeleted).Count(),
+                        CreatedOn = art.CreatedOn
+                    }));
         }
     }
 }

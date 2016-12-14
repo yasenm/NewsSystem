@@ -103,6 +103,7 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<ICategoryClientService>().To<CategoryClientService>();
             kernel.Bind<ITagsClientService>().To<TagsClientService>();
             kernel.Bind<ICommentsClientService>().To<CommentsClientService>();
+            kernel.Bind<IAlbumClientService>().To<AlbumClientService>();
         }
     }
 }

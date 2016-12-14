@@ -14,12 +14,14 @@
         private ICollection<Category> _categories;
         private ICollection<Tag> _tags;
         private ICollection<Comment> _comments;
+        private ICollection<VisitorIp> _visitorsIps;
 
         public Article()
         {
             Categories = new HashSet<Category>();
             Tags = new HashSet<Tag>();
             Comments = new HashSet<Comment>();
+            _visitorsIps = new HashSet<VisitorIp>();
         }
 
         [Key]
@@ -69,6 +71,12 @@
         {
             get { return _comments; }
             set { _comments = value; }
+        }
+
+        public virtual ICollection<VisitorIp> VisitorsIps
+        {
+            get { return _visitorsIps; }
+            set { _visitorsIps = value; }
         }
     }
 }

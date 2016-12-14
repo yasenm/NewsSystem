@@ -36,6 +36,14 @@
             }
         }
 
+        public IRepository<VisitorIp> VisitorsIps
+        {
+            get
+            {
+                return GetRepository<VisitorIp>();
+            }
+        }
+
         public IRepository<Theme> Themes
         {
             get

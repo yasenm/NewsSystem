@@ -1,0 +1,41 @@
+﻿@using NewsSystem.Data.ViewModels.Albums
+
+@model AlbumClientMinViewModel
+
+<div class="album-carousel">
+    <h5 class="head">Album</h5>
+    <div id="album-carousel-for-@Model.Id" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @foreach (var imageId in Model.AlbumImagesIds)
+            {
+                <li data-target="#featured-news-view"
+                    data-slide-to="@imageId"
+                    class="@if (Model.CoverImageId == imageId) { <text> active</text> }">
+                </li>
+            }
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            @foreach (var imageId in Model.AlbumImagesIds)
+            {
+                <div class="item text-center @if (Model.CoverImageId == imageId) { <text> active</text> }">
+                    <img src="@Url.Action("NSImage", "NSImage", new { imageId = imageId })"
+                         class="img-responsive"
+                         alt="No image found..." />
+                </div>
+            }
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#album-carousel-for-@Model.Id" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#album-carousel-for-@Model.Id" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

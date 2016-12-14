@@ -30,10 +30,10 @@
             this.CategoryService = cService;
         }
 
-        public AlbumEditViewModel GetAlbumForEdit(long albumId)
+        public T GetAlbumForEdit<T>(long albumId)
         {
             var album = this.Data.Albums.GetById(albumId);
-            var model = Mapper.Map<AlbumEditViewModel>(album);
+            var model = Mapper.Map<T>(album);
 
             return model;
         }
@@ -97,13 +97,13 @@
             }
         }
 
-        public IEnumerable<AlbumGridViewModel> GetAlbums()
+        public IEnumerable<T> GetAlbums<T>()
         {
             var collection = this.Data.Albums.All()
                 .ToList()
                 .AsQueryable()
                 .Project()
-                .To<AlbumGridViewModel>()
+                .To<T>()
                 .ToList();
 
             return collection;

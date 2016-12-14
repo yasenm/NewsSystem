@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using NewsSystem.Data.Common.Models;
+    using System;
 
     public class Question : DescribableEntity
     {
@@ -14,6 +15,10 @@
         }
 
         public int Id { get; set; }
+
+        //public DateTime EndsOn { get; set; }
+
+        //public bool IsActive { get; set; }
 
         public virtual ICollection<Answer> Answers
         {

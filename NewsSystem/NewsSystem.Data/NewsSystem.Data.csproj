@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.Designer.cs">
       <DependentUpon>201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612141008442_Added_HashSetForVisitorsIpsForArticles.cs" />
+    <Compile Include="Migrations\201612141008442_Added_HashSetForVisitorsIpsForArticles.Designer.cs">
+      <DependentUpon>201612141008442_Added_HashSetForVisitorsIpsForArticles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.resx">
       <DependentUpon>201611251704241_REMOVED_RelationBetweenCommentAndUser_AllCommentsWillBeAnonymose_ADDED_AuthorNameAndAvatarOptionsInComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141008442_Added_HashSetForVisitorsIpsForArticles.resx">
+      <DependentUpon>201612141008442_Added_HashSetForVisitorsIpsForArticles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

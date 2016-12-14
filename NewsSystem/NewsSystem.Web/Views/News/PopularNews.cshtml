@@ -11,6 +11,7 @@
                 <h3>@news.Title</h3>
                 <p>@Html.Raw(news.Summary)</p>
                 <label>@((DateTime.Now - news.CreatedOn).Days) Days ago</label>
+                @Html.DisplayFor(m => news.Stats)
                 <span></span>
             </div>
         </a>

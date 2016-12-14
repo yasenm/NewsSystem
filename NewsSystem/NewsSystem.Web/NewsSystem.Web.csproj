@@ -233,6 +233,7 @@
     <Compile Include="Constants\Common\CommonStyles.cs" />
     <Compile Include="Constants\Common\CommonToastrSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -289,6 +290,8 @@
     <Content Include="Content\images\a2.jpg" />
     <Content Include="Content\images\abt_pic.jpg" />
     <Content Include="Content\images\avatar.jpg" />
+    <Content Include="Content\images\comments-icon.png" />
+    <Content Include="Content\images\date-icon.png" />
     <Content Include="Content\images\ep1.jpg" />
     <Content Include="Content\images\ep2.jpg" />
     <Content Include="Content\images\ep3.jpg" />
@@ -302,6 +305,7 @@
     <Content Include="Content\images\p5.jpg" />
     <Content Include="Content\images\print.jpg" />
     <Content Include="Content\images\printing.jpg" />
+    <Content Include="Content\images\views-icon.png" />
     <Content Include="Content\ladda-bootstrap\ladda-themeless.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\site\style.css" />
@@ -671,6 +675,8 @@
     <Content Include="Views\Comments\Form.cshtml" />
     <Content Include="Views\Weather\City.cshtml" />
     <Content Include="Views\Shared\_Clock.cshtml" />
+    <Content Include="Views\Albums\Carousel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\StatsViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,5 +14,6 @@
         IQueryable<T> GetAllByTagId<T>(long id);
         T GetById<T>(long id);
         T GetByTitle<T>(string title);
+        void UpdateVisitorIp(long id, string userHostAddress);
     }
 }
