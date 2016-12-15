@@ -40,6 +40,8 @@
 
         public IDbSet<Comment> Comments { get; set; }
 
+        public IDbSet<Vote> Votes { get; set; }
+
         public static NewsSystemDbContext Create()
         {
             return new NewsSystemDbContext();

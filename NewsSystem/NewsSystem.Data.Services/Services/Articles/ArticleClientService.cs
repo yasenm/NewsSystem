@@ -9,16 +9,19 @@ using System;
 using AutoMapper;
 using System.Linq.Expressions;
 using NewsSystem.Data.Models;
+using NewsSystem.Data.Services.Contracts.VisitorsIps;
 
 namespace NewsSystem.Data.Services.Articles
 {
     public class ArticleClientService : IArticleClientService
     {
         private INewsSystemData _data;
+        private IVisitorsIpsService _visService;
 
-        public ArticleClientService(INewsSystemData data)
+        public ArticleClientService(INewsSystemData data, IVisitorsIpsService visService)
         {
             _data = data;
+            _visService = visService;
         }
 
         public IQueryable<NewsOverviewClientViewModel> GetAll()
@@ -113,40 +116,23 @@ namespace NewsSystem.Data.Services.Articles
         {
             try
             {
-                var ipAddress = AddOrUpdateVisitorIp(userHostAddress);
+                var ipAddress = _visService.AddOrGetVisitorIp(userHostAddress);
                 if (ipAddress != null)
                 {
                     var article = _data.Articles.GetById(id);
+
                     article.VisitorsIps.Add(ipAddress);
                     _data.Articles.Update(article);
+
                     ipAddress.Articles.Add(article);
                     _data.VisitorsIps.Update(ipAddress);
+
                     _data.SaveChanges();
                 }
             }
             catch (Exception e)
             {
                 return;
-            }
-        }
-
-        private VisitorIp AddOrUpdateVisitorIp(string userHostAddress)
-        {
-            try
-            {
-                var ip = _data.VisitorsIps.All().FirstOrDefault(vi => vi.IpAddress == userHostAddress);
-                if (ip != null)
-                {
-                    return ip;
-                }
-                var ipAddress = new VisitorIp { IpAddress = userHostAddress, LastVisit = DateTime.Now };
-                _data.VisitorsIps.Add(ipAddress);
-                _data.SaveChanges();
-                return ipAddress;
-            }
-            catch (Exception e)
-            {
-                return null;
             }
         }
     }

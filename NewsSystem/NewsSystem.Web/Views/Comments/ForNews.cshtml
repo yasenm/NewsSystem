@@ -11,22 +11,59 @@
                 <img src="http://localhost:5844/NSImage/NSImage?imageId=3" alt="">
             </div>
             <div class="col-md-10 cmts-main-right">
-                <div class="col-md-10">
+                @*@if (comment.TotalVotesCount != 0)
+                {
+                    <div class="col-md-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" 
+                                 style="width:@(comment.PositiveVotesPercent)%"></div>
+                            <div class="progress-bar progress-bar-danger" 
+                                 style="width:@(comment.NegativeVotesPercent)%"></div>
+                        </div>
+                    </div>
+                }*@
+                <div class="col-md-9">
                     <h5>@comment.AuthorName</h5>
                     <p>@comment.Content</p>
                     <div class="cmts">
-                        <div class="col-md-6 cmnts-left">
+                        <div class="col-md-8 cmnts-left">
                             <p>On @String.Format("{0:MMMM dd, yyyy, hh:mm}", comment.CreatedOn)</p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3 text-center">
                     @if (User.IsInRole(UsersConstants.AdminRole))
                     {
                         <a class="btn btn-sm btn-danger pull-right delete-comment-btn" href="@Url.Action("Delete", "Comments", new { commentId = comment.Id, newsId = comment.ArticleId })">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
+                    }
+                    else
+                    {
+
+                        if (!comment.UserVotedForThis)
+                        {
+                            <a class="btn btn-sm btn-success pull-right vote-for-comment-btn" href="@Url.Action("Vote", "Comments", new { commentId = comment.Id, newsId = comment.ArticleId, isPositive = true })">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-sm btn-danger pull-right vote-for-comment-btn" href="@Url.Action("Vote", "Comments", new { commentId = comment.Id, newsId = comment.ArticleId, isPositive = false })">
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            </a>
+                        }
+                        <br />
+                        <h3 class="vote-count-header">
+                            <span class="label @(comment.PositiveVotes > 0 ? "label-success" : "label-default")">
+                                @comment.PositiveVotes
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </span>
+                        </h3>
+                        <h3 class="vote-count-header">
+                            <span class="label @(comment.NegativeVotes > 0 ? "label-danger" : "label-default")">
+                                @comment.NegativeVotes
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            </span>
+                        </h3>
                     }
                 </div>
             </div>

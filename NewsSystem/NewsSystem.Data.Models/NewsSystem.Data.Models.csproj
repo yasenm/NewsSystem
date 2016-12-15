@@ -67,6 +67,7 @@
     <Compile Include="Theme.cs" />
     <Compile Include="User.cs" />
     <Compile Include="VisitorIp.cs" />
+    <Compile Include="Vote.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,5 +11,7 @@ namespace NewsSystem.Data.Services.Contracts.Comments
         IEnumerable<T> GetByNewsId<T>(long newsId);
 
         IEnumerable<T> GetByUser<T>(string username);
+
+        bool VoteFor(long id, bool isPositive, string userHostAddress);
     }
 }

@@ -8,10 +8,12 @@ namespace NewsSystem.Data.Models
     public class VisitorIp
     {
         private ICollection<Article> _articles;
+        private ICollection<Vote> _votes;
 
         public VisitorIp()
         {
             Articles = new HashSet<Article>();
+            Votes = new HashSet<Vote>();
         }
 
         public long Id { get; set; }
@@ -24,6 +26,12 @@ namespace NewsSystem.Data.Models
         {
             get { return _articles; }
             set { _articles = value; }
+        }
+
+        public virtual ICollection<Vote> Votes
+        {
+            get { return _votes; }
+            set { _votes = value; }
         }
     }
 }

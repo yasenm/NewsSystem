@@ -29,6 +29,8 @@
 
         IDbSet<Comment> Comments { get; set; }
 
+        IDbSet<Vote> Votes { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

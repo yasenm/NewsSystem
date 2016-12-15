@@ -108,6 +108,14 @@
             }
         }
 
+        public IRepository<Vote> Votes
+        {
+            get
+            {
+                return GetRepository<Vote>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.Context.SaveChanges();

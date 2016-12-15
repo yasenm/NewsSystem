@@ -32,6 +32,8 @@ namespace NewsSystem.Web.App_Start
     using Data.Services.Contracts.Tags;
     using Data.Services.Contracts.Comments;
     using Data.Services.Services.Comments;
+    using Data.Services.Contracts.VisitorsIps;
+    using Data.Services.Services.VisitorsIps;
 
     public static class NinjectWebCommon
     {
@@ -104,6 +106,7 @@ namespace NewsSystem.Web.App_Start
             kernel.Bind<ITagsClientService>().To<TagsClientService>();
             kernel.Bind<ICommentsClientService>().To<CommentsClientService>();
             kernel.Bind<IAlbumClientService>().To<AlbumClientService>();
+            kernel.Bind<IVisitorsIpsService>().To<VisitorsIpsService>();
         }
     }
 }

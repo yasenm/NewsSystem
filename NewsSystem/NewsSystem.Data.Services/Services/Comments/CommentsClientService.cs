@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using NewsSystem.Data.Models;
 using NewsSystem.Data.Services.Contracts.Comments;
+using NewsSystem.Data.Services.Contracts.VisitorsIps;
 using NewsSystem.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace NewsSystem.Data.Services.Services.Comments
     public class CommentsClientService : ICommentsClientService
     {
         private INewsSystemData _data;
+        private IVisitorsIpsService _visService;
 
-        public CommentsClientService(INewsSystemData data)
+        public CommentsClientService(INewsSystemData data, IVisitorsIpsService visService)
         {
             _data = data;
+            _visService = visService;
         }
 
         public bool AddOrUpdate<T>(T model)
@@ -44,7 +47,7 @@ namespace NewsSystem.Data.Services.Services.Comments
             }
             catch (Exception e)
             {
-                return false;                
+                return false;
             }
         }
 
@@ -68,6 +71,40 @@ namespace NewsSystem.Data.Services.Services.Comments
                 .ProjectTo<T>();
 
             return result;
+        }
+
+        public bool VoteFor(long id, bool isPositive, string userHostAddress)
+        {
+            try
+            {
+                var ipAddress = _visService.AddOrGetVisitorIp(userHostAddress);
+                if (ipAddress != null)
+                {
+                    var dbVote = _data.Votes.All()
+                        .FirstOrDefault(v => v.CommentId == id && v.VisitorIpId == ipAddress.Id);
+                    var comment = _data.Comments.GetById(id);
+
+                    if (dbVote != null)
+                    {
+                    }
+                    else
+                    {
+                        var newVote = new Vote
+                        {
+                            IsPositive = isPositive,
+                            VisitorIpId = ipAddress.Id,
+                            CommentId = comment.Id
+                        };
+                        _data.Votes.Add(newVote);
+                        _data.SaveChanges();
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

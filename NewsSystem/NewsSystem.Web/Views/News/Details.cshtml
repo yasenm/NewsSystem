@@ -51,14 +51,11 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
+    @Styles.Render("~/Content/toastr")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/client/comments")
 
-    @if (User.IsInRole(UsersConstants.AdminRole))
-    {
-        @Styles.Render("~/Content/toastr")
-        @Scripts.Render("~/bundles/toastr")
-        @Scripts.Render("~/bundles/client/comments")
-        <script>
-            APP.Comments.init();
-        </script>
-    }
+    <script>
+        APP.Comments.init();
+    </script>
 }

@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201612141008442_Added_HashSetForVisitorsIpsForArticles.Designer.cs">
       <DependentUpon>201612141008442_Added_HashSetForVisitorsIpsForArticles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.cs" />
+    <Compile Include="Migrations\201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.Designer.cs">
+      <DependentUpon>201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612141008442_Added_HashSetForVisitorsIpsForArticles.resx">
       <DependentUpon>201612141008442_Added_HashSetForVisitorsIpsForArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.resx">
+      <DependentUpon>201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

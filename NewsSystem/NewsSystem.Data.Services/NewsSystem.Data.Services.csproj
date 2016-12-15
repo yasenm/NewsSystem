@@ -88,6 +88,7 @@
     <Compile Include="Contracts\Category\ICategoryClientService.cs" />
     <Compile Include="Contracts\Comments\ICommentsClientService.cs" />
     <Compile Include="Contracts\Tags\ITagsClientService.cs" />
+    <Compile Include="Contracts\VisitorsIps\IVisitorsIpsService.cs" />
     <Compile Include="Services\Articles\ArticleClientService.cs" />
     <Compile Include="Services\Category\CategoryClientService.cs" />
     <Compile Include="Services\Category\CategoryService.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Contracts\Albums\IAlbumClientService.cs" />
     <None Include="packages.config" />
     <Compile Include="Services\Albums\AlbumClientService.cs" />
+    <Compile Include="Services\VisitorsIps\VisitorsIpsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NewsSystem.Data.Common\NewsSystem.Data.Common.csproj">

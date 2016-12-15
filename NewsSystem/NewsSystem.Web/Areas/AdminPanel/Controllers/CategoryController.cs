@@ -16,24 +16,33 @@
 
         public ActionResult CategoryTree(string Action, string Controller, string UpdateTargetId)
         {
-           
-            this.ViewBag.Action = Action;
-            this.ViewBag.Controller = Controller;
-            this.ViewBag.UpdateTargetId = UpdateTargetId;
+            ViewBag.Action = Action;
+            ViewBag.Controller = Controller;
+            ViewBag.UpdateTargetId = UpdateTargetId;
 
-            var model = this.CategoryService.GetAll();
-            return this.PartialView("CategoryTree", model);
+            var model = CategoryService.GetAll();
+            return PartialView("CategoryTree", model);
         }
 
         public ActionResult CategoryTreeSelectMode(string Action, string Controller, string UpdateTargetId)
         {
+            ViewBag.Action = Action;
+            ViewBag.Controller = Controller;
+            ViewBag.UpdateTargetId = UpdateTargetId;
 
-            this.ViewBag.Action = Action;
-            this.ViewBag.Controller = Controller;
-            this.ViewBag.UpdateTargetId = UpdateTargetId;
+            var model = CategoryService.GetAll();
+            return PartialView("CategoryTreeSelectMode", model);
+        }
+        
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-            var model = this.CategoryService.GetAll();
-            return this.PartialView("CategoryTreeSelectMode", model);
+        public ActionResult SortableList()
+        {
+            var model = CategoryService.GetAll();
+            return PartialView(model);
         }
     }
 }

@@ -72,5 +72,15 @@ namespace NewsSystem.Web.Controllers
 
             throw new HttpException(406, "Delete message went wrong");
         }
+
+        [HttpPost]
+        public ActionResult Vote(long commentId, bool isPositive, long newsId)
+        {
+            if (_commentsService.VoteFor(commentId, isPositive, HttpContext.Request.UserHostAddress))
+            {
+                return ForNews(newsId);
+            }
+            throw new HttpException(400, "Vote not registered!");
+        }
     }
 }

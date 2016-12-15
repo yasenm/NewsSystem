@@ -434,6 +434,8 @@
     <Compile Include="Models\Weather\WeatherAPIWeather.cs" />
     <Compile Include="Models\Weather\WeatherAPIWind.cs" />
     <Compile Include="Models\Weather\WeatherCollectionViewModel.cs" />
+    <Content Include="Areas\AdminPanel\Views\Category\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Category\SortableList.cshtml" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
