@@ -11,16 +11,16 @@
 
     public class ThemeService : IDataService, IThemeService
     {
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
 
         public ThemeService(INewsSystemData data)
         {
-            this.Data = data;
+            this._data = data;
         }
 
         public IQueryable<ThemeBasicViewModel> GetAll()
         {
-            var result = this.Data.Themes.All()
+            var result = this._data.Themes.All()
                 .Project()
                 .To<ThemeBasicViewModel>();
 

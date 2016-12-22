@@ -17,14 +17,14 @@
 
     public class AlbumService : IDataService, IAlbumService
     {
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
         private INSImageService NSImageService { get; set; }
         private ITagsService TagsService { get; set; }
         private ICategoryService CategoryService { get; set; }
 
         public AlbumService(INewsSystemData data, INSImageService nsiService, ITagsService tagsService, ICategoryService cService)
         {
-            this.Data = data;
+            this._data = data;
             this.NSImageService = nsiService;
             this.TagsService = tagsService;
             this.CategoryService = cService;
@@ -32,7 +32,7 @@
 
         public T GetAlbumForEdit<T>(long albumId)
         {
-            var album = this.Data.Albums.GetById(albumId);
+            var album = this._data.Albums.GetById(albumId);
             var model = Mapper.Map<T>(album);
 
             return model;
@@ -43,14 +43,14 @@
             try
             {
                 //Album editAlbum = Mapper.Map<Album>(editModel);
-                Album editAlbum = this.Data.Albums.GetById(editModel.Id);
+                Album editAlbum = this._data.Albums.GetById(editModel.Id);
                 this.NSImageService.SaveImagesToAlbum(editModel.AlbumPostedImages, editAlbum.Id);
                 editAlbum.Description = editModel.Description;
                 editAlbum.Title = editModel.Title;
                 editAlbum.Summary = editModel.Summary;
 
-                this.Data.Albums.Update(editAlbum);
-                this.Data.SaveChanges();
+                this._data.Albums.Update(editAlbum);
+                this._data.SaveChanges();
 
                 this.TagsService.SaveTagsToTagableEntity(editAlbum, editModel.Tags);
                 this.CategoryService.SaveCategorableEntityToCategories(editAlbum, editModel.ChosenCategories);
@@ -69,8 +69,8 @@
             try
             {
                 var album = Mapper.Map<Album>(albumModel);
-                this.Data.Albums.Add(album);
-                this.Data.SaveChanges();
+                this._data.Albums.Add(album);
+                this._data.SaveChanges();
 
                 this.TagsService.SaveTagsToTagableEntity(album, albumModel.Tags);
                 this.CategoryService.SaveCategorableEntityToCategories(album, albumModel.ChosenCategories);
@@ -87,8 +87,8 @@
         {
             try
             {
-                this.Data.Albums.Delete(albumId);
-                this.Data.SaveChanges();
+                this._data.Albums.Delete(albumId);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -99,7 +99,7 @@
 
         public IEnumerable<T> GetAlbums<T>()
         {
-            var collection = this.Data.Albums.All()
+            var collection = this._data.Albums.All()
                 .ToList()
                 .AsQueryable()
                 .Project()
@@ -111,7 +111,7 @@
 
         public IEnumerable<AlbumGridViewModel> GetAlbumsBySearchText(string searchText, string tags)
         {
-            var queryableAlbums = this.Data.Albums.All();
+            var queryableAlbums = this._data.Albums.All();
             if (searchText != null && searchText != string.Empty)
             {
                 queryableAlbums = queryableAlbums.Where(a => a.Title.ToLower().Contains(searchText));
@@ -134,7 +134,7 @@
 
         public IEnumerable<AlbumGridViewModel> GetAlbumsByCategoryId(long categoryId)
         {
-            var result = this.Data.Albums.All()
+            var result = this._data.Albums.All()
                 .Where(a => a.Categories.FirstOrDefault(c => c.Id == categoryId) != null)
                 .ToList()
                 .AsQueryable()

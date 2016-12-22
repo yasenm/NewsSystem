@@ -15,23 +15,23 @@
 
     public class AnswersService : IDataService, IAnswersService
     {
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
 
         public AnswersService(INewsSystemData data)
         {
-            this.Data = data;
+            this._data = data;
         }
 
         public IQueryable<AnswerViewModel> GetAllAnswers()
         {
-            return this.Data.Answers.All()
+            return this._data.Answers.All()
                 .Project()
                 .To<AnswerViewModel>();
         }
 
         public AnswerViewModel GetById(int id)
         {
-            var answer = this.Data.Answers.GetById(id);
+            var answer = this._data.Answers.GetById(id);
             var model = Mapper.Map<AnswerViewModel>(answer);
 
             return model;
@@ -42,8 +42,8 @@
             try
             {
                 var actual = Mapper.Map<Answer>(model);
-                this.Data.Answers.Add(actual);
-                this.Data.SaveChanges();
+                this._data.Answers.Add(actual);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -57,8 +57,8 @@
             try
             {
                 var actual = Mapper.Map<Answer>(model);
-                this.Data.Answers.Update(actual);
-                this.Data.SaveChanges();
+                this._data.Answers.Update(actual);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -71,8 +71,8 @@
         {
             try
             {
-                this.Data.Answers.Delete(id);
-                this.Data.SaveChanges();
+                this._data.Answers.Delete(id);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -83,7 +83,7 @@
 
         public IEnumerable<AnswerViewModel> GetAllAnswersForQuestion(int questionId)
         {
-            return this.Data.Answers.All()
+            return this._data.Answers.All()
                 .Where(a => a.QuestionId == questionId)
                 .Project()
                 .To<AnswerViewModel>()

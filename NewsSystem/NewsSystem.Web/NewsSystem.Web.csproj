@@ -256,6 +256,7 @@
     <Compile Include="Helpers\TitleHelper.cs" />
     <Compile Include="Helpers\UrlHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Captcha\CaptchaResponse.cs" />
     <Compile Include="Models\Weather\WeatherAPIClouds.cs" />
     <Compile Include="Models\Weather\WeatherAPICoord.cs" />
     <Compile Include="Models\Weather\WeatherAPIMain.cs" />
@@ -351,6 +352,7 @@
     <Content Include="Content\images\news-site-icon.png" />
     <Content Include="Scripts\AdminPanel\albums\albums.js" />
     <Content Include="Scripts\AdminPanel\articles\articles.js" />
+    <Content Include="Scripts\AdminPanel\category\category.js" />
     <Content Include="Scripts\AdminPanel\common\common-modal-triggers.js" />
     <Content Include="Scripts\AdminPanel\common\common-tags-js.js" />
     <Content Include="Scripts\AdminPanel\ns-images\ns-images.js" />
@@ -436,6 +438,7 @@
     <Compile Include="Models\Weather\WeatherCollectionViewModel.cs" />
     <Content Include="Areas\AdminPanel\Views\Category\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Category\SortableList.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Category\Form.cshtml" />
     <None Include="Properties\PublishProfiles\yasen.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

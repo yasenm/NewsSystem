@@ -1,0 +1,39 @@
+﻿@using NewsSystem.Data.ViewModels.Categories
+
+@model CategoryFormViewModel
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Add", "Category", FormMethod.Post, new { id = "add-cat-form" }))
+        {
+
+            <div class="list-group">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title, new { })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ParentId, new { })
+                    @Html.DropDownListFor(m => m.ParentId, Model.Categories, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ParentId, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Summary, new { })
+                    @Html.TextAreaFor(m => m.Summary, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Summary, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description, new { })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <a href="@Url.AbsoluteAction("Form", "Category")" class="btn btn-default" id="save-category-btn">Save</a>
+                <a href="@Url.AbsoluteAction("Index", "Category")" class="btn btn-sm btn-danger cancel-category-btn">Cancel</a>
+            </div>
+        }
+    </div>
+</div>

@@ -10,6 +10,10 @@
     using NewsSystem.Web.App_Start;
     using NewsSystem.Data.Services.Articles;
     using NewsSystem.Data.ViewModels.Articles;
+    using System;
+    using System.Web;
+    using NewsSystem.Common.Helpers;
+    using System.Web.Configuration;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -26,6 +30,10 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
         }
     }
 }

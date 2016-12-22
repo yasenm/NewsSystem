@@ -12,18 +12,18 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    public class CategoryService : IDataService, ICategoryService
+    public class CategoryService : ICategoryService
     {
-        public INewsSystemData Data { get; set; }
+        private INewsSystemData _data { get; set; }
 
         public CategoryService(INewsSystemData data)
         {
-            this.Data = data;
+            this._data = data;
         }
 
         public IEnumerable<CategoryViewModel> GetAll()
         {
-            var collection = this.Data.Categories.All()
+            var collection = this._data.Categories.All()
                 .Where(ac => ac.ParentId == null)
                 .ToList()
                 .AsQueryable()
@@ -36,7 +36,7 @@
 
         public IEnumerable<CategoryCheckboxViewModel> GetAllCheckbox()
         {
-            var collection = this.Data.Categories.All()
+            var collection = this._data.Categories.All()
                 .Where(ac => ac.ParentId == null)
                 .ToList()
                 .AsQueryable()
@@ -49,7 +49,8 @@
 
         public SelectList GetDDL()
         {
-            var collection = this.Data.Categories.All()
+            var collection = this._data.Categories.All()
+                .Where(c => c.ParentId == null)
                 .Project()
                 .To<CategoryDDLViewModel>()
                 .ToList();
@@ -77,7 +78,7 @@
             {
                 foreach (var catId in categoriesIds)
                 {
-                    var dbCategory = this.Data.Categories.All().FirstOrDefault(c => c.Id == catId);
+                    var dbCategory = this._data.Categories.All().FirstOrDefault(c => c.Id == catId);
 
                     if (dbCategory == null)
                     {
@@ -98,21 +99,21 @@
             var entityIsAlbum = tagableEntity as Album;
             if (entityIsAlbum != null)
             {
-                var album = this.Data.Albums.GetById(entityIsAlbum.Id);
+                var album = this._data.Albums.GetById(entityIsAlbum.Id);
                 album.Categories.Add(dbCategory);
-                this.Data.Albums.Update(album);
+                this._data.Albums.Update(album);
                 dbCategory.Albums.Add(album);
             }
             var entityIsArticle = tagableEntity as Article;
             if (entityIsArticle != null)
             {
-                var article = this.Data.Articles.GetById(entityIsArticle.Id);
+                var article = this._data.Articles.GetById(entityIsArticle.Id);
                 article.Categories.Add(dbCategory);
-                this.Data.Articles.Update(article);
+                this._data.Articles.Update(article);
                 dbCategory.Articles.Add(article);
             }
-            this.Data.Categories.Update(dbCategory);
-            this.Data.SaveChanges();
+            this._data.Categories.Update(dbCategory);
+            this._data.SaveChanges();
         }
 
         public void RemoveCategoriesFromCategorableEntity(ICategorableEntity entity)
@@ -120,7 +121,7 @@
             var entityIsAlbum = entity as Album;
             if (entityIsAlbum != null)
             {
-                var album = this.Data.Albums.GetById(entityIsAlbum.Id);
+                var album = this._data.Albums.GetById(entityIsAlbum.Id);
                 var categories = album.Categories;
                 foreach (var category in categories)
                 {
@@ -132,13 +133,55 @@
             var entityIsArticle = entity as Article;
             if (entityIsArticle != null)
             {
-                var article = this.Data.Articles.GetById(entityIsArticle.Id);
+                var article = this._data.Articles.GetById(entityIsArticle.Id);
                 var categories = article.Categories;
                 foreach (var category in categories)
                 {
                     category.Articles.Remove(article);
                 }
                 article.Categories.Clear();
+            }
+        }
+
+        public bool UpdateCategoryList(List<OrderedCategoryViewModel> model)
+        {
+            try
+            {
+                foreach (var catModel in model)
+                {
+                    var dbCat = _data.Categories.GetById(catModel.Id);
+                    dbCat.Children.Clear();
+                    foreach (var childCat in catModel.Children)
+                    {
+                        var dbChildCat = _data.Categories.GetById(childCat);
+                        dbCat.Children.Add(dbChildCat);
+                        dbChildCat.Parent = dbCat;
+                        _data.Categories.Update(dbChildCat);
+                    }
+                    _data.Categories.Update(dbCat);
+                }
+                _data.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool EditCatName(long id, string newName)
+        {
+            try
+            {
+                var dbCat = _data.Categories.GetById(id);
+                dbCat.Title = newName.Trim();
+                _data.Categories.Update(dbCat);
+                _data.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

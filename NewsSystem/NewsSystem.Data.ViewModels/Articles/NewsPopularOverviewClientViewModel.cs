@@ -22,7 +22,7 @@
                 .ForMember(m => m.Stats,
                     opt => opt.MapFrom(art => new StatsViewModel
                     {
-                        VisitorsCount = art.VisitorsIps.Count,
+                        VisitorsCount = art.ViewsCount,
                         CommentsCount = art.Comments.Where(c => !c.IsDeleted).Count(),
                         CreatedOn = null,
                     }));

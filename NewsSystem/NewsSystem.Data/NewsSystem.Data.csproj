@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.Designer.cs">
       <DependentUpon>201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612222153151_ADDED_ViewsCountPropertyToArticles.cs" />
+    <Compile Include="Migrations\201612222153151_ADDED_ViewsCountPropertyToArticles.Designer.cs">
+      <DependentUpon>201612222153151_ADDED_ViewsCountPropertyToArticles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.resx">
       <DependentUpon>201612141626409_Added_VotesForCommentsOneToMany_VotesToVisitorIpManyToOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612222153151_ADDED_ViewsCountPropertyToArticles.resx">
+      <DependentUpon>201612222153151_ADDED_ViewsCountPropertyToArticles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

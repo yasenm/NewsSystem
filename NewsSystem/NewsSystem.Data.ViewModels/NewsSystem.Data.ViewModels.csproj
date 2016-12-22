@@ -89,12 +89,14 @@
     <Compile Include="Articles\NewsRssFeedViewModel.cs" />
     <Compile Include="Categories\CategoryCheckboxViewModel.cs" />
     <Compile Include="Categories\CategoryDDLViewModel.cs" />
+    <Compile Include="Categories\CategoryFormViewModel.cs" />
     <Compile Include="Categories\CategoryMenuClientViewModel.cs" />
     <Compile Include="Categories\CategoryViewModel.cs" />
     <Compile Include="Albums\AlbumCreateViewModel.cs" />
     <Compile Include="Albums\AlbumEditViewModel.cs" />
     <Compile Include="Albums\AlbumGridViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
+    <Compile Include="Categories\OrderedCategoryViewModel.cs" />
     <Compile Include="Comments\CommentAddOrUpdateViewModel.cs" />
     <Compile Include="Comments\CommentBasicViewModel.cs" />
     <Compile Include="Common\DescribableEntityViewModel.cs" />

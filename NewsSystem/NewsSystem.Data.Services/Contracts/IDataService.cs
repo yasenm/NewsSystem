@@ -4,6 +4,6 @@
 
     public interface IDataService
     {
-        INewsSystemData Data { get; set; }
+        INewsSystemData _data { get; set; }
     }
 }

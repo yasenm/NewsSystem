@@ -39,12 +39,12 @@
             }
         }
 
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
         private ITagsService TagsService { get; set; }
 
         public NSImageService(INewsSystemData data, ITagsService tagsService)
         {
-            this.Data = data;
+            this._data = data;
             this.TagsService = tagsService;
         }
 
@@ -72,8 +72,8 @@
                 NSImage image = this.ConvertPostedFileToNSImage(model.ImageBase);
                 image.Title = model.Title;
                 image.Description = model.Text;
-                this.Data.NSImages.Add(image);
-                this.Data.SaveChanges();
+                this._data.NSImages.Add(image);
+                this._data.SaveChanges();
 
                 this.TagsService.SaveTagsToTagableEntity(image, model.Tags);
                 return true;
@@ -89,8 +89,8 @@
             try
             {
                 NSImage nsImage = this.ConvertPostedFileToNSImage(imageFile);
-                this.Data.NSImages.Add(nsImage);
-                this.Data.SaveChanges();
+                this._data.NSImages.Add(nsImage);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -104,10 +104,10 @@
             try
             {
                 NSImage nsImage = this.ConvertPostedFileToNSImage(imageFile);
-                Album album = this.Data.Albums.GetById(albumId);
+                Album album = this._data.Albums.GetById(albumId);
                 nsImage.Albums.Add(album);
-                this.Data.NSImages.Add(nsImage);
-                this.Data.SaveChanges();
+                this._data.NSImages.Add(nsImage);
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -138,15 +138,15 @@
 
         private IQueryable<NSImage> GetAlbumImagesQueryable(long albumId)
         {
-            var album = this.Data.Albums.GetById(albumId);
-            var images = this.Data.NSImages.All()
+            var album = this._data.Albums.GetById(albumId);
+            var images = this._data.NSImages.All()
                 .Where(nsi => nsi.Albums.FirstOrDefault(a => a.Id == albumId) != null); //.Where(a => a.Id == albumId).FirstOrDefault() != null);
             return images;
         }
 
         public NSImageGridViewModel GetImageById(long albumId)
         {
-            var nsImage = this.Data.NSImages.GetById(albumId);
+            var nsImage = this._data.NSImages.GetById(albumId);
             var result = Mapper.Map<NSImageGridViewModel>(nsImage);
 
             return result;
@@ -156,12 +156,12 @@
         {
             try
             {
-                var album = this.Data.Albums.GetById(albumId);
-                var coverImage = this.Data.NSImages.GetById(imageId);
+                var album = this._data.Albums.GetById(albumId);
+                var coverImage = this._data.NSImages.GetById(imageId);
                 album.CoverImageId = coverImage.Id;
 
                 //this.Data.Albums.Update(album);
-                this.Data.SaveChanges();
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -172,7 +172,7 @@
 
         public IQueryable<NSImageGridViewModel> GetImages()
         {
-            var queryableImagesCollection = this.Data.NSImages.All()
+            var queryableImagesCollection = this._data.NSImages.All()
                 .OrderByDescending(nsi => nsi.CreatedOn)
                 .Project()
                 .To<NSImageGridViewModel>();
@@ -182,7 +182,7 @@
 
         public IQueryable<NSImageGridViewModel> GetImages(string text, string tags)
         {
-            var queryableImagesCollection = this.Data.NSImages.All();
+            var queryableImagesCollection = this._data.NSImages.All();
 
             if (text != string.Empty && text != null)
             {
@@ -207,8 +207,8 @@
             {
                 text = string.Empty;
             }
-            var album = this.Data.Albums.GetById(albumId);
-            var queryableImagesCollection = this.Data.NSImages.All()
+            var album = this._data.Albums.GetById(albumId);
+            var queryableImagesCollection = this._data.NSImages.All()
                 .Where(nsi => nsi.Albums.Where(a => a.Id == albumId).FirstOrDefault() == null);
 
             if (text != string.Empty && text != null)
@@ -223,7 +223,7 @@
 
         public NSImageEditViewModel GetImageForEdit(long nsImageId)
         {
-            var nsImage = this.Data.NSImages.GetById(nsImageId);
+            var nsImage = this._data.NSImages.GetById(nsImageId);
             var imageForEditModel = Mapper.Map<NSImageEditViewModel>(nsImage);
 
             return imageForEditModel;
@@ -231,7 +231,7 @@
 
         public bool EditImage(NSImageEditViewModel model)
         {
-            NSImage image = this.Data.NSImages.GetById(model.Id);
+            NSImage image = this._data.NSImages.GetById(model.Id);
             image.Title = model.Title;
             image.Description = model.Description;
             image.Summary = model.Summary;
@@ -241,7 +241,7 @@
                 image.ByteContent = this.ConvertPostedFileToNSImage(model.PostedContent).ByteContent;
             }
 
-            this.Data.SaveChanges();
+            this._data.SaveChanges();
 
             if (model.Tags.Count > 0)
             {
@@ -257,13 +257,13 @@
         {
             try
             {
-                var image = this.Data.NSImages.GetById(imgId);
-                var album = this.Data.Albums.GetById(albumId);
+                var image = this._data.NSImages.GetById(imgId);
+                var album = this._data.Albums.GetById(albumId);
 
                 album.NSImages.Remove(image);
                 image.Albums.Remove(album);
 
-                this.Data.SaveChanges();
+                this._data.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -277,13 +277,13 @@
         {
             try
             {
-                Album album = this.Data.Albums.GetById(albumId);
+                Album album = this._data.Albums.GetById(albumId);
                 foreach (var imageId in imagesIds)
                 {
-                    NSImage nsImage = this.Data.NSImages.GetById(imageId);
+                    NSImage nsImage = this._data.NSImages.GetById(imageId);
                     album.NSImages.Add(nsImage);
                     nsImage.Albums.Add(album);
-                    this.Data.SaveChanges();
+                    this._data.SaveChanges();
                 }
 
                 return true;
@@ -302,7 +302,7 @@
 
         public bool CheckIsImageAlbumCover(long imageId, long albumId)
         {
-            var album = this.Data.Albums.GetById(albumId);
+            var album = this._data.Albums.GetById(albumId);
             return album.CoverImageId == imageId;
         }
     }

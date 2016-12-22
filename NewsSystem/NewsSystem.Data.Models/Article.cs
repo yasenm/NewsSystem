@@ -78,5 +78,7 @@
             get { return _visitorsIps; }
             set { _visitorsIps = value; }
         }
+
+        public int ViewsCount { get; set; }
     }
 }

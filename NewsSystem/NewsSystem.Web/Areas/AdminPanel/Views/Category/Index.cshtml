@@ -1,6 +1,21 @@
-﻿
-<div class="row">
-    <div class="col-md-12">
+﻿<div class="row word-wraped">
+    <div class="col-md-12 text-center">
+        <h2>Categories</h2>
+    </div>
+    <div class="col-md-6 " id="sortable-category-list-container">
         @Html.Action("SortableList", "Category")
     </div>
+    <div class="col-md-6">
+        @Html.Action("Add", "Category")
+    </div>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/tinymce")
+    @Scripts.Render("~/bundles/bootbox")
+    @Scripts.Render("~/bundles/admin-panel-category")
+    <script>
+        APP.Category.init();
+        APP.TinymceInitializer.basicInit();
+    </script>
+}

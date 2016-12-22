@@ -12,9 +12,14 @@
     using PagedList;
     using NewsSystem.Common.Constants;
     using Constants.Common;
+    using System.Web;
+    using NewsSystem.Common.Helpers;
+    using System;
 
     public class NewsController : BaseController
     {
+        private const string VIEWS_COUNT_COOKIE_KEY = "V_CTNS";
+
         private IArticleClientService _newsService;
         private ITagsClientService _tagService;
 
@@ -63,7 +68,8 @@
 
         public ActionResult Details(long id)
         {
-            _newsService.UpdateVisitorIp(id, HttpContext.Request.UserHostAddress);
+            //_newsService.UpdateVisitorIp(id, HttpContext.Request.UserHostAddress);
+            AddOrCheckViewCookie(id);
             var model = _newsService.GetById<NewsDetailsClientViewModel>(id);
 
             return View(model);
@@ -94,9 +100,29 @@
             return View(results);
         }
 
-        //public ActionResult Details(string title)
-        //{
-        //    return View(_newsService.GetByTitle(title));
-        //}
+        private void AddOrCheckViewCookie(long newsId)
+        {
+            var cookie = GetCookie(VIEWS_COUNT_COOKIE_KEY);
+            string value;
+            if (cookie == null)
+            {
+                SetCookie(VIEWS_COUNT_COOKIE_KEY, newsId.ToString());
+                _newsService.UpdateViewsCount(newsId);
+            }
+            else
+            {
+                var currentVal = GetCookieVal(VIEWS_COUNT_COOKIE_KEY);
+                var viewdNewsIds = currentVal
+                    .Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+                if (!viewdNewsIds.Contains(newsId.ToString()))
+                {
+                    viewdNewsIds.Add(newsId.ToString());
+                    value = string.Join(",", viewdNewsIds);
+                    SetCookie(VIEWS_COUNT_COOKIE_KEY, value);
+                    _newsService.UpdateViewsCount(newsId);
+                }
+            }
+        }
     }
 }

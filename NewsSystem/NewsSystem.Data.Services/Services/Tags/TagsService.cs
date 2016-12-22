@@ -12,22 +12,22 @@
 
     public class TagsService : IDataService, ITagsService
     {
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
 
         public TagsService(INewsSystemData data)
         {
-            this.Data = data;
+            this._data = data;
         }
 
         public ICollection<string> GetAllTagsNames()
         {
-            var result = this.Data.Tags.All().Select(t => t.Name).ToList();
+            var result = this._data.Tags.All().Select(t => t.Name).ToList();
             return result;
         }
 
         public ICollection<Tag> GetTagsByTitle(ICollection<string> tagNames)
         {
-            var result = this.Data.Tags.All().Where(t => tagNames.Contains(t.Name.ToLower())).ToList();
+            var result = this._data.Tags.All().Where(t => tagNames.Contains(t.Name.ToLower())).ToList();
             return result;
         }
 
@@ -40,7 +40,7 @@
 
                 foreach (var tag in tags)
                 {
-                    var dbTag = this.Data.Tags
+                    var dbTag = this._data.Tags
                         .All()
                         .FirstOrDefault(tnsi => tnsi.Name.ToLower().Trim() == tag.ToLower().Trim());
 
@@ -51,16 +51,16 @@
                             Name = tag,
                         };
 
-                        this.Data.Tags.Add(dbTag);
-                        this.Data.SaveChanges();
+                        this._data.Tags.Add(dbTag);
+                        this._data.SaveChanges();
                     }
                     else
                     {
-                        this.Data.Tags.Update(dbTag);
+                        this._data.Tags.Update(dbTag);
                     }
 
                     this.SaveTagToTagableEntity(tagableEntity, dbTag);
-                    this.Data.SaveChanges();
+                    this._data.SaveChanges();
                 }
             }
             return false;
@@ -71,23 +71,23 @@
             var entityIsAlbum = tagableEntity as Album;
             if (entityIsAlbum != null)
             {
-                var album = this.Data.Albums.GetById(entityIsAlbum.Id);
+                var album = this._data.Albums.GetById(entityIsAlbum.Id);
                 album.Tags.Add(dbTag);
-                this.Data.Albums.Update(album);
+                this._data.Albums.Update(album);
             }
             var entityIsArticle = tagableEntity as Article;
             if (entityIsArticle != null)
             {
-                var article = this.Data.Articles.GetById(entityIsArticle.Id);
+                var article = this._data.Articles.GetById(entityIsArticle.Id);
                 article.Tags.Add(dbTag);
-                this.Data.Articles.Update(article);
+                this._data.Articles.Update(article);
             }
             var entityIsNSImage = tagableEntity as NSImage;
             if (entityIsNSImage != null)
             {
-                var nsImage = this.Data.NSImages.GetById(entityIsNSImage.Id);
+                var nsImage = this._data.NSImages.GetById(entityIsNSImage.Id);
                 nsImage.Tags.Add(dbTag);
-                this.Data.NSImages.Update(nsImage);
+                this._data.NSImages.Update(nsImage);
             }
         }
 
@@ -96,7 +96,7 @@
             var entityIsAlbum = tagableEntity as Album;
             if (entityIsAlbum != null)
             {
-                var album = this.Data.Albums.GetById(entityIsAlbum.Id);
+                var album = this._data.Albums.GetById(entityIsAlbum.Id);
                 var tags = album.Tags;
                 foreach (var tag in tags)
                 {
@@ -108,7 +108,7 @@
             var entityIsArticle = tagableEntity as Article;
             if (entityIsArticle != null)
             {
-                var article = this.Data.Articles.GetById(entityIsArticle.Id);
+                var article = this._data.Articles.GetById(entityIsArticle.Id);
                 var tags = article.Tags;
                 foreach (var tag in tags)
                 {
@@ -120,7 +120,7 @@
             var entityIsNSImage = tagableEntity as NSImage;
             if (entityIsNSImage != null)
             {
-                var nsImage = this.Data.NSImages.GetById(entityIsNSImage.Id);
+                var nsImage = this._data.NSImages.GetById(entityIsNSImage.Id);
                 var tags = nsImage.Tags;
                 foreach (var tag in tags)
                 {
@@ -129,7 +129,7 @@
                 nsImage.Tags.Clear();
             }
 
-            this.Data.SaveChanges();
+            this._data.SaveChanges();
         }
 
         private string[] GetTagsArray(ICollection<string> rawTags)

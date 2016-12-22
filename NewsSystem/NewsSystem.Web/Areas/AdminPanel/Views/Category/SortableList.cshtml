@@ -1,3 +1,39 @@
 ﻿@using NewsSystem.Data.ViewModels.Categories
+@using NewsSystem.Web.Common.Constants
+@using NewsSystem.Web.Helpers
 
 @model IEnumerable<CategoryViewModel>
+
+<div class="col-md-12 text-center margin-bottom-25">
+    <button class="btn btn-primary update-category-tree-btn" data-href="@Url.AbsoluteAction("UpdateList", "Category", new { })">Save current schema</button>
+</div>
+
+@foreach (var category in Model)
+{
+    <div class="col-md-4">
+        <div class="panel @CommonStyles.PanelStyle">
+            <div class="panel-heading">
+                <h3 class="panel-title" data-id="@category.Id">
+                    @category.Title
+                    <a href="@Url.AbsoluteAction("EditName", "Category")" class="btn btn-sm btn-success edit-category-name-btn">
+                        <span class="fa fa-pencil"></span>
+                    </a>
+                </h3>
+            </div>
+            <div id="sortable-category-container-@category.Id" class="sortable-category" data-id="@category.Id">
+                @if (category.Children.Count > 0)
+                {
+                    foreach (var child in category.Children)
+                    {
+                        <div class="ui-state-default panel-body moveable-category" data-id="@child.Id">
+                            @child.Title
+                            <a href="@Url.AbsoluteAction("EditName", "Category")" class="btn btn-sm btn-success pull-right edit-category-name-btn">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

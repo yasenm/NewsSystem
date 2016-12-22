@@ -14,20 +14,20 @@
     using Models;
     public class ArticleService : IArticleService, IDataService
     {
-        public INewsSystemData Data { get; set; }
+        public INewsSystemData _data { get; set; }
         private ICategoryService CategoryService { get; set; }
         private ITagsService TagsService { get; set; }
 
         public ArticleService(INewsSystemData data, ICategoryService categoryService, ITagsService tagsService)
         {
-            this.Data = data;
+            this._data = data;
             this.CategoryService = categoryService;
             this.TagsService = tagsService;
         }
 
         public IQueryable<T> GetAll<T>()
         {
-            var collection = this.Data.Articles
+            var collection = this._data.Articles
                 .All()
                 .OrderBy(a => a.CreatedOn)
                 .Project()
@@ -38,7 +38,7 @@
 
         public IEnumerable<T> Get<T>(long categoryId)
         {
-            var collection = this.Data.Articles
+            var collection = this._data.Articles
                 .All()
                 .Where(a => a.Categories.FirstOrDefault(c => c.Id == categoryId) != null)
                 .Project()
@@ -50,7 +50,7 @@
 
         public T GetEditModel<T>(long articleId)
         {
-            var article = this.Data.Articles.GetById(articleId);
+            var article = this._data.Articles.GetById(articleId);
             var model = Mapper.Map<T>(article);
             return model;
         }
@@ -60,7 +60,7 @@
             try
             {
                 //var article = Mapper.Map<Article>(model);
-                var article = this.Data.Articles.GetById(model.Id);
+                var article = this._data.Articles.GetById(model.Id);
                 article.Title = model.Title;
                 article.Description = model.Description;
                 article.Summary = model.Summary;
@@ -72,8 +72,8 @@
                 this.CategoryService.SaveCategorableEntityToCategories(article, model.ChosenCategories);
                 this.TagsService.SaveTagsToTagableEntity(article, model.ChosenTags);
 
-                this.Data.Articles.Update(article);
-                this.Data.SaveChanges();
+                this._data.Articles.Update(article);
+                this._data.SaveChanges();
                 if (article.IsTopMain)
                 {
                     this.RemoveTopMainsAndKeepUpdated(article.Id);
@@ -89,12 +89,12 @@
 
         private void RemoveTopMainsAndKeepUpdated(long id)
         {
-            var topMainArticles = this.Data.Articles.All().Where(a => a.IsTopMain && a.Id != id).ToList();
+            var topMainArticles = this._data.Articles.All().Where(a => a.IsTopMain && a.Id != id).ToList();
             foreach (var article in topMainArticles)
             {
                 article.IsTopMain = false;
-                this.Data.Articles.Update(article);
-                this.Data.SaveChanges();
+                this._data.Articles.Update(article);
+                this._data.SaveChanges();
             }
         }
 
@@ -102,12 +102,12 @@
         {
             try
             {
-                var user = Data.Users.All().FirstOrDefault(u => u.UserName == userName).Id;
+                var user = _data.Users.All().FirstOrDefault(u => u.UserName == userName).Id;
                 var article = Mapper.Map<Article>(model);
                 article.AuthorId = user;
 
-                this.Data.Articles.Add(article);
-                this.Data.SaveChanges();
+                this._data.Articles.Add(article);
+                this._data.SaveChanges();
 
                 foreach (var parent in model.ChosenCategories)
                 {
@@ -127,8 +127,8 @@
         {
             try
             {
-                this.Data.Articles.Delete(articleId);
-                this.Data.SaveChanges();
+                this._data.Articles.Delete(articleId);
+                this._data.SaveChanges();
 
                 return true;
             }

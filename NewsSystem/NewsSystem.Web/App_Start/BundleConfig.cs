@@ -126,6 +126,9 @@
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-articles").Include(
                       "~/Scripts/AdminPanel/articles/articles.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/admin-panel-category").Include(
+                      "~/Scripts/AdminPanel/category/category.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/admin-panel-common-modal-triggers").Include(
                       "~/Scripts/AdminPanel/common/common-modal-triggers.js"));
 

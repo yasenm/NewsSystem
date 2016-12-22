@@ -135,5 +135,22 @@ namespace NewsSystem.Data.Services.Articles
                 return;
             }
         }
+
+        public void UpdateViewsCount(long id)
+        {
+            try
+            {
+                var news = _data.Articles.GetById(id);
+                if (news != null)
+                {
+                    news.ViewsCount += 1;
+                    _data.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
     }
 }

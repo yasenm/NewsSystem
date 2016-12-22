@@ -21,6 +21,7 @@ namespace NewsSystem.Data.ViewModels.Articles
         public DateTime CreatedOn { get; set; }
         public long? RelatedAlbumId { get; set; }
         public int VisitorsCount { get; set; }
+        public int ViewsCount { get; set; }
         public int CommentsCount { get; set; }
         public StatsViewModel Stats { get; set; }
 
@@ -35,7 +36,7 @@ namespace NewsSystem.Data.ViewModels.Articles
                 .ForMember(m => m.Stats,
                     opt => opt.MapFrom(art => new StatsViewModel
                     {
-                       VisitorsCount = art.VisitorsIps.Count,
+                       VisitorsCount = art.ViewsCount,
                        CommentsCount = art.Comments.Where(c => !c.IsDeleted).Count(),
                        CreatedOn = art.CreatedOn
                     }));

@@ -15,5 +15,7 @@
         T GetById<T>(long id);
         T GetByTitle<T>(string title);
         void UpdateVisitorIp(long id, string userHostAddress);
+        // based on cookies this is trigered
+        void UpdateViewsCount(long id);
     }
 }
