@@ -9,6 +9,8 @@ APP.Albums = (function () {
                 })
                 .error(function (error) {
                     $(albumsGridSelector).html(error);
+
+
                 });
         }
 
